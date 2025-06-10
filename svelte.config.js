@@ -5,10 +5,10 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter(),
-		ssr: false,
-		prerender: {
-			entries: [] // prevent prerendering
-		}
+		// ssr: false,
+		// prerender: {
+		// 	entries: [] // prevent prerendering
+		// }
 	}
 };
 
