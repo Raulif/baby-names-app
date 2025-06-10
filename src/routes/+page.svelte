@@ -1,32 +1,34 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcomeFallback from '$lib/images/svelte-welcome.png';
+	import NewNameForm from '../components/NewNameForm/NewNameForm.svelte';
+	import NamesList from '../components/NamesList.svelte';
+	import ParentForm from '../components/ParentForm.svelte';
+	import { parentState } from '../lib/parent.svelte';
+
+	const onParentChange = (chosenParent: string) => {
+		localStorage.setItem('parent', chosenParent);
+		parentState.parent = chosenParent;
+	};
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Familia Baby Names</title>
+	<meta name="description" content="Familia Baby Names" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+		rel="stylesheet"
+	/>
+	<script src="https://kit.fontawesome.com/f6d01d0f1a.js" crossorigin="anonymous"></script>
 </svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcomeFallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+{#if !parentState.checked}
+	Loading User...
+{:else if !parentState.parent}
+	<ParentForm onChange={onParentChange} />
+{:else}
+	<NamesList />
+	<NewNameForm />
+{/if}
 
 <style>
 	section {
@@ -34,26 +36,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
 	}
 
 	h1 {
 		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
 	}
 </style>
