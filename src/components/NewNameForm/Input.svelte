@@ -7,5 +7,5 @@
 
 <label class={clsx('px-4', name === 'parent' ? 'visually-hidden' : 'flex flex-col gap-2')}>
 	<span class="quicksand-700 text-md flex-[1]">{label}</span>
-	<input {name} value={value || ''} autocomplete="none" />
+	<input {name} value={value || ''} autocomplete="" />
 </label>
