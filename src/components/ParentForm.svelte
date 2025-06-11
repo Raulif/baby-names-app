@@ -7,6 +7,7 @@
 		e.preventDefault();
 		const form = e.target as HTMLFormElement;
 		const parent = (form.elements.namedItem('parent') as HTMLSelectElement)?.value;
+		if (!parent) return;
 		onChange(parent);
 	};
 </script>
@@ -16,6 +17,7 @@
 		<label for="parent-select" class="quicksand-700 w-[80vw] text-left">Wähle deine Role aus:</label
 		>
 		<select name="parent" id="parent-select" class="w-full">
+			<option value="">Auswählen</option>
 			<option value="mama">Mama</option>
 			<option value="papa">Papa</option>
 		</select>
