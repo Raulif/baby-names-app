@@ -4,19 +4,21 @@
 	};
 	const { onChange }: Props = $props();
 	const onSubmit = (e: SubmitEvent) => {
-    e.preventDefault()
+		e.preventDefault();
 		const form = e.target as HTMLFormElement;
 		const parent = (form.elements.namedItem('parent') as HTMLSelectElement)?.value;
 		onChange(parent);
 	};
 </script>
 
-<section>
-	<form method="POST" onsubmit={onSubmit}>
-		<select name="parent">
+<section class="flex h-screen flex-col items-center justify-center gap-4 bg-violet-100">
+	<form method="POST" onsubmit={onSubmit} class="flex w-[80vw] flex-col gap-4">
+		<label for="parent-select" class="quicksand-700 w-[80vw] text-left">Wähle deine Role aus:</label
+		>
+		<select name="parent" id="parent-select" class="w-full">
 			<option value="mama">Mama</option>
 			<option value="papa">Papa</option>
 		</select>
-		<input type="submit" title="save" />
+		<input type="submit" title="save" class="rounded-sm bg-[blueviolet] py-2 text-white" />
 	</form>
 </section>
