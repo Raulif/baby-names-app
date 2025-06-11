@@ -1,6 +1,6 @@
 <script>
 	import clsx from 'clsx';
-	const { id, selectedValue, onChange, value, label, name, classes, selectedClasses, icon } =
+	const { id, value, label, name, classes, icon } =
 		$props();
 </script>
 
@@ -9,10 +9,10 @@
 	class={clsx(
 		'flex flex-[1] items-center justify-center rounded-sm border-1 p-2',
 		classes,
-		selectedValue === value && selectedClasses
+		value=== 'm' ? 'has-checked:bg-blue-700 text-white' : 'has-checked:bg-pink-700 text-white'
 	)}
 >
 	<i class={clsx('fa', icon)}></i>
-	<input onchange={onChange} type="radio" {name} {value} {id} class="visually-hidden" />
+	<input  type="radio" {name} {value} {id} class="visually-hidden" />
 	<span class="visually-hidden">{label}</span>
 </label>

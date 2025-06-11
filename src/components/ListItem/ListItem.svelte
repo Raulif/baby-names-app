@@ -5,7 +5,8 @@
 	import RateInput from './RateInput.svelte';
 	import { parentState } from '../../lib/parent.svelte';
 	import RateDisplay from './RateDisplay.svelte';
-	const { name, rate, parent }: Name = $props();
+	import clsx from 'clsx';
+	const { name, rate, parent, gender }: Name = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });
 	const deleting = $state({ value: false });
@@ -45,9 +46,21 @@
 	};
 </script>
 
-<li class="mb-4 flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4">
+<li
+	class={clsx(
+		'mb-4 flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4',
+		deleting.value && 'opacity-70'
+	)}
+>
 	<div class="flex items-center justify-between pr-2">
-		<span class="quicksand-700 block text-xl">{name}</span>
+		<div class="flex items-center gap-2">
+			{#if gender === 'f'}
+			<i class="fa fa-venus text-sm text-pink-300"> </i>
+			{:else}
+			<i class="fa fa-mars text-sm text-blue-300" ></i>
+			{/if}
+			<span class="quicksand-700 text-xl flex items-center">{name}</span>
+		</div>
 		{#if parent === parentState.parent}
 			<button
 				onclick={onDelete}
@@ -61,7 +74,7 @@
 		{/if}
 	</div>
 
-	<div class="flex items-center">
+	<div class="flex min-h-[28px] items-center">
 		<form method="POST" class="flex-[2]" onsubmit={onSubmit}>
 			<RateInput
 				value={userRate}
