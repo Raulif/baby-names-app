@@ -2,12 +2,13 @@
 	import GenderRadio from './GenderRadio.svelte';
 
 	const gender = $state({ value: '' });
-	const onChange = (e: Event) => {
+
+	const onChangeHandler = (e: Event) => {
 		const radio = e.target as HTMLInputElement;
 		const value = radio.value;
 		gender.value = value;
-		console.log(e);
 	};
+
 </script>
 
 <fieldset class="w-full px-4">
@@ -17,11 +18,11 @@
 			<GenderRadio
 				id="gender-m"
 				value="m"
-				{onChange}
+				onChange={onChangeHandler}
 				name="gender"
-				selected={gender.value}
+				selectedValue={gender.value}
 				label="Junge"
-				classes="border-1 border-blue-700 text-blue-700"
+				classes="border-blue-700 text-blue-700 bg-blue-100"
 				selectedClasses="bg-blue-700 text-white"
 				icon="fa-child"
 			/>
@@ -29,11 +30,11 @@
 			<GenderRadio
 				id="gender-f"
 				value="f"
-				{onChange}
+				onChange={onChangeHandler}
 				name="gender"
-				selected={gender.value}
+				selectedValue={gender.value}
 				label="Mädchen"
-				classes="border-1 border-pink-700 text-pink-700"
+				classes="border-pink-700 text-pink-700 bg-pink-200"
 				selectedClasses="bg-pink-700 text-white"
 				icon="fa-child-dress"
 			/>

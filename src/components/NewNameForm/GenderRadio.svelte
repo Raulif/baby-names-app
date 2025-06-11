@@ -1,14 +1,15 @@
 <script>
 	import clsx from 'clsx';
-	const { id, selected, onChange, value, label, name, classes, selectedClasses, icon } = $props();
+	const { id, selectedValue, onChange, value, label, name, classes, selectedClasses, icon } =
+		$props();
 </script>
 
 <label
 	for={id}
 	class={clsx(
-		'flex flex-[1] items-center justify-center p-2 rounded-sm',
+		'flex flex-[1] items-center justify-center rounded-sm border-1 p-2',
 		classes,
-		selected === value && selectedClasses
+		selectedValue === value && selectedClasses
 	)}
 >
 	<i class={clsx('fa', icon)}></i>

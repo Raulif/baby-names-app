@@ -1,4 +1,44 @@
-<input type="range" name="rate" min="0" max="100" step="10" />
+<script lang="ts">
+	import clsx from 'clsx';
+
+	type Props = {
+		value?: number;
+		debug?: boolean;
+		onChangeHandler: () => void;
+		changed?: boolean;
+		loading?: boolean;
+	};
+
+	const { value, changed, onChangeHandler, loading }: Props = $props();
+	const currentValue = $state({ value });
+
+	const onInputChanged = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
+		const input = e.target as HTMLInputElement;
+		currentValue.value = parseInt(input.value) as number;
+		onChangeHandler && onChangeHandler();
+	};
+</script>
+
+<div class="flex items-center justify-between gap-4">
+	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
+	{#if loading}
+		<div class="flex h-4 w-4 items-center justify-center">
+			<i class="fa fa-spinner animate-spin text-sm text-[blueviolet]"></i>
+		</div>
+	{:else}
+		<button
+			disabled={!changed}
+			type="submit"
+			aria-label="Bewertung speichern"
+			class={clsx(
+				'flex h-4 w-4 items-center justify-center rounded-sm border-[0] bg-[blueviolet]',
+				!changed && 'pointer-events-none opacity-0'
+			)}
+		>
+			<i class="fa fa-check text-[10px] text-white"></i>
+		</button>
+	{/if}
+</div>
 
 <style>
 	input[type='range'] {
@@ -13,13 +53,13 @@
 	/***** Chrome, Safari, Opera, and Edge Chromium *****/
 	input[type='range']::-webkit-slider-runnable-track {
 		background: linear-gradient(to right, red, yellow, green);
-		height: 0.5rem;
+		height: 10px;
 	}
 
 	/******** Firefox ********/
 	input[type='range']::-moz-range-track {
 		background: linear-gradient(to right, red, yellow, green);
-		height: 0.5rem;
+		height: 10px;
 	}
 
 	/***** Thumb Styles *****/
@@ -27,21 +67,18 @@
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none; /* Override default look */
 		appearance: none;
-		background-color: black;
-		height: 1rem;
-		width: 1rem;
-		border-radius: 50%;
-		margin-top: -4px;
+		background-color: blueviolet;
+		height: 10px;
+		width: 8px;
 	}
 
 	/***** Firefox *****/
 	input[type='range']::-moz-range-thumb {
 		border: none; /*Removes extra border that FF applies*/
 		border-radius: 0; /*Removes default border-radius that FF applies*/
-		background-color: black;
-		height: 1rem;
-		width: 1rem;
-		border-radius: 50%;
+		background-color: blueviolet;
+		height: 12px;
+		width: 8px;
 	}
 
 	/***** Focus Styles *****/

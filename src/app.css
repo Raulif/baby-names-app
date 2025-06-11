@@ -48,7 +48,10 @@
 }
 
 body {
-	min-height: 100vh;
+	max-height: 100dvh;
+	max-height: 100vh;
+	overflow: hidden;
+	font-family: 'Source Sans 3';
 }
 
 h1,
