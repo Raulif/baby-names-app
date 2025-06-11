@@ -12,7 +12,7 @@
 	};
 </script>
 
-<section class="flex h-[100dvh] h-[100vh] flex-col items-center justify-center gap-4 bg-violet-100">
+<section class="flex flex-col items-center justify-center gap-4 bg-violet-100">
 	<form method="POST" onsubmit={onSubmit} class="flex w-[80vw] flex-col gap-4">
 		<label for="parent-select" class="quicksand-700 w-[80vw] text-left">Wähle deine Role aus:</label
 		>
@@ -24,3 +24,10 @@
 		<input type="submit" title="save" class="rounded-sm bg-[blueviolet] py-2 text-white" />
 	</form>
 </section>
+
+<style>
+	section {
+		height: 100dvh;
+		height: 100vh;
+	}
+</style>
