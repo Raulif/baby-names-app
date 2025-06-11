@@ -1,13 +1,15 @@
 /** @satisfies {import('./$types').Actions} */
-import type { Gender, Name, Parent } from '../types/types';
-import { postNamesToDB, getNamesFromDB, updateNamesInDB } from '../db/names';
-import type { Id } from '../convex/_generated/dataModel';
+import type { Gender, Parent } from '../types/types';
+import { getNamesFromDB, updateNamesInDB } from '../db/names';
 export const actions = {
 	add: async ({ request }) => {
 		const data = await request.formData();
 		const name = data.get('name');
 		const gender = data.get('gender');
-		if (!name || !gender) return;
+		const { _id, names } = await getNamesFromDB();
+		const exists = names.find((n) => n.name === name);
+
+		if (!name || !gender || exists) return false;
 
 		const newNameEntry = {
 			name: data.get('name') as string,
@@ -16,9 +18,8 @@ export const actions = {
 			gender: data.get('gender') as Gender
 		};
 
-		const { _id, names } = await getNamesFromDB();
-
 		await updateNamesInDB(_id, [...(names || []), newNameEntry]);
+		return true;
 	},
 	rate: async ({ request }) => {
 		const data = await request.formData();
@@ -28,7 +29,9 @@ export const actions = {
 		const { _id, names } = await getNamesFromDB();
 
 		const nameIndex = names.findIndex((n) => n.name === name);
-		if (nameIndex === -1) return null;
+
+		if (nameIndex === -1) return false;
+
 		const rateIndex = names[nameIndex]?.rate.findIndex((r) => r.parent === parent);
 		if (rateIndex === -1) {
 			names[nameIndex].rate.push({

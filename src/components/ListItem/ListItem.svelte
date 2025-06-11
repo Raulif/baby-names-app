@@ -49,7 +49,7 @@
 <li
 	class={clsx(
 		'mb-4 flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4',
-		deleting.value && 'opacity-70'
+		deleting.value && 'opacity-50'
 	)}
 >
 	<div class="flex items-center justify-between pr-2">
