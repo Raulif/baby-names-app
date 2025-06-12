@@ -6,9 +6,8 @@
 </script>
 
 <section class="max-h-[240px] border-t-[1px] border-t-gray-300 bg-violet-100">
-	<form class="flex flex-col gap-4 pt-2" method="POST" action="?/add" use:enhance>
+	<form class="flex flex-col gap-4 pt-2" method="POST" action={`?/add&parent=${parentState.parent}`} use:enhance>
 		<Input name="name" label="Name eingeben" />
-		<Input name="parent" label="Benutzerrolle" value={parentState.parent} />
 		<GenderInput />
 
 		<button type="submit" class="mt-2 bg-[blueviolet] px-4 py-2 disabled:bg-gray-400">

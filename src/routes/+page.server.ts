@@ -2,18 +2,19 @@
 import type { Gender, Parent } from '../types/types';
 import { getNamesFromDB, updateNamesInDB } from '../db/names';
 export const actions = {
-	add: async ({ request }) => {
-		const data = await request.formData();
+	add: async (event) => {
+		const params = event.url.searchParams;
+		const data = await event.request.formData();
 		const name = data.get('name');
 		const gender = data.get('gender');
 		const { _id, names } = await getNamesFromDB();
 		const exists = names.find((n) => n.name === name);
-
+		
 		if (!name || !gender || exists) return false;
 
 		const newNameEntry = {
 			name: data.get('name') as string,
-			parent: data.get('parent') as Parent,
+			parent: params.get('parent') as Parent,
 			rate: [],
 			gender: data.get('gender') as Gender
 		};

@@ -1,15 +1,11 @@
 <script lang="ts">
 	import clsx from 'clsx';
 
-	type Props = { name: string; label: string; value?: string };
-	const { name, label, value }: Props = $props();
+	type Props = { name: string; label: string };
+	const { name, label }: Props = $props();
 </script>
 
-<label class={clsx('px-4', name === 'parent' ? 'visually-hidden' : 'flex flex-col gap-2')}>
+<label class="flex flex-col gap-2 px-4">
 	<span class="quicksand-700 text-md flex-[1]">{label}</span>
-	{#if name === 'parent'}
-		<input {name} {value} />
-	{:else}
-		<input class="rounded-sm border-black" {name} autocomplete="off" />
-	{/if}
+	<input class="rounded-sm border-black" {name} autocomplete="off" />
 </label>
