@@ -8,8 +8,8 @@
 
 <label
 	class={clsx(
-		'tab raleway-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-x-violet-700 border-t-violet-700 py-1 text-center',
-		selected && ' raleway-bold  border-b-violet-100 bg-violet-100',
+		'tab poppins-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-x-violet-700 border-t-violet-700 py-1 text-center',
+		selected && ' raleway-bold  border-b-violet-700 bg-violet-100',
 		!selected && ' z-0 border-b-violet-700 bg-violet-700 text-white '
 	)}
 >
