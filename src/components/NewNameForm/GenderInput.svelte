@@ -2,10 +2,10 @@
 	import GenderRadio from './GenderRadio.svelte';
 </script>
 
-<fieldset class="w-full px-4">
+<fieldset class="w-full flex-[1]">
 	<div class="flex w-full flex-col gap-2">
-		<span class="quicksand-700 text-md w-full flex-[1]">Geschlecht auswählen</span>
-		<span class="flex gap-4">
+		<span class="quicksand-700 text-md w-full flex-[1]">Geschlecht </span>
+		<span class="flex gap-2">
 			<GenderRadio
 				id="gender-m"
 				value="m"
