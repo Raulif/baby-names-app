@@ -26,7 +26,7 @@
 			class="grid max-h-[96px] grid-cols-2 flex-col flex-wrap items-start justify-between gap-x-2 gap-y-4 pt-4"
 		>
 			<SortingRadio
-				label="Alfabet. A - Z"
+				label="Name A - Z"
 				name="list-sorting"
 				value="alphabetical-asc"
 				{selectedSorting}
@@ -40,7 +40,7 @@
 				{onChange}
 			/>
 			<SortingRadio
-				label="Alfabet. Z - A"
+				label="Name Z - A"
 				name="list-sorting"
 				value="alphabetical-desc"
 				{selectedSorting}
