@@ -1,5 +1,4 @@
 <script lang="ts">
-	import clsx from 'clsx';
 	import NewNameForm from '../NewNameForm/NewNameForm.svelte';
 	import SortingForm from '../SortingForm/SortingForm.svelte';
 	import Tab from './Tab.svelte';

@@ -3,9 +3,9 @@
 
 	import NamesList from '../components/NamesList.svelte';
 	import ParentForm from '../components/ParentForm.svelte';
-	import { parentState } from '$lib/parent.svelte';
-	import { sortingState } from '$lib/sorting.svelte';
-	import { filteringState } from '$lib/filtering.svelte';
+	import { parentState } from '$lib/parentState.svelte';
+	import { sortingState } from '$lib/sortingState.svelte';
+	import { filteringState } from '$lib/filteringState.svelte';
 	import Tabs from '../components/Tabs/Tabs.svelte';
 	import { api } from '../convex/_generated/api.js';
 	import {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
-	import { parentState } from '$lib/parent.svelte';
+	import { parentState } from '$lib/parentState.svelte';
 	import FilteringCheckbox from './FilteringRadio.svelte';
 	type Props = {
 		onChange: (value: Parent | string, category: FilterCategory) => void;
@@ -24,7 +24,7 @@
 			{/if}
 		</div>
 		<div
-			class="grid divide-violet-600 divide-x-2 max-h-[96px] grid-cols-2 flex-col flex-wrap items-start justify-between gap-x-6 pt-4"
+			class="grid max-h-[96px] grid-cols-2 flex-col flex-wrap items-start justify-between gap-x-6 divide-x-2 divide-violet-600 pt-4"
 		>
 			<div class="flex flex-col gap-4">
 				<FilteringCheckbox

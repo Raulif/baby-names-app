@@ -18,7 +18,7 @@ export const sortRatingDescending = (a: Name, b: Name) => {
 };
 
 export const filterNames = (names: Array<Name>, filters: SelectedFilters) => {
-	let filtered = [...names].filter((name) => {		
+	let filtered = [...names].filter((name) => {
 		if (filters.filterGender && name.gender !== filters.filterGender) {
 			return false;
 		}
@@ -27,5 +27,5 @@ export const filterNames = (names: Array<Name>, filters: SelectedFilters) => {
 		}
 		return true;
 	});
-	return filtered
+	return filtered;
 };

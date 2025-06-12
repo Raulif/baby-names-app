@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { Name } from '../../types/types';
-
-	import RateInput from './RateInput.svelte';
-	import { parentState } from '../../lib/parent.svelte';
-	import RateDisplay from './RateDisplay.svelte';
 	import clsx from 'clsx';
+	import type { Name } from '../../types/types';
+	import RateInput from './RateInput.svelte';
+	import { parentState } from '../../lib/parentState.svelte';
+	import RateDisplay from './RateDisplay.svelte';
 	const { name, rate, parent, gender }: Name = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });

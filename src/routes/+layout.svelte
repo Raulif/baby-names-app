@@ -5,7 +5,7 @@
 	import { setupConvex } from 'convex-svelte';
 	import { browser } from '$app/environment';
 
-	import { parentState } from '../lib/parent.svelte';
+	import { parentState } from '../lib/parentState.svelte';
 
 	const { children } = $props();
 	setupConvex(PUBLIC_CONVEX_URL);

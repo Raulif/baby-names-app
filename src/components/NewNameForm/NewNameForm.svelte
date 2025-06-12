@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import GenderInput from './GenderInput.svelte';
 	import Input from './Input.svelte';
-	import { parentState } from '../../lib/parent.svelte';
+	import { parentState } from '../../lib/parentState.svelte';
 </script>
 
 <section class="pt-3">
@@ -24,5 +24,4 @@
 </section>
 
 <style>
-
 </style>
