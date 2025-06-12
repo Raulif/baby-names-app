@@ -12,3 +12,10 @@ export type Parent = 'papa' | 'mama';
 export type Gender = 'm' | 'f'
 
 export type GetNamesResult = Promise<{ _id: Id<'names'>; names: Array<Name> }>
+
+export type FilterCategory = 'filterUser' | 'filterGender'
+
+export type SelectedFilters = {
+			filterUser: Parent | string;
+			filterGender: string;
+		}

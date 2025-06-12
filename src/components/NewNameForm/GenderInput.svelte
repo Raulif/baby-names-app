@@ -20,7 +20,7 @@
 				value="f"
 				name="gender"
 				label="Mädchen"
-				classes="border-pink-700 text-pink-700 bg-pink-200"
+				classes="border-pink-600 text-pink-600 bg-pink-200"
 				icon="fa-child-dress"
 			/>
 		</span>

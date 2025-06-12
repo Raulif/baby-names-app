@@ -3,16 +3,19 @@
 
 	import NamesList from '../components/NamesList.svelte';
 	import ParentForm from '../components/ParentForm.svelte';
-	import { parentState } from '../lib/parent.svelte';
+	import { parentState } from '$lib/parent.svelte';
 	import { sortingState } from '$lib/sorting.svelte';
+	import { filteringState } from '$lib/filtering.svelte';
 	import Tabs from '../components/Tabs/Tabs.svelte';
 	import { api } from '../convex/_generated/api.js';
 	import {
+		filterNames,
 		sortAlphabeticallyAscending,
 		sortAlphabeticallyDescending,
 		sortRatingAscending,
 		sortRatingDescending
 	} from '$lib/helpers.js';
+	import type { FilterCategory, Parent } from '../types/types';
 
 	const query = useQuery(api.names.get, {});
 
@@ -26,10 +29,30 @@
 		localStorage.setItem('sorting', value);
 	};
 
-	const sortedNames = $derived.by(() => {
-		if (!query.data?.names?.length) return [];
-		let names = query.data.names;
+	const onFilterChange = (value: Parent | string, category: FilterCategory) => {
+		let filters = { ...filteringState.value };
+		filters[category] = value;
+		filteringState.value = filters;
+		localStorage.setItem('filtering', JSON.stringify(filters));
+	};
 
+	const onFilterClear = () => {
+		const emptyFilters = {
+			filterUser: '',
+			filterGender: ''
+		};
+		filteringState.value = emptyFilters;
+		localStorage.setItem('filtering', JSON.stringify(emptyFilters));
+	};
+
+	const onSortingClear = () => {
+		sortingState.value = '';
+		localStorage.setItem('sorting', '');
+	};
+
+	const sortedAndFiltered = $derived.by(() => {
+		if (!query.data?.names?.length) return [];
+		let names = filterNames(query.data.names, filteringState.value);
 		if (sortingState.value === 'alphabetical-desc') {
 			names.sort(sortAlphabeticallyDescending);
 		}
@@ -50,6 +73,14 @@
 			sortingState.value = localStorage.getItem('sorting') as string;
 		}
 	});
+
+	$effect(() => {
+		if (!!localStorage.getItem('filtering') && !filteringState.checked) {
+			const filters = JSON.parse(localStorage.getItem('filtering') as string);
+			filteringState.value = filters;
+			filteringState.checked = true;
+		}
+	});
 </script>
 
 <svelte:head>
@@ -61,6 +92,13 @@
 {:else if !parentState.parent}
 	<ParentForm onChange={onParentChange} />
 {:else}
-	<NamesList names={sortedNames} loading={query.isLoading} error={query.error} />
-	<Tabs {onSortingChange} selectedSorting={sortingState.value} />
+	<NamesList names={sortedAndFiltered} loading={query.isLoading} error={query.error} />
+	<Tabs
+		{onSortingChange}
+		selectedSorting={sortingState.value}
+		{onFilterChange}
+		selectedFilters={filteringState.value}
+		{onFilterClear}
+		{onSortingClear}
+	/>
 {/if}

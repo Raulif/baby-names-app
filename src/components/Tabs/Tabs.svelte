@@ -4,13 +4,26 @@
 	import SortingForm from '../SortingForm/SortingForm.svelte';
 	import Tab from './Tab.svelte';
 	import Panel from './Panel.svelte';
+	import FilteringForm from '../FilteringForm/FilteringForm.svelte';
+	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
 
 	type Props = {
 		onSortingChange: (value: string) => void;
 		selectedSorting?: string;
+		selectedFilters: SelectedFilters;
+		onFilterChange: (value: Parent | string, category: FilterCategory) => void;
+		onFilterClear: () => void;
+		onSortingClear: () => void;
 	};
 
-	const { onSortingChange, selectedSorting }: Props = $props();
+	const {
+		onSortingChange,
+		selectedSorting,
+		selectedFilters,
+		onFilterChange,
+		onFilterClear,
+		onSortingClear
+	}: Props = $props();
 
 	const tabSelected = $state({ value: 'new-name-tab' });
 	const onSelect = (e: Event) => {
@@ -34,10 +47,10 @@
 	</fieldset>
 	<div class="relative h-[144px]">
 		<Panel visible={tabSelected.value === 'sort-tab'}>
-			<SortingForm onChange={onSortingChange} {selectedSorting} />
+			<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
 		</Panel>
 		<Panel visible={tabSelected.value === 'filter-tab'}>
-			<div>Filtering</div>
+			<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
 		</Panel>
 		<Panel visible={tabSelected.value === 'new-name-tab'}>
 			<NewNameForm />

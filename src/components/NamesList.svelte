@@ -9,7 +9,6 @@
 	};
 
 	const { names, loading, error }: Props = $props();
-
 </script>
 
 <section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-4">
@@ -33,25 +32,6 @@
 		</ul>
 	{/if}
 </section>
-
-<!-- <div class="flex justify-between filter-container">
-	<select class="max-w-[33vw] flex-[1]" onchange={onSortingChange}>
-		<option value="">Sortieren</option>
-		<option value="alphabetical-asc">Alphabetisch A-Z</option>
-		<option value="rating">Bewertung</option>
-	</select>
-	<select class="max-w-[33vw] flex-[1]">
-		<option value="">Filter</option>
-		<option value="all">Alle</option>
-		<option value="user">Nur meine</option>
-	</select>
-	<select class="max-w-[33vw] flex-[1]">
-		<option value="">Gender</option>
-		<option value="all">Alle</option>
-		<option value="male">Nur Junge</option>
-		<option value="female">Nur Mädchen</option>
-	</select>
-</div> -->
 
 <style>
 	.filter-container {

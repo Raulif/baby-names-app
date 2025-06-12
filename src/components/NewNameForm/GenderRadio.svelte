@@ -9,7 +9,7 @@
 	class={clsx(
 		'flex flex-[1] items-center justify-center rounded-sm border-1 p-2',
 		classes,
-		value=== 'm' ? 'has-checked:bg-blue-700 text-white' : 'has-checked:bg-pink-700 text-white'
+		value=== 'm' ? 'has-checked:bg-blue-700 text-white' : 'has-checked:bg-pink-600 text-white'
 	)}
 >
 	<i class={clsx('fa', icon)}></i>
