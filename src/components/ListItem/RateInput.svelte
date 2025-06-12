@@ -54,12 +54,14 @@
 	input[type='range']::-webkit-slider-runnable-track {
 		background: linear-gradient(to right, red, yellow, green);
 		height: 10px;
+		border-radius: 10px;
 	}
 
 	/******** Firefox ********/
 	input[type='range']::-moz-range-track {
 		background: linear-gradient(to right, red, yellow, green);
 		height: 10px;
+		border-radius: 10px;
 	}
 
 	/***** Thumb Styles *****/
@@ -71,6 +73,7 @@
 		height: 18px;
 		width: 10px;
 		margin-top: -4px;
+		border-radius: 10px;
 	}
 
 	/***** Firefox *****/
@@ -80,6 +83,7 @@
 		background-color: blueviolet;
 		height: 18px;
 		width: 10px;
+		border-radius: 10px;
 	}
 
 	/***** Focus Styles *****/
