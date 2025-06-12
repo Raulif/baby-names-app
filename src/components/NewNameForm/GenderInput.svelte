@@ -4,7 +4,7 @@
 
 <fieldset class="w-full flex-[1]">
 	<div class="flex w-full flex-col gap-2">
-		<span class="quicksand-700 text-md w-full flex-[1]">Geschlecht </span>
+		<span class="poppins-bold text-md w-full flex-[1]">Geschlecht </span>
 		<span class="flex gap-2">
 			<GenderRadio
 				id="gender-m"

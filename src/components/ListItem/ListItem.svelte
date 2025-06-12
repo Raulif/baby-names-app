@@ -55,11 +55,11 @@
 	<div class="flex items-center justify-between pr-2">
 		<div class="flex items-center gap-2">
 			{#if gender === 'f'}
-			<i class="fa fa-venus text-sm text-pink-300"> </i>
+				<i class="fa fa-venus text-sm text-pink-300"> </i>
 			{:else}
-			<i class="fa fa-mars text-sm text-blue-300" ></i>
+				<i class="fa fa-mars text-sm text-blue-300"></i>
 			{/if}
-			<span class="quicksand-700 text-xl flex items-center">{name}</span>
+			<span class="poppins-bold flex items-center text-xl">{name}</span>
 		</div>
 		{#if parent === parentState.parent}
 			<button
@@ -75,7 +75,7 @@
 	</div>
 
 	<div class="flex min-h-[28px] items-center">
-		<form method="POST" class="flex-[2]" onsubmit={onSubmit}>
+		<form method="POST" class="flex-[2.5]" onsubmit={onSubmit}>
 			<RateInput
 				value={userRate}
 				debug={name === 'name A'}

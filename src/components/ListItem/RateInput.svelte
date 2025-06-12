@@ -22,7 +22,7 @@
 <div class="flex items-center justify-between gap-4">
 	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
 	{#if loading}
-		<div class="flex h-4 w-4 items-center justify-center">
+		<div class="flex h-6 w-6 items-center justify-center">
 			<i class="fa fa-spinner animate-spin text-sm text-[blueviolet]"></i>
 		</div>
 	{:else}
@@ -31,7 +31,7 @@
 			type="submit"
 			aria-label="Bewertung speichern"
 			class={clsx(
-				'flex h-4 w-4 items-center justify-center rounded-sm border-[0] bg-[blueviolet]',
+				'flex h-6 min-w-6 items-center justify-center rounded-sm border-[0] bg-[blueviolet]',
 				!changed && 'pointer-events-none opacity-0'
 			)}
 		>
@@ -68,8 +68,9 @@
 		-webkit-appearance: none; /* Override default look */
 		appearance: none;
 		background-color: blueviolet;
-		height: 10px;
-		width: 8px;
+		height: 18px;
+		width: 10px;
+		margin-top: -4px;
 	}
 
 	/***** Firefox *****/
@@ -77,8 +78,8 @@
 		border: none; /*Removes extra border that FF applies*/
 		border-radius: 0; /*Removes default border-radius that FF applies*/
 		background-color: blueviolet;
-		height: 12px;
-		width: 8px;
+		height: 18px;
+		width: 10px;
 	}
 
 	/***** Focus Styles *****/

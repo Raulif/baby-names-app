@@ -6,7 +6,7 @@
 	};
 	const { rate }: Props = $props();
 
-  const average = $derived.by(() => {
+	const average = $derived.by(() => {
 		if (!rate.length) return 0;
 		return Math.round(rate.reduce((acc, r) => (acc += r.rate), 0)) / rate.length;
 	});
@@ -26,7 +26,7 @@
 		{/if}
 	</span>
 
-	<span class="quicksand-700 text-lg">
+	<span class="poppins-bold text-xl">
 		{#if !rate.length}
 			{null}
 		{:else}
