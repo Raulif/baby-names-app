@@ -23,7 +23,7 @@
 	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
 	{#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
-			<i class="fa fa-spinner animate-spin text-[10px] text-[blueviolet]"></i>
+			<i class="fa fa-spinner animate-spin text-sm text-[blueviolet]"></i>
 		</div>
 	{:else}
 		<button
