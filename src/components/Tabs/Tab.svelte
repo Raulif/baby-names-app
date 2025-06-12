@@ -8,9 +8,9 @@
 
 <label
 	class={clsx(
-		'raleway-regular flex-[1]  rounded-tl-xl rounded-tr-xl border-1 border-t-violet-700 border-b-violet-100 py-1 text-center',
-		selected && ' raleway-bold  bg-violet-100  ',
-		!selected && 'border-y-violet-700 bg-violet-700 text-white '
+		'tab raleway-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-x-violet-700 border-t-violet-700 py-1 text-center',
+		selected && ' raleway-bold  border-b-violet-100 bg-violet-100',
+		!selected && ' z-0 border-b-violet-700 bg-violet-700 text-white '
 	)}
 >
 	{label}
@@ -23,3 +23,9 @@
 		checked={selected}
 	/>
 </label>
+
+<style>
+	.tab {
+		box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.7);
+	}
+</style>
