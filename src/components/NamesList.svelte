@@ -13,7 +13,9 @@
 
 <section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-4">
 	{#if loading}
-		Loading List...
+	<div class="pb-8 flex justify-center">
+		<p class="poppins-bold text-xl">Liste lädt...</p>
+	</div>
 	{:else if error}
 		failed to load names
 	{:else if !names.length}
@@ -32,9 +34,3 @@
 		</ul>
 	{/if}
 </section>
-
-<style>
-	.filter-container {
-		box-shadow: 0px -2px 6px 1px rgba(0, 0, 0, 0.3);
-	}
-</style>
