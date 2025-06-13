@@ -45,7 +45,7 @@
 
 <div
 	class={clsx(
-		'mb-4 flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4',
+		'flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4 py-4 px-4 rounded-2xl overflow-hidden bg-white',
 		deleting.value && 'opacity-50'
 	)}
 >
