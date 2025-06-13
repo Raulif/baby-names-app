@@ -31,10 +31,9 @@ export const filterNames = (names: Array<Name>, filters: SelectedFilters) => {
 };
 
 export const sortNames = (names: Array<Name>, sorting: string) => {
-	const sorted = [...names];
 	switch (sorting) {
 		case 'alphabetical-desc':
-			sorted.sort(sortAlphabeticallyDescending);
+			names.sort(sortAlphabeticallyDescending);
 			break;
 		case 'alphabetical-asc':
 			names.sort(sortAlphabeticallyAscending);
@@ -48,5 +47,5 @@ export const sortNames = (names: Array<Name>, sorting: string) => {
 		default:
 			break;
 	}
-	return sorted;
+	return [...names];
 };

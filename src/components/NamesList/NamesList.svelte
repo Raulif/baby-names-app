@@ -1,6 +1,9 @@
 <script lang="ts">
-	import ListItem from './ListItem/ListItem.svelte';
-	import type { Name } from '../types/types.js';
+	import { fade, fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+
+	import ListItem from '../ListItem/ListItem.svelte';
+	import type { Name } from '../../types/types.js';
 
 	type Props = {
 		names: Array<Name>;
@@ -13,9 +16,9 @@
 
 <section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-4">
 	{#if loading}
-	<div class="pb-8 flex justify-center">
-		<p class="poppins-bold text-xl">Liste lädt...</p>
-	</div>
+		<div class="flex justify-center pb-8">
+			<p class="poppins-bold text-xl">Liste lädt...</p>
+		</div>
 	{:else if error}
 		failed to load names
 	{:else if !names.length}
@@ -28,8 +31,10 @@
 		</div>
 	{:else}
 		<ul class="mt-4 flex h-full w-full flex-col-reverse justify-end">
-			{#each names as name}
-				<ListItem {...name} />
+			{#each names as name (name.name)}
+				<li animate:flip={{duration: 250}} in:fade out:fade>
+					<ListItem {...name} />
+				</li>
 			{/each}
 		</ul>
 	{/if}

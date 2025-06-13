@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useQuery } from 'convex-svelte';
 
-	import NamesList from '../components/NamesList.svelte';
+	import NamesList from '../components/NamesList/NamesList.svelte';
 	import Tabs from '../components/Tabs/Tabs.svelte';
 	import { api } from '../convex/_generated/api';
 	import { filterNames, sortNames } from '$lib/helpers';
@@ -59,7 +59,6 @@
 	});
 </script>
 
-<div class="list-view">
 	<NamesList names={namesList} loading={query.isLoading} error={query.error} />
 	<Tabs
 		{onSortingChange}
@@ -69,21 +68,3 @@
 		{onFilterClear}
 		{onSortingClear}
 	/>
-</div>
-
-<style>
-  .list-view {
-    flex: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		width: 100%;
-		margin: 0 auto;
-		box-sizing: border-box;
-		max-width: 500px;
-		margin: 0 auto;
-		max-height: 100dvh;
-		max-height: 100vh;
-		overflow: hidden;
-  }
-</style>

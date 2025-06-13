@@ -40,11 +40,10 @@
 			method: 'POST',
 			body: JSON.stringify({ name })
 		});
-		deleting.value = false;
 	};
 </script>
 
-<li
+<div
 	class={clsx(
 		'mb-4 flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4',
 		deleting.value && 'opacity-50'
@@ -84,4 +83,4 @@
 		</form>
 		<div class="flex flex-[1] justify-end"><RateDisplay {rate} /></div>
 	</div>
-</li>
+</div>

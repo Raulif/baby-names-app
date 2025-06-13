@@ -25,3 +25,25 @@
 	</main>
 </div>
 
+<style>
+	.app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		width: 100%;
+		margin: 0 auto;
+		box-sizing: border-box;
+		max-width: 500px;
+		margin: 0 auto;
+		max-height: 100dvh;
+		max-height: 100vh;
+		overflow: hidden;
+	}
+</style>

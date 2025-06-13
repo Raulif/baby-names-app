@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { parentState } from '$lib/parentState.svelte';
-	import ParentForm from '../components/ParentForm.svelte';
-	import ListView from '../ListView/ListView.svelte';
+	import ParentSelectView from '../MainView/ParentSelectView.svelte';
+	import ListView from '../MainView/MainView.svelte';
 
 	const onParentChange = (chosenParent: string) => {
-		localStorage.setItem('parent', chosenParent);
 		parentState.parent = chosenParent;
+		localStorage.setItem('parent', chosenParent);
 	};
 </script>
 
@@ -16,7 +16,7 @@
 {#if !parentState.checked}
 	Loading User...
 {:else if !parentState.parent}
-	<ParentForm onChange={onParentChange} />
+	<ParentSelectView onChange={onParentChange} />
 {:else}
 	<ListView />
 {/if}
