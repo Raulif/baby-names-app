@@ -10,7 +10,7 @@
 
 <div
 	class={clsx(
-		'absolute top-0 h-[144px] w-full bg-white',
+		'absolute top-0  w-full bg-white',
 		visible ? '' : 'pointer-events-none z-0 opacity-0'
 	)}
 >

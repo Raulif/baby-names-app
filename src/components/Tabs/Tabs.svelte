@@ -44,7 +44,7 @@
 
 		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected.value} />
 	</fieldset>
-	<div class="relative h-[144px]">
+	<div class="relative h-[252px]">
 		<Panel visible={tabSelected.value === 'sort-tab'}>
 			<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
 		</Panel>

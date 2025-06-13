@@ -5,19 +5,19 @@
 	import { parentState } from '../../lib/parentState.svelte';
 </script>
 
-<section class="pt-3">
+<section class="px-4 pt-3">
 	<form
-		class="flex flex-col gap-4"
+		class="flex flex-col gap-5"
 		method="POST"
 		action={`?/add&parent=${parentState.parent}`}
 		use:enhance
 	>
-		<div class="flex gap-4 px-4">
+		<div class="flex flex-col gap-3">
 			<Input name="name" label="Name eingeben" />
 			<GenderInput />
 		</div>
 
-		<button type="submit" class="mt-2 bg-[blueviolet] px-4 py-2 disabled:bg-gray-400">
+		<button type="submit" class="w-full rounded-md bg-[blueviolet] py-2 disabled:bg-gray-400">
 			<span class="poppins-bold text-xl text-white"> Speichern </span>
 		</button>
 	</form>

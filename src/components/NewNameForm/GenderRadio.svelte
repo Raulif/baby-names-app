@@ -6,7 +6,7 @@
 <label
 	for={id}
 	class={clsx(
-		'flex flex-[1] items-center justify-center rounded-sm border-1 p-2',
+		'flex flex-[1] items-center justify-center rounded-sm border-1 px-2 py-3',
 		classes,
 		value === 'm' ? 'text-white has-checked:bg-blue-700' : 'text-white has-checked:bg-pink-600'
 	)}

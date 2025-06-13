@@ -29,3 +29,24 @@ export const filterNames = (names: Array<Name>, filters: SelectedFilters) => {
 	});
 	return filtered;
 };
+
+export const sortNames = (names: Array<Name>, sorting: string) => {
+	const sorted = [...names];
+	switch (sorting) {
+		case 'alphabetical-desc':
+			sorted.sort(sortAlphabeticallyDescending);
+			break;
+		case 'alphabetical-asc':
+			names.sort(sortAlphabeticallyAscending);
+			break;
+		case 'rating-asc':
+			names.sort(sortRatingAscending);
+			break;
+		case 'rating-desc':
+			names.sort(sortRatingDescending);
+			break;
+		default:
+			break;
+	}
+	return sorted;
+};
