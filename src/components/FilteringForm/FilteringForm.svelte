@@ -1,59 +1,81 @@
 <script lang="ts">
-	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
+	import type { FilterCategory, Parent, FilteringStateValue } from '../../types/types';
 	import { parentState } from '$lib/parentState.svelte';
 	import FilteringCheckbox from './FilteringRadio.svelte';
 	import ClearFilterButton from '../ClearFilterButton/ClearFilterButton.svelte';
 	type Props = {
 		onChange: (value: Parent | string, category: FilterCategory) => void;
-		selectedFilters: SelectedFilters;
+		selectedFilters: FilteringStateValue;
 		onClear: () => void;
 	};
 
 	const { onChange, selectedFilters, onClear }: Props = $props();
 </script>
 
-<section class="max-h-[144px] px-4 pt-3">
+<section class="relative h-full px-4 pt-3">
 	<fieldset>
-		<div class="flex items-center justify-between">
-			<legend class="poppins-bold text-md">Liste filtern</legend>
+		<div class="absolute top-2 right-4">
 			{#if selectedFilters.filterUser || selectedFilters.filterGender}
-			<ClearFilterButton onClear={onClear} />
+				<ClearFilterButton {onClear} />
 			{/if}
 		</div>
-		<div
-			class="grid max-h-[96px] grid-cols-2 flex-col flex-wrap items-start justify-between gap-x-6 divide-x-2 divide-violet-600 pt-4"
-		>
-			<div class="flex flex-col gap-4">
-				<FilteringCheckbox
-					name="filterUser"
-					value={parentState.parent}
-					label="Meine"
-					{onChange}
-					{selectedFilters}
-				/>
-				<FilteringCheckbox
-					name="filterUser"
-					value={parentState.parent === 'mama' ? 'papa' : 'mama'}
-					label="Andere"
-					{onChange}
-					{selectedFilters}
-				/>
+		<div class="grid-auto-rows grid h-full gap-2 divide-y-1 divide-violet-600">
+			<div class="flex flex-col gap-2 pb-2">
+				<span class="poppins-regular">Nach Nutzer</span>
+				<div class="flex gap-4">
+					<FilteringCheckbox
+						name="filterUser"
+						value={parentState.parent}
+						label="Meine"
+						{onChange}
+						{selectedFilters}
+					/>
+					<FilteringCheckbox
+						name="filterUser"
+						value={parentState.parent === 'mama' ? 'papa' : 'mama'}
+						label="Andere"
+						{onChange}
+						{selectedFilters}
+					/>
+				</div>
 			</div>
-			<div class="flex flex-col gap-4">
-				<FilteringCheckbox
-					name="filterGender"
-					value="f"
-					label="Mädchen"
-					{onChange}
-					{selectedFilters}
-				/>
-				<FilteringCheckbox
-					name="filterGender"
-					value="m"
-					label="Junge"
-					{onChange}
-					{selectedFilters}
-				/>
+			<div class="flex flex-col gap-2 pb-4">
+				<span class="poppins-regular">Nach Geschlecht</span>
+				<div class="flex gap-4">
+					<FilteringCheckbox
+						name="filterGender"
+						value="f"
+						label="Mädchen"
+						{onChange}
+						{selectedFilters}
+					/>
+					<FilteringCheckbox
+						name="filterGender"
+						value="m"
+						label="Junge"
+						{onChange}
+						{selectedFilters}
+					/>
+				</div>
+			</div>
+			<div class="flex flex-col gap-2 pb-4">
+				<span class="poppins-regular">Nach Bewertung</span>
+				<div class="flex gap-4">
+					<FilteringCheckbox
+						name="filterRating"
+						value={"true"}
+						label="Bewertet"
+						{onChange}
+						{selectedFilters}
+					/>
+					<FilteringCheckbox
+						name="filterRating"
+						value={"false"}
+						label="Nicht bewertet"
+						{onChange}
+						{selectedFilters}
+					/>
+				</div>
 			</div>
 		</div>
 	</fieldset>

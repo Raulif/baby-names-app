@@ -2,20 +2,25 @@ export type Name = {
 	name: string;
 	parent: Parent;
 	rate: Array<Rate>;
-  gender: Gender;
+	gender: Gender;
 };
 
 export type Rate = { rate: number; parent: Parent };
 
 export type Parent = 'papa' | 'mama';
 
-export type Gender = 'm' | 'f'
+export type Gender = 'm' | 'f';
 
-export type GetNamesResult = Promise<{ _id: Id<'names'>; names: Array<Name> }>
+export type GetNamesResult = Promise<{ _id: Id<'names'>; names: Array<Name> }>;
 
-export type FilterCategory = 'filterUser' | 'filterGender'
+export type FilterCategory = 'filterUser' | 'filterGender' | 'filterRating';
 
-export type SelectedFilters = {
-			filterUser: Parent | string;
-			filterGender: string;
-		}
+export type FilteringStateValue = {
+	filterUser: FilterUser;
+	filterGender: FilterGender;
+	filterRating: FilterRating;
+};
+
+export type FilterUser = Parent | string
+export type FilterGender = string
+export type FilterRating = string

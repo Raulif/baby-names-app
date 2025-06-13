@@ -4,12 +4,12 @@
 	import Tab from './Tab.svelte';
 	import Panel from './Panel.svelte';
 	import FilteringForm from '../FilteringForm/FilteringForm.svelte';
-	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
+	import type { FilterCategory, Parent, FilteringStateValue } from '../../types/types';
 
 	type Props = {
 		onSortingChange: (value: string) => void;
 		selectedSorting?: string;
-		selectedFilters: SelectedFilters;
+		selectedFilters: FilteringStateValue;
 		onFilterChange: (value: Parent | string, category: FilterCategory) => void;
 		onFilterClear: () => void;
 		onSortingClear: () => void;

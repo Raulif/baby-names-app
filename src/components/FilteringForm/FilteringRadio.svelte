@@ -1,13 +1,13 @@
 <script lang="ts">
 	import clsx from 'clsx';
-	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
+	import type { FilterCategory, Parent, FilteringStateValue } from '../../types/types';
 
 	type Props = {
 		name: FilterCategory;
 		onChange: (value: Parent | string, category: FilterCategory) => void;
 		label: string;
-		value: string | Parent;
-		selectedFilters: SelectedFilters;
+		value: string | Parent | boolean;
+		selectedFilters: FilteringStateValue;
 	};
 	const { label, name, value, onChange, selectedFilters }: Props = $props();
 </script>

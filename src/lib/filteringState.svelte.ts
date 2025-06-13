@@ -1,8 +1,11 @@
-import type { Parent } from '../types/types';
+import type { FilteringStateValue, Parent } from '../types/types';
 
-export const filteringState: { value: { filterUser: Parent | string; filterGender: string }; checked: boolean } = $state(
-	{
-		value: { filterUser: '', filterGender: '' },
-		checked: false
-	}
-);
+type FilteringState = {
+	value: FilteringStateValue;
+	checked: boolean;
+};
+
+export const filteringState: FilteringState = $state({
+	value: { filterUser: '', filterGender: '', filterRating: '' },
+	checked: false
+});

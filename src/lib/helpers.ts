@@ -1,4 +1,4 @@
-import type { Name, SelectedFilters } from '../types/types';
+import type { Name, Parent, FilteringStateValue } from '../types/types';
 
 export const sortAlphabeticallyDescending = (a: Name, b: Name) =>
 	a.name < b.name ? 1 : a.name > b.name ? -1 : 0;
@@ -17,13 +17,19 @@ export const sortRatingDescending = (a: Name, b: Name) => {
 	return averageA < averageB ? 1 : averageA > averageB ? -1 : 0;
 };
 
-export const filterNames = (names: Array<Name>, filters: SelectedFilters) => {
+export const filterNames = (names: Array<Name>, filters: FilteringStateValue, parent: Parent) => {
 	let filtered = [...names].filter((name) => {
 		if (filters.filterGender && name.gender !== filters.filterGender) {
 			return false;
 		}
 		if (filters.filterUser && filters.filterUser !== name.parent) {
 			return false;
+		}
+
+		if (filters.filterRating === 'true' && !name.rate.some(r => r.parent === parent)) {
+			return false
+		} else if (filters.filterRating === 'false' && name.rate.some(r => r.parent === parent)) {
+			return false
 		}
 		return true;
 	});
