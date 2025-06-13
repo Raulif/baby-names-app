@@ -1,12 +1,14 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 
-const Rate = { rate: v.number(), parent: v.string() };
+const Rate = v.object({ rate: v.number(), parent: v.string() });
+const Veto = v.object({ parent: v.string(), veto: v.boolean() });
 const Name = v.object({
 	name: v.string(),
 	parent: v.string(),
-	rate: v.array(v.object(Rate)),
-	gender: v.string()
+	rate: v.array(Rate),
+	gender: v.string(),
+	veto: v.array(Veto)
 });
 
 export const post = mutation({

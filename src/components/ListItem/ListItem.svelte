@@ -4,7 +4,7 @@
 	import RateInput from './RateInput.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
 	import RateDisplay from './RateDisplay.svelte';
-	const { name, rate, parent, gender }: Name = $props();
+	const { name, rate, parent, gender, veto = [] }: Name = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });
 	const deleting = $state({ value: false });
@@ -41,15 +41,23 @@
 			body: JSON.stringify({ name })
 		});
 	};
+
+	const onVeto = async () => {
+		await fetch('?/veto', {
+			method: 'POST',
+			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: true } })
+		});
+	};
+	const vetoed = $derived(veto?.some((v) => v.parent === parentState.parent && !!v.veto));
 </script>
 
 <div
 	class={clsx(
-		'flex w-full flex-col gap-2 border-b-1 border-b-[lightgrey] pb-4 py-4 px-4 rounded-2xl overflow-hidden bg-white',
+		'flex w-full flex-col gap-2 overflow-hidden rounded-2xl border-b-1 border-b-[lightgrey] bg-white px-4 py-4 pb-4',
 		deleting.value && 'opacity-50'
 	)}
 >
-	<div class="flex items-center justify-between pr-2">
+	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
 			{#if gender === 'f'}
 				<i class="fa fa-venus text-sm text-pink-300"> </i>
@@ -58,17 +66,26 @@
 			{/if}
 			<span class="poppins-bold flex items-center text-xl">{name}</span>
 		</div>
-		{#if parent === parentState.parent}
-			<button
-				onclick={onDelete}
-				aria-label="Name entfernen"
-				class="flex h-6 w-6 items-center justify-center"
-			>
-				<i class="fa fa-trash text-sm text-red-600"></i>
-			</button>
-		{:else}
-			<span></span>
-		{/if}
+		<div class="flex items-center gap-2">
+			{#if !vetoed}
+				<button
+					onclick={onVeto}
+					aria-label="Veto Name"
+					class="flex h-6 w-6 items-center justify-center"
+				>
+					<i class="fa fa-ban text-sm text-red-600"></i>
+				</button>
+			{/if}
+			{#if parent === parentState.parent}
+				<button
+					onclick={onDelete}
+					aria-label="Name entfernen"
+					class="flex h-6 w-6 items-center justify-center"
+				>
+					<i class="fa fa-trash text-sm text-red-600"></i>
+				</button>
+			{/if}
+		</div>
 	</div>
 
 	<div class="flex min-h-[28px] items-center">

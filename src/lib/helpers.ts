@@ -7,11 +7,21 @@ export const sortAlphabeticallyAscending = (a: Name, b: Name) =>
 	a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
 
 export const sortRatingAscending = (a: Name, b: Name) => {
+	if (a.veto?.some((v) => v.veto)) {
+		return -1;
+	} else if (b.veto?.some((v) => v.veto)) {
+		return 1;
+	}
 	const averageA = Math.round(a.rate.reduce((acc, r) => (acc += r.rate), 0)) / a.rate.length;
 	const averageB = Math.round(b.rate.reduce((acc, r) => (acc += r.rate), 0)) / b.rate.length;
 	return averageA > averageB ? 1 : averageA < averageB ? -1 : 0;
 };
 export const sortRatingDescending = (a: Name, b: Name) => {
+	if (a.veto?.some((v) => v.veto)) {
+		return 1;
+	} else if (b.veto?.some((v) => v.veto)) {
+		return -1;
+	}
 	const averageA = Math.round(a.rate.reduce((acc, r) => (acc += r.rate), 0)) / a.rate.length;
 	const averageB = Math.round(b.rate.reduce((acc, r) => (acc += r.rate), 0)) / b.rate.length;
 	return averageA < averageB ? 1 : averageA > averageB ? -1 : 0;
@@ -26,10 +36,10 @@ export const filterNames = (names: Array<Name>, filters: FilteringStateValue, pa
 			return false;
 		}
 
-		if (filters.filterRating === 'true' && !name.rate.some(r => r.parent === parent)) {
-			return false
-		} else if (filters.filterRating === 'false' && name.rate.some(r => r.parent === parent)) {
-			return false
+		if (filters.filterRating === 'true' && !name.rate.some((r) => r.parent === parent)) {
+			return false;
+		} else if (filters.filterRating === 'false' && name.rate.some((r) => r.parent === parent)) {
+			return false;
 		}
 		return true;
 	});

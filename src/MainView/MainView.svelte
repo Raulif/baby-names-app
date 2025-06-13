@@ -50,7 +50,11 @@
 
 	const namesList = $derived.by(() => {
 		if (!query.data?.names?.length) return [];
-		const filtered = filterNames(query.data.names, filteringState.value, parentState.parent as Parent);
+		const filtered = filterNames(
+			query.data.names,
+			filteringState.value,
+			parentState.parent as Parent
+		);
 		const sorted = sortNames(filtered, sortingState.value);
 		return sorted;
 	});

@@ -1,9 +1,14 @@
+import type { VectorFilterBuilder } from 'convex/server';
+
 export type Name = {
 	name: string;
 	parent: Parent;
 	rate: Array<Rate>;
 	gender: Gender;
+	veto: Array<Veto>;
 };
+
+export type Veto = { veto: boolean; parent: Parent };
 
 export type Rate = { rate: number; parent: Parent };
 
@@ -21,6 +26,6 @@ export type FilteringStateValue = {
 	filterRating: FilterRating;
 };
 
-export type FilterUser = Parent | string
-export type FilterGender = string
-export type FilterRating = string
+export type FilterUser = Parent | string;
+export type FilterGender = string;
+export type FilterRating = string;
