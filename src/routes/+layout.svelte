@@ -20,7 +20,7 @@
 </script>
 
 <div class="app">
-	<main>
+	<main class="bg-violet-100">
 		{@render children()}
 	</main>
 </div>
@@ -45,5 +45,6 @@
 		max-height: 100dvh;
 		max-height: 100vh;
 		overflow: hidden;
+
 	}
 </style>

@@ -23,7 +23,7 @@
 	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
 	{#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
-			<i class="fa fa-spinner animate-spin text-sm text-[blueviolet]"></i>
+			<i class="fa fa-spinner animate-spin text-md text-violet-800"></i>
 		</div>
 	{:else}
 		<button
@@ -31,7 +31,7 @@
 			type="submit"
 			aria-label="Bewertung speichern"
 			class={clsx(
-				'flex h-6 min-w-6 items-center justify-center rounded-sm border-[0] bg-[blueviolet]',
+				'flex h-6 min-w-6 items-center justify-center rounded-sm border-[0] bg-violet-800',
 				!changed && 'pointer-events-none opacity-0'
 			)}
 		>
@@ -69,7 +69,7 @@
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none; /* Override default look */
 		appearance: none;
-		background-color: blueviolet;
+		background-color: #5d0ec0;
 		height: 18px;
 		width: 10px;
 		margin-top: -4px;
@@ -80,7 +80,7 @@
 	input[type='range']::-moz-range-thumb {
 		border: none; /*Removes extra border that FF applies*/
 		border-radius: 0; /*Removes default border-radius that FF applies*/
-		background-color: blueviolet;
+		background-color: #5d0ec0;
 		height: 18px;
 		width: 10px;
 		border-radius: 10px;

@@ -17,7 +17,7 @@
 			<GenderInput />
 		</div>
 
-		<button type="submit" class="w-full rounded-md bg-[blueviolet] py-2 disabled:bg-gray-400">
+		<button type="submit" class="w-full rounded-md bg-violet-800 py-2 disabled:bg-gray-400">
 			<span class="poppins-bold text-xl text-white"> Speichern </span>
 		</button>
 	</form>

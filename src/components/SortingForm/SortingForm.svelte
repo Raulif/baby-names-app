@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ClearFilterButton from '../ClearFilterButton/ClearFilterButton.svelte';
 	import SortingRadio from './SortingRadio.svelte';
 
 	type Props = {
@@ -15,11 +16,7 @@
 		<div class="flex items-center justify-between">
 			<legend class="poppins-bold text-md">Liste sortieren</legend>
 			{#if selectedSorting}
-				<button
-					onclick={onClear}
-					class="poppins-regular flex items-center gap-2 rounded-2xl bg-violet-800 px-2 text-white"
-					><i class="fa fa-xmark"></i>Entfernen</button
-				>
+				<ClearFilterButton onClear={onClear} />
 			{/if}
 		</div>
 		<div

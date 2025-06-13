@@ -14,7 +14,7 @@
 	const { names, loading, error }: Props = $props();
 </script>
 
-<section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll bg-violet-100">
+<section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll">
 	{#if loading}
 		<div class="flex justify-center pb-8 px-4">
 			<p class="poppins-bold text-xl">Liste lädt...</p>

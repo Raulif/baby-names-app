@@ -2,6 +2,7 @@
 	import type { FilterCategory, Parent, SelectedFilters } from '../../types/types';
 	import { parentState } from '$lib/parentState.svelte';
 	import FilteringCheckbox from './FilteringRadio.svelte';
+	import ClearFilterButton from '../ClearFilterButton/ClearFilterButton.svelte';
 	type Props = {
 		onChange: (value: Parent | string, category: FilterCategory) => void;
 		selectedFilters: SelectedFilters;
@@ -16,11 +17,7 @@
 		<div class="flex items-center justify-between">
 			<legend class="poppins-bold text-md">Liste filtern</legend>
 			{#if selectedFilters.filterUser || selectedFilters.filterGender}
-				<button
-					onclick={onClear}
-					class="poppins-regular flex items-center gap-2 rounded-2xl bg-violet-800 px-2 text-white"
-					><i class="fa fa-xmark"></i>Entfernen</button
-				>
+			<ClearFilterButton onClear={onClear} />
 			{/if}
 		</div>
 		<div
