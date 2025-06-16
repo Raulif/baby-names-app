@@ -62,11 +62,12 @@ export const actions = {
 		const { _id, names } = await getNamesFromDB();
 		const nameIndex = names.findIndex((n) => n.name === name);
 		if (nameIndex === -1) return false;
+
 		if (!names[nameIndex].veto?.length) {
 			names[nameIndex].veto = [veto];
 		} else {
 			const vetoIndex = names[nameIndex].veto.findIndex((v) => v.parent === veto.parent);
-			if (vetoIndex !== 1) {
+			if (vetoIndex !== -1) {
 				names[nameIndex].veto[vetoIndex] = veto;
 			} else {
 				names[nameIndex].veto.push(veto);
