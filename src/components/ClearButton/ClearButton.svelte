@@ -6,7 +6,7 @@
 		onClick: () => void;
 		ariaLabel?: string;
 		label?: string;
-    classes?: string;
+		classes?: string;
 	};
 
 	const { label, active, onClick, ariaLabel, classes }: Props = $props();
@@ -14,8 +14,8 @@
 
 <button
 	class={clsx(
-		'poppins-regular flex min-h-5 min-w-5 items-center justify-center gap-2 rounded-full bg-violet-800 text-white transition-transform',
-    classes,
+		'open-sans-regular flex min-h-5 min-w-5 items-center justify-center gap-2 rounded-full bg-violet-800 text-white transition-transform',
+		classes,
 		active && 'pointer-events-auto scale-100',
 		!active && 'pointer-events-none scale-0'
 	)}

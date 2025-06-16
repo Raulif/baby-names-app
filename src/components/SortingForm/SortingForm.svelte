@@ -20,10 +20,10 @@
 <section class="max-h-[144px] px-4 pt-3">
 	<fieldset>
 		<div class="flex items-center justify-between">
-			<legend class="poppins-bold text-md">Liste sortieren</legend>
+			<legend class="open-sans-bold text-md">Liste sortieren</legend>
 			<ClearButton active={!!selectedSorting} label="Entfernen" onClick={onClear} classes="px-2" />
 		</div>
-		<div class="flex flex-col grid max-h-[96px] gap-x-2 gap-y-4 pt-4">
+		<div class="flex grid max-h-[96px] flex-col gap-x-2 gap-y-4 pt-4">
 			{#each sortingOptions as option (option.value)}
 				<Radio
 					name="list-sorting"

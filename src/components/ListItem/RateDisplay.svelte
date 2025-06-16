@@ -29,7 +29,7 @@
 		{/if}
 	</span>
 
-	<span class={clsx('poppins-bold text-xl', vetos.length && 'opacity-30')}>
+	<span class={clsx('open-sans-bold text-xl text-[#918f8a]', vetos.length && 'opacity-30')}>
 		{#if !rate.length}
 			{null}
 		{:else}

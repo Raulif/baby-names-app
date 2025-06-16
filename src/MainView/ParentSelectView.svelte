@@ -14,7 +14,9 @@
 
 <section class="flex flex-col items-center justify-center gap-4 bg-violet-100">
 	<form method="POST" onsubmit={onSubmit} class="flex w-full max-w-[80vw] flex-col gap-4">
-		<label for="parent-select" class="raleway-bold w-[80vw] text-left">Wähle deine Role aus:</label>
+		<label for="parent-select" class="open-sans-bold w-[80vw] text-left"
+			>Wähle deine Role aus:</label
+		>
 		<select name="parent" id="parent-select" class="w-full">
 			<option value="">Auswählen</option>
 			<option value="mama">Mama</option>

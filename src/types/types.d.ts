@@ -29,3 +29,4 @@ export type FilterStateValue = {
 export type FilterUser = Parent | string;
 export type FilterGender = string;
 export type FilterRating = string;
+export type ClassNumber = '1' | '2' | '3' | '4' | '0';

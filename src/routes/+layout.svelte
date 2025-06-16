@@ -20,7 +20,7 @@
 </script>
 
 <div class="app">
-	<main class="bg-violet-100">
+	<main>
 		{@render children()}
 	</main>
 </div>

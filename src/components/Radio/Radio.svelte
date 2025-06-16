@@ -14,8 +14,8 @@
 
 <label
 	class={clsx(
-		'raleway-regular relative flex flex-[1] items-center gap-2',
-		checked && 'raleway-bold'
+		'open-sans-regular relative flex flex-[1] items-center gap-2',
+		checked && 'open-sans-bold'
 	)}
 >
 	<input

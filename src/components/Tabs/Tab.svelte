@@ -8,8 +8,8 @@
 
 <label
 	class={clsx(
-		'tab poppins-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-violet-700  py-1 text-center',
-		selected && 'z-1 raleway-bold   bg-violet-700 text-white ',
+		'tab open-sans-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-violet-700  py-1 text-center',
+		selected && 'open-sans-bold z-1   bg-violet-700 text-white ',
 		!selected && ' z-0  bg-violet-300 text-black '
 	)}
 >
@@ -25,5 +25,4 @@
 </label>
 
 <style>
-
 </style>

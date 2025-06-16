@@ -4,7 +4,7 @@
 
 :root {
 	--font-body:
-		'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', open-sans, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: rgb(202, 216, 228);
@@ -12,36 +12,22 @@
 	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #ff3e00;
 	--color-theme-2: #4075a6;
-	--color-text: rgba(0, 0, 0, 0.7);
+	--color-text: rgba(0, 0, 0, 1);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
 }
 
-.raleway-regular {
-	font-family: 'Raleway', sans-serif;
-	font-optical-sizing: auto;
+.open-sans-regular {
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-style: normal;
 }
 
-.raleway-bold {
-	font-family: 'Raleway', sans-serif;
-	font-optical-sizing: auto;
+.open-sans-bold {
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
-	font-style: normal;
-}
-
-.poppins-regular {
-	font-family: 'Poppins', sans-serif;
-	font-weight: 400;
-	font-style: normal;
-}
-
-.poppins-bold {
-	font-family: 'Poppins', sans-serif;
-	font-weight: 500;
 	font-style: normal;
 }
 
@@ -126,4 +112,154 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+.theme-blue {
+	.listitem {
+		background-color: #f7fbfa;
+
+		.gender-bg {
+			background-color: #e6eef0;
+		}
+
+		.gender-icon {
+			color: #a0b4bc;
+		}
+
+		input[type='range']::-webkit-slider-runnable-track {
+			background-color: #e5f1f1;
+		}
+
+		input[type='range']::-moz-range-track {
+			background-color: #e5f1f1;
+		}
+
+		input[type='range']::-webkit-slider-thumb {
+			background-color: #c9d9d6;
+		}
+
+		input[type='range']::-moz-range-thumb {
+			background-color: #c9d9d6;
+		}
+	}
+}
+
+.theme-orange {
+	.listitem {
+		background-color: #fef9f5;
+
+		.gender-bg {
+			background-color: #faedde;
+		}
+
+		.gender-icon {
+			color: #d2a597;
+		}
+
+		input[type='range']::-webkit-slider-runnable-track {
+			background-color: #fceadd;
+		}
+
+		input[type='range']::-moz-range-track {
+			background-color: #fceadd;
+		}
+
+		input[type='range']::-webkit-slider-thumb {
+			background-color: #e0d7c8;
+		}
+
+		input[type='range']::-moz-range-thumb {
+			background-color: #e0d7c8;
+		}
+	}
+}
+
+.theme-pink {
+	.listitem {
+		background-color: #fff8f5;
+
+		.gender-bg {
+			background-color: #feebe7;
+		}
+
+		.gender-icon {
+			color: #d68c8a;
+		}
+
+		input[type='range']::-webkit-slider-runnable-track {
+			background-color: #ffe3de;
+		}
+
+		input[type='range']::-moz-range-track {
+			background-color: #ffe3de;
+		}
+
+		input[type='range']::-webkit-slider-thumb {
+			background-color: #ead1cb;
+		}
+
+		input[type='range']::-moz-range-thumb {
+			background-color: #ead1cb;
+		}
+	}
+}
+
+.theme-green {
+	.listitem {
+		background-color: #fcfdf7;
+
+		.gender-bg {
+			background-color: #eef6e9;
+		}
+
+		.gender-icon {
+			color: #b2c5ab;
+		}
+
+		input[type='range']::-webkit-slider-runnable-track {
+			background-color: #eaf7da;
+		}
+
+		input[type='range']::-moz-range-track {
+			background-color: #eaf7da;
+		}
+
+		input[type='range']::-webkit-slider-thumb {
+			background-color: #dbdfcf;
+		}
+
+		input[type='range']::-moz-range-thumb {
+			background-color: #dbdfcf;
+		}
+	}
+}
+
+.theme-yellow {
+	.listitem {
+		background-color: #fefdf9;
+
+		.gender-bg {
+			background-color: #fbf0ef;
+		}
+
+		.gender-icon {
+			color: #de9e9f;
+		}
+
+		input[type='range']::-webkit-slider-runnable-track {
+			background-color: #fef2e6;
+		}
+
+		input[type='range']::-moz-range-track {
+			background-color: #fef2e6;
+		}
+
+		input[type='range']::-webkit-slider-thumb {
+			background-color: #e2dbcb;
+		}
+
+		input[type='range']::-moz-range-thumb {
+			background-color: #e2dbcb;
+		}
+	}
 }

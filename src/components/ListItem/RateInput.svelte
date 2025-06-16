@@ -23,7 +23,7 @@
 	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
 	{#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
-			<i class="fa fa-spinner animate-spin text-md text-violet-800"></i>
+			<i class="fa fa-spinner text-md animate-spin text-violet-800"></i>
 		</div>
 	{:else}
 		<button
@@ -52,14 +52,12 @@
 	/***** Track Styles *****/
 	/***** Chrome, Safari, Opera, and Edge Chromium *****/
 	input[type='range']::-webkit-slider-runnable-track {
-		background: linear-gradient(to right, red, yellow, green);
 		height: 10px;
 		border-radius: 10px;
 	}
 
 	/******** Firefox ********/
 	input[type='range']::-moz-range-track {
-		background: linear-gradient(to right, red, yellow, green);
 		height: 10px;
 		border-radius: 10px;
 	}
@@ -69,7 +67,6 @@
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none; /* Override default look */
 		appearance: none;
-		background-color: #5d0ec0;
 		height: 18px;
 		width: 10px;
 		margin-top: -4px;
@@ -80,7 +77,6 @@
 	input[type='range']::-moz-range-thumb {
 		border: none; /*Removes extra border that FF applies*/
 		border-radius: 0; /*Removes default border-radius that FF applies*/
-		background-color: #5d0ec0;
 		height: 18px;
 		width: 10px;
 		border-radius: 10px;
