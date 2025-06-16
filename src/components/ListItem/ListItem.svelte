@@ -42,13 +42,23 @@
 		});
 	};
 
-	const onVeto = async () => {
+	const vetoName = async () => {
 		await fetch('?/veto', {
 			method: 'POST',
 			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: true } })
 		});
 	};
-	const vetoed = $derived(veto?.some((v) => v.parent === parentState.parent && !!v.veto));
+	const removeVeto = async () => {
+		await fetch('?/veto', {
+			method: 'POST',
+			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: false } })
+		});
+	};
+	const vetos = $derived(veto?.filter((v) => !!v.veto));
+	const vetoFromUser = $derived(veto?.some((v) => v.parent === parentState.parent && !!v.veto));
+	const vetoers = $derived(
+		veto?.map((v) => (v.parent === parentState.parent ? 'du' : v.parent)).join(' und ')
+	);
 </script>
 
 <div
@@ -65,11 +75,23 @@
 				<i class="fa fa-mars text-sm text-blue-300"></i>
 			{/if}
 			<span class="poppins-bold flex items-center text-xl">{name}</span>
+			{#if vetoFromUser}
+				<button
+					class="raleway-regular flex h-6 items-center justify-center gap-2"
+					aria-label="Veto entfernen"
+					onclick={removeVeto}
+				>
+					<span class="text-sm">Veto entfernen</span>
+					<i class="fa fa-square-check text-md text-green-600"></i>
+				</button>
+			{:else if vetos.length}
+				<span class="raleway-regular text-sm">Veto von {vetoers}</span>
+			{/if}
 		</div>
 		<div class="flex items-center gap-2">
-			{#if !vetoed}
+			{#if !vetoFromUser}
 				<button
-					onclick={onVeto}
+					onclick={vetoName}
 					aria-label="Veto Name"
 					class="flex h-6 w-6 items-center justify-center"
 				>
@@ -98,6 +120,6 @@
 				loading={loading.value}
 			/>
 		</form>
-		<div class="flex flex-[1] justify-end"><RateDisplay {rate} /></div>
+		<div class="flex flex-[1] justify-end"><RateDisplay {rate} veto={veto} /></div>
 	</div>
 </div>
