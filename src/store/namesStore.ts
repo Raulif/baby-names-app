@@ -1,7 +1,6 @@
 import  {createStore}  from 'zustand/vanilla';
 import type { Name } from '../types/types';
 import type { Id } from '../convex/_generated/dataModel';
-import { zustandToSvelte } from '$lib/zustandToSvelte';
 
 type StoreType = {
 	names: Array<Name>;
@@ -10,11 +9,9 @@ type StoreType = {
 	set_Id: (_id: Id<'names'>) => void;
 };
 
-const store = createStore<StoreType>((set) => ({
+export const namesStore = createStore<StoreType>((set) => ({
 	names: [],
 	_id: '' as Id<'names'>,
 	setNames: (names) => set({ names }),
 	set_Id: (_id) => set({ _id })
 }));
-
-export const namesStore = zustandToSvelte(store)
