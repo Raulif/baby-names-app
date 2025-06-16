@@ -1,6 +1,21 @@
 /** @satisfies {import('./$types').Actions} */
 import type { Gender, Parent } from '../types/types';
-import { getNamesFromDB, updateNamesInDB } from '../db/names';
+import { updateNamesInDB } from '../db/names';
+import { ConvexHttpClient } from 'convex/browser';
+import { api } from '../convex/_generated/api';
+import { PUBLIC_CONVEX_URL } from '$env/static/public';
+
+import { namesStore } from '../store/namesStore';
+
+/** @type {import('./$types').LayoutServerLoad} */
+export async function load() {
+	const client = new ConvexHttpClient(PUBLIC_CONVEX_URL!);
+	const response = await client.query(api.names.get, {});
+
+	if (!response.names?.length) return;
+	namesStore.getState().setNames(response.names);
+	namesStore.getState().set_Id(response._id);
+}
 
 export const actions = {
 	add: async (event) => {
@@ -8,7 +23,7 @@ export const actions = {
 		const data = await event.request.formData();
 		const name = data.get('name');
 		const gender = data.get('gender');
-		const { _id, names } = await getNamesFromDB();
+		const { _id, names } = namesStore.getState();
 		const exists = names.find((n) => n.name === name);
 
 		if (!name || !gender || exists) return false;
@@ -29,7 +44,7 @@ export const actions = {
 		const name = data.get('name');
 		const parent = data.get('parent');
 		const rate = data.get('rate');
-		const { _id, names } = await getNamesFromDB();
+		const { _id, names } = namesStore.getState();
 
 		const nameIndex = names.findIndex((n) => n.name === name);
 
@@ -50,7 +65,7 @@ export const actions = {
 	},
 	delete: async ({ request }) => {
 		const { name } = await request.json();
-		const { _id, names } = await getNamesFromDB();
+		const { _id, names } = namesStore.getState();
 		const filtered = names.filter((n) => n.name !== name);
 
 		await updateNamesInDB(_id, filtered);
@@ -59,7 +74,7 @@ export const actions = {
 	},
 	veto: async (event) => {
 		const { name, veto } = await event.request.json();
-		const { _id, names } = await getNamesFromDB();
+		const { _id, names } = namesStore.getState();
 		const nameIndex = names.findIndex((n) => n.name === name);
 		if (nameIndex === -1) return false;
 
@@ -75,7 +90,7 @@ export const actions = {
 		}
 		await updateNamesInDB(_id, names);
 		return true;
-	},
+	}
 	// updateAll: async () => {
 	// 	const { _id, names } = await getNamesFromDB();
 	// 	const updated = names.map((n) => ({ ...n, veto: [] }));
