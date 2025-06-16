@@ -7,7 +7,7 @@ import { namesStore } from '../store/namesStore';
 
 const convex = new ConvexHttpClient('https://proficient-gecko-159.convex.cloud');
 
-export const postNamesToDB = async (names: any) => await convex.mutation(api.names.post, { names });
+export const postNamesToDB = async (names: Array<Name>) => await convex.mutation(api.names.post, { names });
 
 export const getNamesFromDB = async (): GetNamesResult => await convex.query(api.names.get, {});
 
