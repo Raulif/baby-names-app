@@ -4,6 +4,7 @@
 	import RateInput from './RateInput.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
 	import RateDisplay from './RateDisplay.svelte';
+
 	const { name, rate, parent, gender, veto = [] }: Name = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });
@@ -54,10 +55,10 @@
 			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: false } })
 		});
 	};
-	const vetos = $derived(veto?.filter((v) => !!v.veto));
-	const vetoFromUser = $derived(veto?.some((v) => v.parent === parentState.parent && !!v.veto));
+	const vetos = $derived(veto?.filter((v) => v.veto));
+	const vetoFromUser = $derived(vetos?.some((v) => v.parent === parentState.parent && !!v.veto));
 	const vetoers = $derived(
-		veto?.map((v) => (v.parent === parentState.parent ? 'du' : v.parent)).join(' und ')
+		vetos?.map((v) => (v.parent === parentState.parent ? 'dir' : v.parent)).join(' und ')
 	);
 </script>
 
@@ -120,6 +121,6 @@
 				loading={loading.value}
 			/>
 		</form>
-		<div class="flex flex-[1] justify-end"><RateDisplay {rate} veto={veto} /></div>
+		<div class="flex flex-[1] justify-end"><RateDisplay {rate} veto={vetos} /></div>
 	</div>
 </div>
