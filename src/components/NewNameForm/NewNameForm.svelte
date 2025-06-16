@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import GenderInput from './GenderInput.svelte';
-	import Input from './Input.svelte';
+	import Input from '../Input/Input.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
 </script>
 

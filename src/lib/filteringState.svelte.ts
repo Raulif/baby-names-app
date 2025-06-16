@@ -1,7 +1,7 @@
-import type { FilteringStateValue, Parent } from '../types/types';
+import type { FilterStateValue, Parent } from '../types/types';
 
 type FilteringState = {
-	value: FilteringStateValue;
+	value: FilterStateValue;
 	checked: boolean;
 };
 

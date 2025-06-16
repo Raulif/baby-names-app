@@ -20,7 +20,7 @@ export type GetNamesResult = Promise<{ _id: Id<'names'>; names: Array<Name> }>;
 
 export type FilterCategory = 'filterUser' | 'filterGender' | 'filterRating';
 
-export type FilteringStateValue = {
+export type FilterStateValue = {
 	filterUser: FilterUser;
 	filterGender: FilterGender;
 	filterRating: FilterRating;

@@ -33,14 +33,9 @@
 		localStorage.setItem('filtering', JSON.stringify(filters));
 	};
 
-	const onFilterClear = () => {
-		const emptyFilters = {
-			filterUser: '',
-			filterGender: '',
-			filterRating: ''
-		};
-		filteringState.value = emptyFilters;
-		localStorage.setItem('filtering', JSON.stringify(emptyFilters));
+	const onFilterClear = (category: FilterCategory) => {
+		filteringState.value = { ...filteringState.value, [category]: '' };
+		localStorage.setItem('filtering', JSON.stringify(filteringState.value));
 	};
 
 	const onSortingClear = () => {
@@ -75,6 +70,7 @@
 </script>
 
 <NamesList names={namesList} loading={query.isLoading} error={query.error} />
+
 <Tabs
 	{onSortingChange}
 	selectedSorting={sortingState.value}
