@@ -45,5 +45,6 @@
 		max-height: 100dvh;
 		max-height: 100vh;
 		overflow: hidden;
+		background-color: #f3f0e9;
 	}
 </style>

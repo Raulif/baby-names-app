@@ -17,7 +17,7 @@
 	];
 </script>
 
-<section class="max-h-[144px] px-4 pt-3">
+<section class="max-h-[144px]">
 	<fieldset>
 		<div class="flex items-center justify-between">
 			<legend class="open-sans-bold text-md">Liste sortieren</legend>

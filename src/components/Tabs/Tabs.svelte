@@ -24,27 +24,39 @@
 		onSortingClear
 	}: Props = $props();
 
+	const lineAttributes = $state({ left: 0, width: 0 });
+
 	const tabSelected = $state({ value: 'new-name-tab' });
-	const onSelect = (e: Event) => {
-		const input = e.target as HTMLInputElement;
+	const onSelect = (input: HTMLInputElement) => {
 		tabSelected.value = input.id;
+		const label = input.parentElement;
+		if (label) {
+			lineAttributes.left = label.offsetLeft;
+			lineAttributes.width = label.clientWidth;
+		}
 	};
+	$inspect(lineAttributes)
 </script>
 
-<section class="tabs">
-	<fieldset class="flex">
+<section class="tabs px-4 z-2">
+	<fieldset class="relative flex gap-8 pb-1 px-3">
 		<Tab
 			label="Neuer Name"
 			onChange={onSelect}
 			id="new-name-tab"
 			currentValue={tabSelected.value}
+			selectInitial={true}
 		/>
 
 		<Tab label="Sortieren" onChange={onSelect} id="sort-tab" currentValue={tabSelected.value} />
 
 		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected.value} />
+		<div
+			class="absolute h-[2px] bg-[#b5b4a2] transition-all bottom-0 rounded-xl"
+			style={`left: ${lineAttributes.left}px; width: ${lineAttributes.width}px `}
+		></div>
 	</fieldset>
-	<div class="relative h-[252px] max-h-[252px]">
+	<div class="relative h-[252px] max-h-[252px] bg-white rounded-xl">
 		<Panel visible={tabSelected.value === 'sort-tab'}>
 			<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
 		</Panel>

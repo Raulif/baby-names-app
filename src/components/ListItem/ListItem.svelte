@@ -1,13 +1,13 @@
 <script lang="ts">
 	import clsx from 'clsx';
-	import type { ClassNumber, Name } from '../../types/types';
+	import type { Name } from '../../types/types';
 	import RateInput from './RateInput.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
 	import RateDisplay from './RateDisplay.svelte';
 
-	type Props = { number: ClassNumber } & Name;
+	type Props = { themeClass: string } & Name;
 
-	const { name, rate, parent, gender, veto = [], number }: Props = $props();
+	const { name, rate, parent, gender, veto = [], themeClass }: Props = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });
 	const deleting = $state({ value: false });
@@ -62,14 +62,7 @@
 	const vetoers = $derived(
 		vetos?.map((v) => (v.parent === parentState.parent ? 'dir' : v.parent)).join(' und ')
 	);
-	const themeClassesMap = {
-		'1': 'theme-blue',
-		'2': 'theme-pink',
-		'3': 'theme-orange',
-		'4': 'theme-green',
-		'0': 'theme-yellow'
-	};
-	const themeClass = $derived(themeClassesMap[number]);
+
 </script>
 
 <div class={clsx(' ', deleting.value && 'opacity-50', themeClass)}>
@@ -136,6 +129,6 @@
 
 <style>
 	.listitem {
-		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 	}
 </style>

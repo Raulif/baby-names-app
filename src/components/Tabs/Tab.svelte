@@ -1,16 +1,30 @@
 <script lang="ts">
 	import clsx from 'clsx';
 
-	type Props = { label: string; onChange: (e: Event) => void; currentValue: string; id: string };
-	const { currentValue, onChange, id, label }: Props = $props();
+	type Props = {
+		selectInitial?: boolean;
+		label: string;
+		onChange: (element: HTMLInputElement) => void;
+		currentValue: string;
+		id: string;
+	};
+	const { currentValue, onChange, id, label, selectInitial }: Props = $props();
 	const selected = $derived(currentValue === id);
+	$effect(() => {
+		if (selectInitial) {
+			const input = document.querySelector(`#${id}`) as HTMLInputElement
+			if (input ) {
+				onChange(input)
+			}
+		}
+	})
 </script>
 
 <label
 	class={clsx(
-		'tab open-sans-regular flex-[1]  overflow-hidden rounded-tl-xl rounded-tr-xl border-1  border-violet-700  py-1 text-center',
-		selected && 'open-sans-bold z-1   bg-violet-700 text-white ',
-		!selected && ' z-0  bg-violet-300 text-black '
+		'tab open-sans-regular  py-1 text-center text-sm',
+		selected && 'text-black',
+		!selected && ' text-[#918f8a] '
 	)}
 >
 	{label}
@@ -18,7 +32,7 @@
 		type="radio"
 		name="tabs"
 		{id}
-		onchange={onChange}
+		onchange={(e) => onChange(e.target as HTMLInputElement)}
 		class="visually-hidden"
 		checked={selected}
 	/>

@@ -5,7 +5,7 @@
 	import { parentState } from '../../lib/parentState.svelte';
 </script>
 
-<section class="px-4 pt-3">
+<section class="">
 	<form
 		class="flex flex-col gap-5"
 		method="POST"

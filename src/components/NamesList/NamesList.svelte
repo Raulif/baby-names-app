@@ -4,6 +4,7 @@
 
 	import ListItem from '../ListItem/ListItem.svelte';
 	import type { ClassNumber, Name } from '../../types/types.js';
+	import { getThemeClass } from '$lib/helpers';
 
 	type Props = {
 		names: Array<Name>;
@@ -14,7 +15,7 @@
 	const { names, loading, error }: Props = $props();
 </script>
 
-<section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-4 ">
+<section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-5">
 	{#if loading}
 		<div class="flex justify-center px-4 pb-8">
 			<p class="open-sans-bold text-xl">Namensliste lädt...</p>
@@ -22,10 +23,10 @@
 	{:else if error}
 		Die Namensliste konnten nicht geladen werden
 	{:else}
-		<ul class="flex h-full w-full flex-col-reverse justify-end py-2 gap-2">
+		<ul class="flex h-full w-full flex-col-reverse justify-end gap-2 pt-2 pb-3">
 			{#each names as name, index (name.name)}
 				<li animate:flip={{ duration: 250 }} in:fade out:fade>
-					<ListItem {...name} number={(index % 5).toString() as ClassNumber} />
+					<ListItem {...name} themeClass={getThemeClass((index % 5) as ClassNumber)} />
 				</li>
 			{:else}
 				<div class="fixed top-[25%] left-0 flex w-full">

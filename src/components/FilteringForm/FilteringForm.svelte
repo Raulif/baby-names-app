@@ -13,7 +13,7 @@
 	const otherParent = $derived(parentState.parent === 'mama' ? 'papa' : 'mama');
 </script>
 
-<section class="relative h-full px-4 pt-3">
+<section class="relative h-full">
 	<fieldset class="flex flex-col h-full gap-2 divide-y-1 divide-violet-600">
 		<FilterRow
 			{onChange}

@@ -1,4 +1,4 @@
-import type { Name, Parent, FilterStateValue } from '../types/types';
+import type { Name, Parent, FilterStateValue, ClassNumber } from '../types/types';
 
 export const sortAlphabeticallyDescending = (a: Name, b: Name) =>
 	a.name < b.name ? 1 : a.name > b.name ? -1 : 0;
@@ -65,3 +65,14 @@ export const sortNames = (names: Array<Name>, sorting: string) => {
 	}
 	return [...names];
 };
+
+export const getThemeClass = (number: ClassNumber) => {
+	const numberToClassMap = {
+		1: 'theme-blue',
+		2: 'theme-pink',
+		3: 'theme-orange',
+		4: 'theme-green',
+		0: 'theme-yellow'
+	};
+	return numberToClassMap[number]
+}
