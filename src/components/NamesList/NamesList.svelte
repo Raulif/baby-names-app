@@ -57,7 +57,7 @@
 					<p
 						class="listitem w-full gap-2 bg-white px-4 py-4 pb-4 text-center open-sans-bold flex items-center justify-center text-xl rounded-xl overflow-hidden"
 					>
-						Die Namensliste ist noch leer
+						Die Namensliste ist leer
 					</p>
 				</div>
 			{/each}
