@@ -78,12 +78,16 @@ body {
 			background-color: #c9d9d6;
 		}
 
-		.rate-save-button {
+		.action-button {
 			background-color: #e6eef0;
 			color: #a0b4bc;
 		}
+		.action-button-reverse {
+			color: #e6eef0;
+			background-color: #a0b4bc;
+		}
 
-		.fa-spinner {
+		.fa-spinner, .veto-indicator {
 			color: #a0b4bc;
 		}
 	}
@@ -117,12 +121,17 @@ body {
 			background-color: #e0d7c8;
 		}
 
-		.rate-save-button {
+		.action-button {
 			background-color: #faedde;
 			color: #d2a597;
 		}
 
-		.fa-spinner {
+		.action-button-reverse {
+			color: #faedde;
+			background-color: #d2a597;
+		}
+
+		.fa-spinner, .veto-indicator {
 			color: #d2a597;
 		}
 	}
@@ -156,12 +165,17 @@ body {
 			background-color: #ead1cb;
 		}
 
-		.rate-save-button {
+		.action-button {
 			background-color: #feebe7;
 			color: #d68c8a;
 		}
 
-		.fa-spinner {
+		.action-button-reverse {
+			color: #feebe7;
+			background-color: #d68c8a;
+		}
+
+		.fa-spinner, .veto-indicator {
 			color: #d68c8a;
 		}
 	}
@@ -195,12 +209,17 @@ body {
 			background-color: #dbdfcf;
 		}
 
-		.rate-save-button {
+		.action-button {
 			background-color: #eef6e9;
 			color: #b2c5ab;
 		}
 
-		.fa-spinner {
+		.action-button-reverse {
+			color: #eef6e9;
+			background-color: #b2c5ab;
+		}
+
+		.fa-spinner, .veto-indicator {
 			color: #b2c5ab;
 		}
 	}
@@ -234,12 +253,18 @@ body {
 			background-color: #e2dbcb;
 		}
 
-		.rate-save-button {
+		.action-button {
 			background-color: #fbf0ef;
 			color: #de9e9f;
 		}
 
-		.fa-spinner {
+		.action-button-reverse {
+			color: #fbf0ef;
+			background-color: #de9e9f;
+		}
+
+
+		.fa-spinner, .veto-indicator {
 			color: #de9e9f;
 		}
 	}

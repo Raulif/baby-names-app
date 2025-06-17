@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import GenderInput from './GenderInput.svelte';
-	import { parentState } from '../../lib/parentState.svelte';
 	import clsx from 'clsx';
+	import { enhance } from '$app/forms';
+	import GenderRadio from './GenderRadio.svelte';
+	import { parentState } from '../../lib/parentState.svelte';
+
 	let isFocused = $state({ value: false });
 
 	const onFocus = () => {
@@ -35,7 +36,10 @@
 				onblur={onBlur}
 				placeholder="Name eingeben"
 			/>
-			<GenderInput />
+			<fieldset class="absolute right-2 flex gap-3">
+				<GenderRadio id="gender-m" value="m" name="gender" label="Junge" />
+				<GenderRadio id="gender-f" value="f" name="gender" label="Mädchen" />
+			</fieldset>
 		</div>
 
 		<button type="submit" class="w-full rounded-md bg-[#b5c8ae] py-2 disabled:bg-gray-400">

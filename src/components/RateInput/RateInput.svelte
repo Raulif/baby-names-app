@@ -1,6 +1,4 @@
 <script lang="ts">
-	import clsx from 'clsx';
-
 	type Props = {
 		value?: number;
 		debug?: boolean;

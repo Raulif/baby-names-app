@@ -1,13 +1,14 @@
 <script lang="ts">
 	import clsx from 'clsx';
 	import type { Name } from '../../types/types';
-	import RateInput from './RateInput.svelte';
+	import RateInput from '../RateInput/RateInput.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
-	import RateDisplay from './RateDisplay.svelte';
+	import RateDisplay from '../RateDisplay/RateDisplay.svelte';
+	import ActionsMenu from '../ActionsMenu/ActionsMenu.svelte';
 
-	type Props = { themeClass: string } & Name;
+	type Props = { themeClass: string; open: boolean | null; onItemClick: () => void } & Name;
 
-	const { name, rate, parent, gender, veto = [], themeClass }: Props = $props();
+	const { name, rate, gender, veto = [], themeClass, onItemClick, open }: Props = $props();
 	const rateChanged = $state({ value: false });
 	const loading = $state({ value: false });
 	const deleting = $state({ value: false });
@@ -36,50 +37,64 @@
 		rateChanged.value = true;
 	};
 
-	const onDelete = async () => {
+	const onDelete = async (e: Event) => {
+		e.stopPropagation();
 		deleting.value = true;
+
 		await fetch('?/delete', {
 			method: 'POST',
 			body: JSON.stringify({ name })
 		});
 	};
 
-	const vetoName = async () => {
+	const vetoName = async (e: MouseEvent) => {
+		e.stopPropagation();
+		loading.value = true;
+
 		await fetch('?/veto', {
 			method: 'POST',
 			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: true } })
 		});
+		loading.value = false;
 	};
-	const removeVeto = async () => {
+	const removeVeto = async (e: MouseEvent) => {
+		e.stopPropagation();
+		loading.value = true;
+
 		await fetch('?/veto', {
 			method: 'POST',
 			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: false } })
 		});
+		loading.value = false;
 	};
+
+	const onWrapperClick = (e: MouseEvent) => {
+		const element = e.currentTarget as HTMLDivElement;
+		if (element.classList.contains('listitem-wrapper')) {
+			onItemClick && onItemClick();
+		}
+	};
+	const onKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'Enter' || e.key === 'Space') {
+			onItemClick && onItemClick();
+		}
+	};
+
 	const vetos = $derived(veto?.filter((v) => v.veto));
 	const vetoFromUser = $derived(vetos?.some((v) => v.parent === parentState.parent && !!v.veto));
-	const vetoers = $derived(
-		vetos?.map((v) => (v.parent === parentState.parent ? 'dir' : v.parent)).join(' und ')
-	);
 </script>
 
-<div class={clsx(' ', deleting.value && 'opacity-50', themeClass)}>
-	<div class="listitem flex w-full flex-col gap-2 rounded-2xl px-5 py-4">
+<div
+	tabindex="0"
+	role="button"
+	class={clsx('listitem-wrapper', deleting.value && 'opacity-50', themeClass)}
+	onclick={onWrapperClick}
+	onkeydown={onKeyDown}
+>
+	<div class="listitem flex w-full flex-col gap-2 rounded-2xl px-5 pt-4 pb-2">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				<span class="open-sans-bold flex items-center text-xl">{name}</span>
-				<!-- {#if vetoFromUser}
-					<button
-						class="open-sans-regular flex h-6 items-center justify-center gap-2"
-						aria-label="Veto entfernen"
-						onclick={removeVeto}
-					>
-						<span class="text-sm">Veto entfernen</span>
-						<i class="fa fa-square-check text-md text-green-600"></i>
-					</button>
-				{:else if vetos.length}
-					<span class="open-sans-regular text-sm">Veto von {vetoers}</span>
-				{/if} -->
 			</div>
 			<div class="gender-bg flex h-8 w-8 items-center justify-center rounded-full">
 				{#if gender === 'f'}
@@ -88,26 +103,6 @@
 					<i class="fa fa-mars gender-icon text-lg"></i>
 				{/if}
 			</div>
-			<!-- <div class="flex items-center gap-2">
-				{#if !vetoFromUser}
-					<button
-						onclick={vetoName}
-						aria-label="Veto Name"
-						class="flex h-6 w-6 items-center justify-center"
-					>
-						<i class="fa fa-ban text-sm text-red-600"></i>
-					</button>
-				{/if}
-				{#if parent === parentState.parent}
-					<button
-						onclick={onDelete}
-						aria-label="Name entfernen"
-						class="flex h-6 w-6 items-center justify-center"
-					>
-						<i class="fa fa-trash text-sm text-red-600"></i>
-					</button>
-				{/if}
-			</div> -->
 		</div>
 
 		<div class="flex min-h-[28px] items-center">
@@ -127,7 +122,7 @@
 					</div>
 				{:else if rateChanged.value}
 					<button
-						class="rate-save-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
+						class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
 						type="submit"
 						form={`rate-form-${name}`}>Speichern</button
 					>
@@ -136,11 +131,16 @@
 				{/if}
 			</div>
 		</div>
+		<ActionsMenu {vetoFromUser} {vetoName} deleteName={onDelete} {open} {removeVeto} />
 	</div>
 </div>
 
 <style>
 	.listitem {
 		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.expandable {
+		transition: 0.3s all;
 	}
 </style>
