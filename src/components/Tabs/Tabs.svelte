@@ -45,7 +45,7 @@
 </script>
 
 <section class="tabs z-2 mb-4 px-4">
-	<fieldset class="relative flex items-center gap-8 px-3 pb-1">
+	<fieldset class="relative flex items-center gap-8 px-3 pt-2 pb-1">
 		<Tab
 			label="Neuer Name"
 			onChange={onSelect}
@@ -63,7 +63,7 @@
 		></div>
 		<button
 			onclick={onPanelToggle}
-			class="absolute right-4 flex h-6 w-6 items-center justify-end"
+			class="absolute right-3 flex h-6 w-6 items-center justify-end"
 			aria-label="Panel aufklappen"
 			><i
 				class={clsx(
