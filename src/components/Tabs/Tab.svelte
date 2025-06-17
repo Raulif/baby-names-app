@@ -22,7 +22,7 @@
 
 <label
 	class={clsx(
-		'tab open-sans-regular  py-1 text-center text-sm',
+		'tab open-sans-regular  py-1 text-center text-md',
 		selected && 'text-black',
 		!selected && ' text-[#918f8a] '
 	)}
