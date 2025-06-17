@@ -63,7 +63,7 @@
 		<button onclick={onPanelToggle} class="absolute right-4 flex items-center h-6 w-6 justify-end" aria-label="Panel aufklappen"
 			><i
 				class={clsx(
-					'fa fa-chevron-down transform text-black transition-all',
+					'fa fa-chevron-up transform text-black transition-all',
 					panelOpen.value ? 'rotate-180' : 'rotate-0'
 				)}
 			></i></button
