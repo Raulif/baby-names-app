@@ -11,13 +11,10 @@
 </script>
 
 <div
-	class={clsx(
-		' grid transition-all duration-300',
-		open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr] '
-	)}
+	class={clsx(' grid transition-all duration-300', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr] ')}
 >
 	<div class="overflow-hidden">
-		<div class="flex items-center gap-4 pt-2 pb-2">
+		<div class="flex items-center gap-4 pt-2 pb-3">
 			{#if vetoFromUser}
 				<button
 					onclick={removeVeto}
