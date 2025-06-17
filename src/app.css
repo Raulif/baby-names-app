@@ -96,6 +96,9 @@ body {
 			color: #a0b4bc;
 		}
 	}
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(160, 180, 188, 0.5);
+	}
 }
 
 .theme-orange {
@@ -140,6 +143,9 @@ body {
 		.veto-indicator {
 			color: #d2a597;
 		}
+	}
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(210, 165, 151, 0.5);
 	}
 }
 
@@ -186,6 +192,10 @@ body {
 			color: #d68c8a;
 		}
 	}
+
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(214, 140, 138, 0.5);
+	}
 }
 
 .theme-green {
@@ -231,6 +241,10 @@ body {
 			color: #b2c5ab;
 		}
 	}
+
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(178, 197, 171, 0.5);
+	}
 }
 
 .theme-yellow {
@@ -275,5 +289,9 @@ body {
 		.veto-indicator {
 			color: #de9e9f;
 		}
+	}
+
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(222, 158, 159, 0.5);
 	}
 }

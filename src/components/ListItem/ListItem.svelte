@@ -91,7 +91,12 @@
 	onclick={onWrapperClick}
 	onkeydown={onKeyDown}
 >
-	<div class="listitem flex w-full flex-col gap-2 rounded-2xl px-5 pt-4 pb-2">
+	<div
+		class={clsx(
+			'listitem flex w-full flex-col gap-2 rounded-2xl px-5 pt-4 pb-2 ',
+			open && 'item-open'
+		)}
+	>
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				<span class="open-sans-bold flex items-center text-xl">{name}</span>

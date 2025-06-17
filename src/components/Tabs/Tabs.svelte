@@ -1,11 +1,12 @@
 <script lang="ts">
+	import clsx from 'clsx';
 	import NewNameForm from '../NewNameForm/NewNameForm.svelte';
 	import SortingForm from '../SortingForm/SortingForm.svelte';
 	import Tab from './Tab.svelte';
 	import Panel from './Panel.svelte';
 	import FilteringForm from '../FilteringForm/FilteringForm.svelte';
+	import Foldable from '../Foldable/Foldable.svelte';
 	import type { FilterCategory, Parent, FilterStateValue } from '../../types/types';
-	import clsx from 'clsx';
 
 	type Props = {
 		onSortingChange: (value: string) => void;
@@ -36,7 +37,7 @@
 			lineAttributes.left = label.offsetLeft;
 			lineAttributes.width = label.clientWidth;
 		}
-		panelOpen.value = true
+		panelOpen.value = true;
 	};
 	const onPanelToggle = () => {
 		panelOpen.value = !panelOpen.value;
@@ -60,7 +61,10 @@
 			class="absolute bottom-0 h-[3px] rounded-xl bg-[#b5b4a2] transition-all"
 			style={`left: ${lineAttributes.left}px; width: ${lineAttributes.width}px `}
 		></div>
-		<button onclick={onPanelToggle} class="absolute right-4 flex items-center h-6 w-6 justify-end" aria-label="Panel aufklappen"
+		<button
+			onclick={onPanelToggle}
+			class="absolute right-4 flex h-6 w-6 items-center justify-end"
+			aria-label="Panel aufklappen"
 			><i
 				class={clsx(
 					'fa fa-chevron-up transform text-black transition-all',
@@ -69,19 +73,17 @@
 			></i></button
 		>
 	</fieldset>
-	<div class={clsx('grid tansition-all duration-250', panelOpen.value ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
-		<div class="overflow-hidden">
-			<div class="relative h-[252px] max-h-[252px] rounded-xl bg-white">
-				<Panel visible={tabSelected.value === 'sort-tab'}>
-					<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
-				</Panel>
-				<Panel visible={tabSelected.value === 'filter-tab'}>
-					<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
-				</Panel>
-				<Panel visible={tabSelected.value === 'new-name-tab'}>
-					<NewNameForm />
-				</Panel>
-			</div>
+	<Foldable open={panelOpen.value}>
+		<div class="relative h-[252px] max-h-[252px] rounded-xl bg-white">
+			<Panel visible={tabSelected.value === 'sort-tab'}>
+				<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
+			</Panel>
+			<Panel visible={tabSelected.value === 'filter-tab'}>
+				<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
+			</Panel>
+			<Panel visible={tabSelected.value === 'new-name-tab'}>
+				<NewNameForm />
+			</Panel>
 		</div>
-	</div>
+	</Foldable>
 </section>
