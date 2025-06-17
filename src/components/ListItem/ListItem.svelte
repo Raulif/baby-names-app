@@ -134,13 +134,3 @@
 		<ActionsMenu {vetoFromUser} {vetoName} deleteName={onDelete} {open} {removeVeto} />
 	</div>
 </div>
-
-<style>
-	.listitem {
-		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-	}
-
-	.expandable {
-		transition: 0.3s all;
-	}
-</style>

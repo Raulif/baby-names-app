@@ -51,7 +51,7 @@
 
 		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected.value} />
 		<div
-			class="absolute h-[2px] bg-[#b5b4a2] transition-all bottom-0 rounded-xl"
+			class="absolute h-[3px] bg-[#b5b4a2] transition-all bottom-0 rounded-xl"
 			style={`left: ${lineAttributes.left}px; width: ${lineAttributes.width}px `}
 		></div>
 	</fieldset>

@@ -14,7 +14,7 @@
 
 <button
 	class={clsx(
-		'open-sans-regular flex min-h-5 min-w-5 items-center justify-center gap-2 rounded-full bg-violet-800 text-white transition-transform',
+		'open-sans-regular flex min-h-5 min-w-5 items-center justify-center gap-2 rounded-full bg-[#b5b4a2] text-white transition-transform',
 		classes,
 		active && 'pointer-events-auto scale-100',
 		!active && 'pointer-events-none scale-0'

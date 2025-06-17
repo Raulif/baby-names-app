@@ -14,7 +14,7 @@
 </script>
 
 <section class="relative h-full">
-	<fieldset class="flex flex-col h-full gap-2 divide-y-1 divide-violet-600">
+	<fieldset class="flex flex-col h-full gap-2 divide-y-1 divide-[#b5c8ae]">
 		<FilterRow
 			{onChange}
 			{selectedFilters}

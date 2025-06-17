@@ -42,7 +42,7 @@
 			</fieldset>
 		</div>
 
-		<button type="submit" class="w-full rounded-md bg-[#b5c8ae] py-2 disabled:bg-gray-400">
+		<button type="submit" class="w-full rounded-md bg-[#b5b4a2] py-2 disabled:bg-gray-400">
 			<span class="open-sans-bold text-xl text-[#eef6e9]"> Speichern </span>
 		</button>
 	</form>

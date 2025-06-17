@@ -12,7 +12,7 @@
 
 <div
 	class={clsx(
-		'expandable grid transition-all duration-300',
+		' grid transition-all duration-300',
 		open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr] '
 	)}
 >

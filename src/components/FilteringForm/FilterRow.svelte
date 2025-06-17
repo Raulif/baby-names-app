@@ -17,16 +17,19 @@
 
 <div class="flex flex-col gap-[6px] pb-3">
 	<span class="open-sans-regular">{title}</span>
-	<div class="flex items-center gap-4">
-		{#each valueLabels as valueLabel (valueLabel.value)}
-			<Radio
-				name={category}
-				value={valueLabel.value}
-				label={valueLabel.label}
-				onChange={(value) => onChange(value, category)}
-				checked={selectedFilters[category] === valueLabel.value}
-			/>
-		{/each}
+	<div class="flex items-center justify-between gap-3">
+		<div class="flex items-center gap-1 flex-[1]">
+
+			{#each valueLabels as valueLabel (valueLabel.value)}
+				<Radio
+					name={category}
+					value={valueLabel.value}
+					label={valueLabel.label}
+					onChange={(value) => onChange(value, category)}
+					checked={selectedFilters[category] === valueLabel.value}
+				/>
+			{/each}
+		</div>
 		<ClearButton
 			active={!!selectedFilters[category]}
 			ariaLabel={`Filter entfernen für Kategorie: ${category}`}

@@ -50,6 +50,10 @@ body {
 	white-space: nowrap;
 }
 
+.listitem {
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .theme-blue {
 	.listitem {
 		background-color: #f7fbfa;
@@ -87,7 +91,8 @@ body {
 			background-color: #a0b4bc;
 		}
 
-		.fa-spinner, .veto-indicator {
+		.fa-spinner,
+		.veto-indicator {
 			color: #a0b4bc;
 		}
 	}
@@ -131,7 +136,8 @@ body {
 			background-color: #d2a597;
 		}
 
-		.fa-spinner, .veto-indicator {
+		.fa-spinner,
+		.veto-indicator {
 			color: #d2a597;
 		}
 	}
@@ -175,7 +181,8 @@ body {
 			background-color: #d68c8a;
 		}
 
-		.fa-spinner, .veto-indicator {
+		.fa-spinner,
+		.veto-indicator {
 			color: #d68c8a;
 		}
 	}
@@ -219,7 +226,8 @@ body {
 			background-color: #b2c5ab;
 		}
 
-		.fa-spinner, .veto-indicator {
+		.fa-spinner,
+		.veto-indicator {
 			color: #b2c5ab;
 		}
 	}
@@ -263,8 +271,8 @@ body {
 			background-color: #de9e9f;
 		}
 
-
-		.fa-spinner, .veto-indicator {
+		.fa-spinner,
+		.veto-indicator {
 			color: #de9e9f;
 		}
 	}
