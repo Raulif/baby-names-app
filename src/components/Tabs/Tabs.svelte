@@ -35,10 +35,9 @@
 			lineAttributes.width = label.clientWidth;
 		}
 	};
-	$inspect(lineAttributes)
 </script>
 
-<section class="tabs px-4 z-2">
+<section class="tabs px-4 z-2 mb-4">
 	<fieldset class="relative flex gap-8 pb-1 px-3">
 		<Tab
 			label="Neuer Name"

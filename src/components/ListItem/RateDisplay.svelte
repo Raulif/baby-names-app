@@ -17,7 +17,7 @@
 </script>
 
 <div class="flex items-center gap-1">
-	<span class={clsx(vetos.length && 'opacity-30')}>
+	<!-- <span class={clsx(vetos.length && 'opacity-30')}>
 		{#if raters?.length === 2}
 			<i class="fa fa-venus-mars text-[blueviolet]"></i>
 		{:else if !raters?.length}
@@ -27,13 +27,13 @@
 		{:else}
 			<i class="fa fa-mars text-[#083885]"></i>
 		{/if}
-	</span>
+	</span> -->
 
-	<span class={clsx('open-sans-bold text-xl text-[#918f8a]', vetos.length && 'opacity-30')}>
+	<span class={clsx('open-sans-regular text-md text-[#918f8a]', vetos.length && 'opacity-30')}>
 		{#if !rate.length}
 			{null}
 		{:else}
-			{average}%
+			{average}% Zust.
 		{/if}
 	</span>
 </div>

@@ -62,22 +62,14 @@
 	const vetoers = $derived(
 		vetos?.map((v) => (v.parent === parentState.parent ? 'dir' : v.parent)).join(' und ')
 	);
-
 </script>
 
 <div class={clsx(' ', deleting.value && 'opacity-50', themeClass)}>
-	<div class="listitem w-full flex-col gap-2 rounded-2xl px-4 py-4 pb-4">
+	<div class="listitem flex w-full flex-col gap-2 rounded-2xl px-5 py-4">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
-				<div class="gender-bg">
-					{#if gender === 'f'}
-						<i class="fa fa-venus gender-icon text-sm"> </i>
-					{:else}
-						<i class="fa fa-mars gender-icon text-sm"></i>
-					{/if}
-				</div>
 				<span class="open-sans-bold flex items-center text-xl">{name}</span>
-				{#if vetoFromUser}
+				<!-- {#if vetoFromUser}
 					<button
 						class="open-sans-regular flex h-6 items-center justify-center gap-2"
 						aria-label="Veto entfernen"
@@ -88,9 +80,16 @@
 					</button>
 				{:else if vetos.length}
 					<span class="open-sans-regular text-sm">Veto von {vetoers}</span>
+				{/if} -->
+			</div>
+			<div class="gender-bg flex h-8 w-8 items-center justify-center rounded-full">
+				{#if gender === 'f'}
+					<i class="fa fa-venus gender-icon text-lg"> </i>
+				{:else}
+					<i class="fa fa-mars gender-icon text-lg"></i>
 				{/if}
 			</div>
-			<div class="flex items-center gap-2">
+			<!-- <div class="flex items-center gap-2">
 				{#if !vetoFromUser}
 					<button
 						onclick={vetoName}
@@ -109,11 +108,11 @@
 						<i class="fa fa-trash text-sm text-red-600"></i>
 					</button>
 				{/if}
-			</div>
+			</div> -->
 		</div>
 
 		<div class="flex min-h-[28px] items-center">
-			<form method="POST" class="flex-[2.5]" onsubmit={onSubmit}>
+			<form method="POST" class="flex-[2]" onsubmit={onSubmit}>
 				<RateInput
 					value={userRate}
 					debug={name === 'name A'}

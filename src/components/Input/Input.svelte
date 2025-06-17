@@ -1,6 +1,4 @@
 <script lang="ts">
-	import clsx from 'clsx';
-
 	type Props = { name: string; label: string };
 	const { name, label }: Props = $props();
 </script>

@@ -21,7 +21,7 @@
 
 <div class="flex items-center justify-between gap-4">
 	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
-	{#if loading}
+	<!-- {#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
 			<i class="fa fa-spinner text-md animate-spin text-violet-800"></i>
 		</div>
@@ -37,7 +37,7 @@
 		>
 			<i class="fa fa-check text-[10px] text-white"></i>
 		</button>
-	{/if}
+	{/if} -->
 </div>
 
 <style>
@@ -52,13 +52,13 @@
 	/***** Track Styles *****/
 	/***** Chrome, Safari, Opera, and Edge Chromium *****/
 	input[type='range']::-webkit-slider-runnable-track {
-		height: 10px;
+		height: 8px;
 		border-radius: 10px;
 	}
 
 	/******** Firefox ********/
 	input[type='range']::-moz-range-track {
-		height: 10px;
+		height: 8px;
 		border-radius: 10px;
 	}
 
@@ -67,9 +67,9 @@
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none; /* Override default look */
 		appearance: none;
-		height: 18px;
+		height: 14px;
 		width: 10px;
-		margin-top: -4px;
+		margin-top: -3px;
 		border-radius: 10px;
 	}
 
@@ -77,7 +77,7 @@
 	input[type='range']::-moz-range-thumb {
 		border: none; /*Removes extra border that FF applies*/
 		border-radius: 0; /*Removes default border-radius that FF applies*/
-		height: 18px;
+		height: 14px;
 		width: 10px;
 		border-radius: 10px;
 	}
