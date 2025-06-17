@@ -5,6 +5,7 @@
 	import Panel from './Panel.svelte';
 	import FilteringForm from '../FilteringForm/FilteringForm.svelte';
 	import type { FilterCategory, Parent, FilterStateValue } from '../../types/types';
+	import clsx from 'clsx';
 
 	type Props = {
 		onSortingChange: (value: string) => void;
@@ -25,6 +26,7 @@
 	}: Props = $props();
 
 	const lineAttributes = $state({ left: 0, width: 0 });
+	const panelOpen = $state({ value: true });
 
 	const tabSelected = $state({ value: 'new-name-tab' });
 	const onSelect = (input: HTMLInputElement) => {
@@ -34,11 +36,15 @@
 			lineAttributes.left = label.offsetLeft;
 			lineAttributes.width = label.clientWidth;
 		}
+		panelOpen.value = true
+	};
+	const onPanelToggle = () => {
+		panelOpen.value = !panelOpen.value;
 	};
 </script>
 
-<section class="tabs px-4 z-2 mb-4">
-	<fieldset class="relative flex gap-8 pb-1 px-3">
+<section class="tabs z-2 mb-4 px-4">
+	<fieldset class="relative flex items-center gap-8 px-3 pb-1">
 		<Tab
 			label="Neuer Name"
 			onChange={onSelect}
@@ -51,19 +57,31 @@
 
 		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected.value} />
 		<div
-			class="absolute h-[3px] bg-[#b5b4a2] transition-all bottom-0 rounded-xl"
+			class="absolute bottom-0 h-[3px] rounded-xl bg-[#b5b4a2] transition-all"
 			style={`left: ${lineAttributes.left}px; width: ${lineAttributes.width}px `}
 		></div>
+		<button onclick={onPanelToggle} class="absolute right-4 flex items-center h-6 w-6 justify-end" aria-label="Panel aufklappen"
+			><i
+				class={clsx(
+					'fa fa-chevron-down transform text-black transition-all',
+					panelOpen.value ? 'rotate-180' : 'rotate-0'
+				)}
+			></i></button
+		>
 	</fieldset>
-	<div class="relative h-[252px] max-h-[252px] bg-white rounded-xl">
-		<Panel visible={tabSelected.value === 'sort-tab'}>
-			<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
-		</Panel>
-		<Panel visible={tabSelected.value === 'filter-tab'}>
-			<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
-		</Panel>
-		<Panel visible={tabSelected.value === 'new-name-tab'}>
-			<NewNameForm />
-		</Panel>
+	<div class={clsx('grid tansition-all duration-250', panelOpen.value ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
+		<div class="overflow-hidden">
+			<div class="relative h-[252px] max-h-[252px] rounded-xl bg-white">
+				<Panel visible={tabSelected.value === 'sort-tab'}>
+					<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
+				</Panel>
+				<Panel visible={tabSelected.value === 'filter-tab'}>
+					<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
+				</Panel>
+				<Panel visible={tabSelected.value === 'new-name-tab'}>
+					<NewNameForm />
+				</Panel>
+			</div>
+		</div>
 	</div>
 </section>

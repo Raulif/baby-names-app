@@ -71,11 +71,15 @@
 
 <NamesList names={namesList} loading={query.isLoading} error={query.error} />
 
-<Tabs
-	{onSortingChange}
-	selectedSorting={sortingState.value}
-	{onFilterChange}
-	selectedFilters={filteringState.value}
-	{onFilterClear}
-	{onSortingClear}
-/>
+
+
+		<Tabs
+			{onSortingChange}
+			selectedSorting={sortingState.value}
+			{onFilterChange}
+			selectedFilters={filteringState.value}
+			{onFilterClear}
+			{onSortingClear}
+		/>
+
+
