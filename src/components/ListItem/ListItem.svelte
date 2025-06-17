@@ -18,7 +18,6 @@
 
 	const onSubmit = async (e: SubmitEvent) => {
 		e.preventDefault();
-
 		loading.value = true;
 		rateChanged.value = false;
 
@@ -112,7 +111,7 @@
 		</div>
 
 		<div class="flex min-h-[28px] items-center">
-			<form method="POST" class="flex-[2]" onsubmit={onSubmit}>
+			<form method="POST" class="flex-[2]" onsubmit={onSubmit} id={`rate-form-${name}`}>
 				<RateInput
 					value={userRate}
 					debug={name === 'name A'}
@@ -121,7 +120,21 @@
 					loading={loading.value}
 				/>
 			</form>
-			<div class="flex flex-[1] justify-end"><RateDisplay {rate} veto={vetos} /></div>
+			<div class="flex flex-[1] justify-end">
+				{#if loading.value}
+					<div class="flex h-6 min-w-6 items-center justify-center">
+						<i class="fa fa-spinner text-md animate-spin"></i>
+					</div>
+				{:else if rateChanged.value}
+					<button
+						class="rate-save-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
+						type="submit"
+						form={`rate-form-${name}`}>Speichern</button
+					>
+				{:else}
+					<RateDisplay {rate} veto={vetos} />
+				{/if}
+			</div>
 		</div>
 	</div>
 </div>

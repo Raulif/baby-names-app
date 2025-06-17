@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex items-center justify-between gap-4">
-	<input type="range" name="rate" min="0" max="100" step="10" {value} onchange={onInputChanged} />
+	<input type="range" name="rate" min="0" max="100" step="10" value={currentValue.value} onchange={onInputChanged} />
 	<!-- {#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
 			<i class="fa fa-spinner text-md animate-spin text-violet-800"></i>
@@ -48,6 +48,8 @@
 		cursor: pointer;
 		width: 100%;
 	}
+
+
 
 	/***** Track Styles *****/
 	/***** Chrome, Safari, Opera, and Edge Chromium *****/

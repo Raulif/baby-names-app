@@ -77,6 +77,15 @@ body {
 		input[type='range']::-moz-range-thumb {
 			background-color: #c9d9d6;
 		}
+
+		.rate-save-button {
+			background-color: #e6eef0;
+			color: #a0b4bc;
+		}
+
+		.fa-spinner {
+			color: #a0b4bc;
+		}
 	}
 }
 
@@ -106,6 +115,15 @@ body {
 
 		input[type='range']::-moz-range-thumb {
 			background-color: #e0d7c8;
+		}
+
+		.rate-save-button {
+			background-color: #faedde;
+			color: #d2a597;
+		}
+
+		.fa-spinner {
+			color: #d2a597;
 		}
 	}
 }
@@ -137,6 +155,15 @@ body {
 		input[type='range']::-moz-range-thumb {
 			background-color: #ead1cb;
 		}
+
+		.rate-save-button {
+			background-color: #feebe7;
+			color: #d68c8a;
+		}
+
+		.fa-spinner {
+			color: #d68c8a;
+		}
 	}
 }
 
@@ -167,6 +194,15 @@ body {
 		input[type='range']::-moz-range-thumb {
 			background-color: #dbdfcf;
 		}
+
+		.rate-save-button {
+			background-color: #eef6e9;
+			color: #b2c5ab;
+		}
+
+		.fa-spinner {
+			color: #b2c5ab;
+		}
 	}
 }
 
@@ -196,6 +232,15 @@ body {
 
 		input[type='range']::-moz-range-thumb {
 			background-color: #e2dbcb;
+		}
+
+		.rate-save-button {
+			background-color: #fbf0ef;
+			color: #de9e9f;
+		}
+
+		.fa-spinner {
+			color: #de9e9f;
 		}
 	}
 }
