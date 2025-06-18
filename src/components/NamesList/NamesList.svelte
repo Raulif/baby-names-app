@@ -10,10 +10,10 @@
 		names: Array<Name>;
 		loading: boolean;
 		error?: Error;
+		selectedIndex: number | null;
 	};
 
-	const { names, loading, error }: Props = $props();
-	let selectedIndex: number | null = $state(null);
+	let { names, loading, error, selectedIndex = $bindable() }: Props = $props();
 </script>
 
 <section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-5">
@@ -42,7 +42,7 @@
 						{...name}
 						themeClass={getThemeClass((index % 5) as ClassNumber)}
 						bind:selectedIndex
-					{index}
+						{index}
 					/>
 				</li>
 			{:else}

@@ -17,8 +17,10 @@
 	import { parentState } from '$lib/parentState.svelte';
 
 	const query = useQuery(api.names.get, {});
+	let selectedIndex: number | null = $state(null);
 
 	const onSortingChange = (value: string) => {
+		selectedIndex = null;
 		sortingState.value = value;
 		localStorage.setItem('sorting', value);
 	};
@@ -27,6 +29,7 @@
 		value: FilterUser | FilterGender | FilterRating,
 		category: FilterCategory
 	) => {
+		selectedIndex = null;
 		let filters = { ...filteringState.value };
 		filters[category] = value;
 		filteringState.value = filters;
@@ -34,11 +37,13 @@
 	};
 
 	const onFilterClear = (category: FilterCategory) => {
+		selectedIndex = null;
 		filteringState.value = { ...filteringState.value, [category]: '' };
 		localStorage.setItem('filtering', JSON.stringify(filteringState.value));
 	};
 
 	const onSortingClear = () => {
+		selectedIndex = null;
 		sortingState.value = '';
 		localStorage.setItem('sorting', '');
 	};
@@ -69,17 +74,13 @@
 	});
 </script>
 
-<NamesList names={namesList} loading={query.isLoading} error={query.error} />
+<NamesList bind:selectedIndex names={namesList} loading={query.isLoading} error={query.error} />
 
-
-
-		<Tabs
-			{onSortingChange}
-			selectedSorting={sortingState.value}
-			{onFilterChange}
-			selectedFilters={filteringState.value}
-			{onFilterClear}
-			{onSortingClear}
-		/>
-
-
+<Tabs
+	{onSortingChange}
+	selectedSorting={sortingState.value}
+	{onFilterChange}
+	selectedFilters={filteringState.value}
+	{onFilterClear}
+	{onSortingClear}
+/>
