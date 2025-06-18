@@ -19,6 +19,7 @@
 		rate,
 		gender,
 		veto = [],
+		parent,
 		themeClass,
 		open,
 		selectedIndex = $bindable(),
@@ -34,7 +35,7 @@
 		e.stopPropagation();
 		loading = true;
 		rateChanged = false;
-		const button = e.target as HTMLButtonElement
+		const button = e.target as HTMLButtonElement;
 		const form = button.form as HTMLFormElement;
 		const formData = new FormData(form);
 
@@ -161,14 +162,22 @@
 				{:else if rateChanged}
 					<button
 						class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
-						form={`rate-form-${name.toLowerCase()}`} onclick={onRateSubmit}>Speichern</button
+						form={`rate-form-${name.toLowerCase()}`}
+						onclick={onRateSubmit}>Speichern</button
 					>
 				{:else}
 					<RateDisplay {rate} veto={vetos} />
 				{/if}
 			</div>
 		</div>
-		<ActionsMenu {vetoFromUser} {vetoName} deleteName={onRequestDelete} {open} {removeVeto} />
+		<ActionsMenu
+			{vetoFromUser}
+			{vetoName}
+			deleteName={onRequestDelete}
+			{open}
+			{removeVeto}
+			deletable={parent === parentState.parent}
+		/>
 	</div>
 </div>
 <Modal bind:showModal onConfirm={onDelete}>
