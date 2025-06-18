@@ -8,17 +8,17 @@
 	};
 
 	const { value, changed, onChangeHandler, loading }: Props = $props();
-	const currentValue = $state({ value });
+	let currentValue = $state(value);
 
 	const onInputChanged = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
 		const input = e.target as HTMLInputElement;
-		currentValue.value = parseInt(input.value) as number;
+		currentValue = parseInt(input.value) as number;
 		onChangeHandler && onChangeHandler();
 	};
 </script>
 
 <div class="flex items-center justify-between gap-4">
-	<input type="range" name="rate" min="0" max="100" step="10" value={currentValue.value} onchange={onInputChanged} />
+	<input type="range" name="rate" min="0" max="100" step="10" value={currentValue} onchange={onInputChanged} />
 	<!-- {#if loading}
 		<div class="flex h-6 min-w-6 items-center justify-center">
 			<i class="fa fa-spinner text-md animate-spin text-violet-800"></i>

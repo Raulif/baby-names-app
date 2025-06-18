@@ -4,13 +4,13 @@
 	import GenderRadio from './GenderRadio.svelte';
 	import { parentState } from '../../lib/parentState.svelte';
 
-	let isFocused = $state({ value: false });
+	let isFocused = $state(false);
 
 	const onFocus = () => {
-		isFocused.value = true;
+		isFocused = true;
 	};
 	const onBlur = () => {
-		isFocused.value = false;
+		isFocused = false;
 	};
 </script>
 
@@ -24,7 +24,7 @@
 		<div
 			class={clsx(
 				`relative flex items-center gap-3 overflow-hidden rounded-md border-1  pr-[90px]`,
-				isFocused.value ? 'border-black outline-1' : 'border-[#b5b4a2]'
+				isFocused ? 'border-black outline-1' : 'border-[#b5b4a2]'
 			)}
 		>
 			<input

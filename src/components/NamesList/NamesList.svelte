@@ -13,15 +13,7 @@
 	};
 
 	const { names, loading, error }: Props = $props();
-	const selectedIndex: { value: number | null } = $state({ value: null });
-
-	const onItemClick = (index: number) => {
-		if (selectedIndex.value === index) {
-			selectedIndex.value = null;
-		} else {
-			selectedIndex.value = index;
-		}
-	};
+	let selectedIndex: number | null = $state(null);
 </script>
 
 <section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-5">
@@ -46,10 +38,11 @@
 			{#each names as name, index (name.name)}
 				<li animate:flip={{ duration: 250 }} in:fade out:fade>
 					<ListItem
-						onItemClick={() => onItemClick(index)}
-						open={selectedIndex.value !== null && selectedIndex.value === index}
+						open={selectedIndex !== null && selectedIndex === index}
 						{...name}
 						themeClass={getThemeClass((index % 5) as ClassNumber)}
+						bind:selectedIndex
+					{index}
 					/>
 				</li>
 			{:else}

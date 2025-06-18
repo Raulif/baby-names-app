@@ -15,19 +15,19 @@
 		{#if vetoFromUser}
 			<button
 				onclick={removeVeto}
-				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm text-[#918f8a]"
+				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm "
 				><i class="fa fa-ban"></i>Veto entfernen
 			</button>
 		{:else}
 			<button
 				onclick={vetoName}
-				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm text-[#918f8a]"
+				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm "
 				><i class="fa fa-ban"></i>Veto
 			</button>
 		{/if}
 		<button
 			onclick={deleteName}
-			class="action-button-reverse open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm text-[#918f8a]"
+			class="action-button-reverse open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm "
 			><i class="fa fa-trash"></i>Entfernen</button
 		>
 	</div>

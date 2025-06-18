@@ -27,20 +27,20 @@
 	}: Props = $props();
 
 	const lineAttributes = $state({ left: 0, width: 0 });
-	const panelOpen = $state({ value: true });
+	let panelOpen = $state(true);
 
-	const tabSelected = $state({ value: 'new-name-tab' });
+	let tabSelected = $state( 'new-name-tab');
 	const onSelect = (input: HTMLInputElement) => {
-		tabSelected.value = input.id;
+		tabSelected = input.id;
 		const label = input.parentElement;
 		if (label) {
 			lineAttributes.left = label.offsetLeft;
 			lineAttributes.width = label.clientWidth;
 		}
-		panelOpen.value = true;
+		panelOpen = true;
 	};
 	const onPanelToggle = () => {
-		panelOpen.value = !panelOpen.value;
+		panelOpen = !panelOpen;
 	};
 </script>
 
@@ -50,13 +50,13 @@
 			label="Neuer Name"
 			onChange={onSelect}
 			id="new-name-tab"
-			currentValue={tabSelected.value}
+			currentValue={tabSelected}
 			selectInitial={true}
 		/>
 
-		<Tab label="Sortieren" onChange={onSelect} id="sort-tab" currentValue={tabSelected.value} />
+		<Tab label="Sortieren" onChange={onSelect} id="sort-tab" currentValue={tabSelected} />
 
-		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected.value} />
+		<Tab label="Filtern" onChange={onSelect} id="filter-tab" currentValue={tabSelected} />
 		<div
 			class="absolute bottom-0 h-[3px] rounded-xl bg-[#b5b4a2] transition-all"
 			style={`left: ${lineAttributes.left}px; width: ${lineAttributes.width}px `}
@@ -68,20 +68,20 @@
 			><i
 				class={clsx(
 					'fa fa-chevron-up transform text-black transition-all',
-					panelOpen.value ? 'rotate-180' : 'rotate-0'
+					panelOpen ? 'rotate-180' : 'rotate-0'
 				)}
 			></i></button
 		>
 	</fieldset>
-	<Foldable open={panelOpen.value}>
+	<Foldable open={panelOpen}>
 		<div class="relative h-[252px] max-h-[252px] rounded-xl bg-white">
-			<Panel visible={tabSelected.value === 'sort-tab'}>
+			<Panel visible={tabSelected === 'sort-tab'}>
 				<SortingForm onChange={onSortingChange} {selectedSorting} onClear={onSortingClear} />
 			</Panel>
-			<Panel visible={tabSelected.value === 'filter-tab'}>
+			<Panel visible={tabSelected === 'filter-tab'}>
 				<FilteringForm onChange={onFilterChange} {selectedFilters} onClear={onFilterClear} />
 			</Panel>
-			<Panel visible={tabSelected.value === 'new-name-tab'}>
+			<Panel visible={tabSelected === 'new-name-tab'}>
 				<NewNameForm />
 			</Panel>
 		</div>
