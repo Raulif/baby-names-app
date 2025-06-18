@@ -26,7 +26,7 @@
 		<div>
 			{@render children()}
 		</div>
-		<div class="flex justify-center gap-4">
+		<div class="flex justify-center gap-3">
 			<ActionButton classes=" border-[#918f8a] bg-white text-[#918f8a]" onclick={() => dialog?.close()}
 				><i class="fa fa-xmark"></i><span>Nein</span></ActionButton
 			>
