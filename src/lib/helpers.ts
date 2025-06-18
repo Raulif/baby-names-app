@@ -74,5 +74,5 @@ export const getThemeClass = (number: ClassNumber) => {
 		4: 'theme-green',
 		0: 'theme-yellow'
 	};
-	return numberToClassMap[number]
-}
+	return numberToClassMap[number];
+};

@@ -2,41 +2,32 @@
 	type Props = {
 		value?: number;
 		debug?: boolean;
-		onChangeHandler: () => void;
-		changed?: boolean;
-		loading?: boolean;
+		name: string;
+		rateChanged: boolean;
 	};
 
-	const { value, changed, onChangeHandler, loading }: Props = $props();
+	let { value, name, rateChanged = $bindable() }: Props = $props();
 	let currentValue = $state(value);
 
-	const onInputChanged = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
+	const onInputChanged = (
+		e: Event & { currentTarget: EventTarget & HTMLInputElement }
+	) => {
 		const input = e.target as HTMLInputElement;
 		currentValue = parseInt(input.value) as number;
-		onChangeHandler && onChangeHandler();
+		rateChanged = true;
 	};
 </script>
 
-<div class="flex items-center justify-between gap-4">
-	<input type="range" name="rate" min="0" max="100" step="10" value={currentValue} onchange={onInputChanged} />
-	<!-- {#if loading}
-		<div class="flex h-6 min-w-6 items-center justify-center">
-			<i class="fa fa-spinner text-md animate-spin text-violet-800"></i>
-		</div>
-	{:else}
-		<button
-			disabled={!changed}
-			type="submit"
-			aria-label="Bewertung speichern"
-			class={clsx(
-				'flex h-6 min-w-6 items-center justify-center rounded-sm border-[0] bg-violet-800',
-				!changed && 'pointer-events-none opacity-0'
-			)}
-		>
-			<i class="fa fa-check text-[10px] text-white"></i>
-		</button>
-	{/if} -->
-</div>
+<input
+	data-testid={`rating-input-${name}`}
+	type="range"
+	name="rate"
+	min="0"
+	max="100"
+	step="10"
+	value={currentValue}
+	onchange={onInputChanged}
+/>
 
 <style>
 	input[type='range'] {
@@ -46,8 +37,6 @@
 		cursor: pointer;
 		width: 100%;
 	}
-
-
 
 	/***** Track Styles *****/
 	/***** Chrome, Safari, Opera, and Edge Chromium *****/

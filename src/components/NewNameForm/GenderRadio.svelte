@@ -23,6 +23,6 @@
 		box-shadow: 0px 0px 10px rgba(1, 181, 252, 0.6);
 	}
 	label.female:has(input:checked) {
-		box-shadow: 0px 0px 10px  rgba(255, 102, 102,0.6);
+		box-shadow: 0px 0px 10px rgba(255, 102, 102, 0.6);
 	}
 </style>

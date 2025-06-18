@@ -1,4 +1,5 @@
 /** @satisfies {import('./$types').Actions} */
+import type { RequestEvent } from '@sveltejs/kit';
 import type { Gender, Parent } from '../types/types';
 import { updateNamesInDB } from '../db/names';
 import { ConvexHttpClient } from 'convex/browser';
@@ -18,7 +19,7 @@ export async function load() {
 }
 
 export const actions = {
-	add: async (event) => {
+	add: async (event: RequestEvent) => {
 		const params = event.url.searchParams;
 		const data = await event.request.formData();
 		const name = data.get('name');
@@ -39,7 +40,7 @@ export const actions = {
 		await updateNamesInDB(_id, [...(names || []), newNameEntry]);
 		return true;
 	},
-	rate: async ({ request }) => {
+	rate: async ({ request }: RequestEvent) => {
 		const data = await request.formData();
 		const name = data.get('name');
 		const parent = data.get('parent');
@@ -63,7 +64,7 @@ export const actions = {
 		await updateNamesInDB(_id, names);
 		return true;
 	},
-	delete: async ({ request }) => {
+	delete: async ({ request }: RequestEvent) => {
 		const { name } = await request.json();
 		const { _id, names } = namesStore.getState();
 		const filtered = names.filter((n) => n.name !== name);
@@ -72,7 +73,7 @@ export const actions = {
 
 		return true;
 	},
-	veto: async (event) => {
+	veto: async (event: RequestEvent) => {
 		const { name, veto } = await event.request.json();
 		const { _id, names } = namesStore.getState();
 		const nameIndex = names.findIndex((n) => n.name === name);

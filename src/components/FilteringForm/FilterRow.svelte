@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { FilterStateValue, Parent, FilterCategory } from '../../types/types';
+	import type {
+		FilterStateValue,
+		Parent,
+		FilterCategory
+	} from '../../types/types';
 	import Radio from '../Radio/Radio.svelte';
 	import ClearButton from '../ClearButton/ClearButton.svelte';
 
@@ -12,14 +16,20 @@
 		onClear: (category: FilterCategory) => void;
 	};
 
-	const { onChange, category, valueLabels, selectedFilters, title, onClear }: Props = $props();
+	const {
+		onChange,
+		category,
+		valueLabels,
+		selectedFilters,
+		title,
+		onClear
+	}: Props = $props();
 </script>
 
 <div class="flex flex-col gap-[6px] pb-3">
 	<span class="open-sans-regular">{title}</span>
 	<div class="flex items-center justify-between gap-3">
-		<div class="flex items-center gap-1 flex-[1]">
-
+		<div class="flex flex-[1] items-center gap-1">
 			{#each valueLabels as valueLabel (valueLabel.value)}
 				<Radio
 					name={category}

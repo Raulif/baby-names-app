@@ -1,4 +1,4 @@
-import  {createStore}  from 'zustand/vanilla';
+import { createStore } from 'zustand/vanilla';
 import type { Name } from '../types/types';
 import type { Id } from '../convex/_generated/dataModel';
 

@@ -7,7 +7,6 @@
 		parentState.parent = chosenParent;
 		localStorage.setItem('parent', chosenParent);
 	};
-
 </script>
 
 <svelte:head>

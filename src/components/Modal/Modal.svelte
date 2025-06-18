@@ -27,13 +27,23 @@
 			{@render children()}
 		</div>
 		<div class="flex justify-center gap-3">
-			<ActionButton classes=" border-[#918f8a] bg-white text-[#918f8a]" onclick={() => dialog?.close()}
-				><i class="fa fa-xmark"></i><span>Nein</span></ActionButton
+			<ActionButton
+				testId={`cancel-delete-button-${name}`}
+				classes=" border-[#918f8a] bg-white text-[#918f8a]"
+				onclick={() => dialog?.close()}
 			>
+				<i class="fa fa-xmark"></i>
+				<span>Nein</span>
+			</ActionButton>
 
-			<ActionButton classes="border-[#d68c8a] bg-[#d68c8a] text-white" onclick={onConfirm}
-				><i class="fa fa-trash-can"></i><span>Ja</span></ActionButton
+			<ActionButton
+				testId={`confirm-delete-button-${name}`}
+				classes="border-[#d68c8a] bg-[#d68c8a] text-white"
+				onclick={onConfirm}
 			>
+				<i class="fa fa-trash-can"></i>
+				<span>Ja</span>
+			</ActionButton>
 		</div>
 	</div>
 </dialog>

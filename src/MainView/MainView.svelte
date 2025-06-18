@@ -74,7 +74,12 @@
 	});
 </script>
 
-<NamesList bind:selectedIndex names={namesList} loading={query.isLoading} error={query.error} />
+<NamesList
+	bind:selectedIndex
+	names={namesList}
+	loading={query.isLoading}
+	error={query.error}
+/>
 
 <Tabs
 	{onSortingChange}

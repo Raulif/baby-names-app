@@ -9,7 +9,14 @@
 		vetoFromUser: boolean;
 		deletable: boolean;
 	};
-	const { removeVeto, vetoName, deleteName, open, vetoFromUser, deletable }: Props = $props();
+	const {
+		removeVeto,
+		vetoName,
+		deleteName,
+		open,
+		vetoFromUser,
+		deletable
+	}: Props = $props();
 </script>
 
 <Foldable {open}>
@@ -18,21 +25,27 @@
 			<button
 				onclick={removeVeto}
 				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm"
-				><i class="fa fa-ban"></i>Veto entfernen
+			>
+				<i class="fa fa-ban"></i>
+				Veto entfernen
 			</button>
 		{:else}
 			<button
 				onclick={vetoName}
 				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm"
-				><i class="fa fa-ban"></i>Veto
+			>
+				<i class="fa fa-ban"></i>
+				Veto
 			</button>
 		{/if}
 		{#if deletable}
 			<button
 				onclick={deleteName}
 				class="action-button-reverse open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm"
-				><i class="fa fa-trash"></i>Entfernen</button
 			>
+				<i class="fa fa-trash"></i>
+				Entfernen
+			</button>
 		{/if}
 	</div>
 </Foldable>

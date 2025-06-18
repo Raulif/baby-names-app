@@ -48,10 +48,6 @@
 		loading = false;
 	};
 
-	const onChangeHandler = () => {
-		rateChanged = true;
-	};
-
 	const onRequestDelete = (e: Event) => {
 		e.stopPropagation();
 		showModal = true;
@@ -74,7 +70,10 @@
 
 		await fetch('?/veto', {
 			method: 'POST',
-			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: true } })
+			body: JSON.stringify({
+				name,
+				veto: { parent: parentState.parent, veto: true }
+			})
 		});
 		loading = false;
 	};
@@ -85,7 +84,10 @@
 
 		await fetch('?/veto', {
 			method: 'POST',
-			body: JSON.stringify({ name, veto: { parent: parentState.parent, veto: false } })
+			body: JSON.stringify({
+				name,
+				veto: { parent: parentState.parent, veto: false }
+			})
 		});
 		loading = false;
 	};
@@ -111,19 +113,28 @@
 	};
 
 	const userRate = $derived(
-		rate.find((r) => !!parentState.checked && r.parent === parentState.parent)?.rate
+		rate.find((r) => !!parentState.checked && r.parent === parentState.parent)
+			?.rate
 	);
 
 	const vetos = $derived(veto?.filter((v) => v.veto));
-	const vetoFromUser = $derived(vetos?.some((v) => v.parent === parentState.parent && !!v.veto));
+	const vetoFromUser = $derived(
+		vetos?.some((v) => v.parent === parentState.parent && !!v.veto)
+	);
 </script>
 
 <div
 	tabindex="0"
 	role="button"
-	class={clsx('listitem-wrapper', deleting && 'opacity-50', themeClass)}
+	class={clsx(
+		'listitem-wrapper',
+		deleting && 'opacity-50',
+		themeClass,
+		vetos.length && 'vetoed'
+	)}
 	onclick={onWrapperClick}
 	onkeydown={onKeyDown}
+	data-testid="name-item-{name}"
 >
 	<div
 		class={clsx(
@@ -135,9 +146,11 @@
 			<div class="flex items-center gap-2">
 				<span class="open-sans-bold flex items-center text-xl">{name}</span>
 			</div>
-			<div class="gender-bg flex h-8 w-8 items-center justify-center rounded-full">
+			<div
+				class="gender-bg flex h-8 w-8 items-center justify-center rounded-full"
+			>
 				{#if gender === 'f'}
-					<i class="fa fa-venus gender-icon text-lg"> </i>
+					<i class="fa fa-venus gender-icon text-lg"></i>
 				{:else}
 					<i class="fa fa-mars gender-icon text-lg"></i>
 				{/if}
@@ -145,13 +158,16 @@
 		</div>
 
 		<div class="flex min-h-[28px] items-center">
-			<form method="POST" class="flex-[2]" id={`rate-form-${name.toLowerCase()}`}>
+			<form
+				method="POST"
+				class="flex-[2]"
+				id={`rate-form-${name.toLowerCase()}`}
+			>
 				<RateInput
 					value={userRate}
 					debug={name === 'name A'}
-					{onChangeHandler}
-					changed={rateChanged}
-					{loading}
+					{name}
+					bind:rateChanged
 				/>
 			</form>
 			<div class="flex flex-[1] justify-end">
@@ -163,10 +179,13 @@
 					<button
 						class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
 						form={`rate-form-${name.toLowerCase()}`}
-						onclick={onRateSubmit}>Speichern</button
+						onclick={onRateSubmit}
+						data-testid={`submit-rating-${name}`}
 					>
+						Speichern
+					</button>
 				{:else}
-					<RateDisplay {rate} veto={vetos} />
+					<RateDisplay {rate} veto={vetos} {name} />
 				{/if}
 			</div>
 		</div>
@@ -177,11 +196,15 @@
 			{open}
 			{removeVeto}
 			deletable={parent === parentState.parent}
+			{name}
 		/>
 	</div>
 </div>
 <Modal bind:showModal onConfirm={onDelete}>
 	<p class="open-sans-regular text-center text-lg text-[#918f8a]">
-		Willst du wirklich <span class="open-sans-bold text-xl text-black">{name}</span> löschen?
+		Willst du wirklich <span class="open-sans-bold text-xl text-black">
+			{name}
+		</span>
+		 löschen?
 	</p>
 </Modal>

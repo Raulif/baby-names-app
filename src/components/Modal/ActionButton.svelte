@@ -6,15 +6,19 @@
 		onclick: (e: MouseEvent) => void;
 		classes: string;
 		children: Snippet;
+		testId: string;
 	};
 
-	const { children, onclick, classes }: Props = $props();
+	const { children, onclick, classes, testId }: Props = $props();
 </script>
 
 <button
+	data-testId={testId}
 	{onclick}
 	class={clsx(
-		'text-sm open-sans-bold flex items-center gap-3 rounded-xl border-1 px-3 py-1 min-w-[80px] justify-center',
+		'open-sans-bold flex min-w-[80px] items-center justify-center gap-3 rounded-xl border-1 px-3 py-1 text-sm',
 		classes
-	)}>{@render children()}</button
+	)}
 >
+	{@render children()}
+</button>

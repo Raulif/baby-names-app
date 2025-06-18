@@ -16,7 +16,9 @@
 	let { names, loading, error, selectedIndex = $bindable() }: Props = $props();
 </script>
 
-<section class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-5">
+<section
+	class=" flex w-full flex-grow-[1] flex-col-reverse overflow-scroll px-5"
+>
 	{#if loading}
 		<div class="fixed top-[25%] left-0 flex w-full px-4">
 			<p
@@ -34,7 +36,10 @@
 			</p>
 		</div>
 	{:else}
-		<ul class="flex h-full w-full flex-col-reverse justify-end gap-2 pt-2 pb-3">
+		<ul
+			data-testid="names-list"
+			class="flex h-full w-full flex-col-reverse justify-end gap-2 pt-2 pb-3"
+		>
 			{#each names as name, index (name.name)}
 				<li animate:flip={{ duration: 250 }} in:fade out:fade>
 					<ListItem

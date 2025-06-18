@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { FilterCategory, Parent, FilterStateValue } from '../../types/types';
+	import type {
+		FilterCategory,
+		Parent,
+		FilterStateValue
+	} from '../../types/types';
 	import { parentState } from '$lib/parentState.svelte';
 	import FilterRow from './FilterRow.svelte';
 
@@ -14,7 +18,7 @@
 </script>
 
 <section class="relative h-full">
-	<fieldset class="flex flex-col h-full gap-2 ">
+	<fieldset class="flex h-full flex-col gap-2">
 		<FilterRow
 			{onChange}
 			{selectedFilters}

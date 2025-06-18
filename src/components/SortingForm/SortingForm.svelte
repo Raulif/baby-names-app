@@ -21,7 +21,12 @@
 	<fieldset>
 		<div class="flex items-center justify-between">
 			<legend class="open-sans-regular text-md">Liste sortieren</legend>
-			<ClearButton active={!!selectedSorting} label="Entfernen" onClick={onClear} classes="px-2" />
+			<ClearButton
+				active={!!selectedSorting}
+				label="Entfernen"
+				onClick={onClear}
+				classes="px-2"
+			/>
 		</div>
 		<div class="flex max-h-[96px] flex-col gap-x-2 gap-y-4 pt-4">
 			{#each sortingOptions as option (option.value)}

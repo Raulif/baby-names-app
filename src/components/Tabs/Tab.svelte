@@ -10,19 +10,20 @@
 	};
 	const { currentValue, onChange, id, label, selectInitial }: Props = $props();
 	const selected = $derived(currentValue === id);
+
 	$effect(() => {
 		if (selectInitial) {
-			const input = document.querySelector(`#${id}`) as HTMLInputElement
-			if (input ) {
-				onChange(input)
+			const input = document.querySelector(`#${id}`) as HTMLInputElement;
+			if (input) {
+				onChange(input);
 			}
 		}
-	})
+	});
 </script>
 
 <label
 	class={clsx(
-		'tab open-sans-regular  py-1 text-center text-md',
+		'tab open-sans-regular  text-md py-1 text-center',
 		selected && 'text-black',
 		!selected && ' text-[#918f8a] '
 	)}
@@ -37,6 +38,3 @@
 		checked={selected}
 	/>
 </label>
-
-<style>
-</style>
