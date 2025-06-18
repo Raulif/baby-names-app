@@ -30,10 +30,6 @@
 	let deleting = $state(false);
 	let showModal = $state(false);
 
-	const userRate = $derived(
-		rate.find((r) => !!parentState.checked && r.parent === parentState.parent)?.rate
-	);
-
 	const onRateSubmit = async (e: MouseEvent) => {
 		e.stopPropagation();
 		loading = true;
@@ -112,6 +108,10 @@
 			}
 		}
 	};
+
+	const userRate = $derived(
+		rate.find((r) => !!parentState.checked && r.parent === parentState.parent)?.rate
+	);
 
 	const vetos = $derived(veto?.filter((v) => v.veto));
 	const vetoFromUser = $derived(vetos?.some((v) => v.parent === parentState.parent && !!v.veto));
