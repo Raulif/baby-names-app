@@ -14,7 +14,7 @@
 <button
 	{onclick}
 	class={clsx(
-		'text-sm open-sans-bold flex items-center gap-3 rounded-xl border-1 px-3 py-1 ',
+		'text-sm open-sans-bold flex items-center gap-3 rounded-xl border-1 px-3 py-1 min-w-[80px] justify-center',
 		classes
 	)}>{@render children()}</button
 >
