@@ -4,8 +4,9 @@ import { api } from '../convex/_generated/api';
 import type { Id } from '../convex/_generated/dataModel';
 import type { Name, GetNamesResult } from '../types/types';
 import { namesStore } from '../store/namesStore';
+import { PUBLIC_CONVEX_URL } from '$env/static/public';
 
-const convex = new ConvexHttpClient('https://proficient-gecko-159.convex.cloud');
+const convex = new ConvexHttpClient(PUBLIC_CONVEX_URL);
 
 export const postNamesToDB = async (names: Array<Name>) =>
 	await convex.mutation(api.names.post, { names });
