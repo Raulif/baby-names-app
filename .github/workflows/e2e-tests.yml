@@ -1,5 +1,8 @@
 name: E2E Tests
 
+env:
+    CONVEX_URL: https://youthful-dotterel-923.convex.cloud
+
 on:
   push:
     branches: [main]
