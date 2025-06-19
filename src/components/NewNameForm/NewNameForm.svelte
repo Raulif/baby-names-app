@@ -14,7 +14,7 @@
 	};
 </script>
 
-<section class="">
+<section>
 	<form
 		class="flex flex-col gap-5"
 		method="POST"

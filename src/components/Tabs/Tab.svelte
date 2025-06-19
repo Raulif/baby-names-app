@@ -7,8 +7,9 @@
 		onChange: (element: HTMLInputElement) => void;
 		currentValue: string;
 		id: string;
+		testId:string
 	};
-	const { currentValue, onChange, id, label, selectInitial }: Props = $props();
+	const { testId, currentValue, onChange, id, label, selectInitial }: Props = $props();
 	const selected = $derived(currentValue === id);
 
 	$effect(() => {
@@ -27,6 +28,7 @@
 		selected && 'text-black',
 		!selected && ' text-[#918f8a] '
 	)}
+	data-testid={testId}
 >
 	{label}
 	<input

@@ -180,7 +180,7 @@
 						class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
 						form={`rate-form-${name.toLowerCase()}`}
 						onclick={onRateSubmit}
-						data-testid={`submit-rating-${name}`}
+						data-testid="submit-rating-{name}"
 					>
 						Speichern
 					</button>
@@ -200,11 +200,11 @@
 		/>
 	</div>
 </div>
-<Modal bind:showModal onConfirm={onDelete}>
+<Modal bind:showModal onConfirm={onDelete} {name}>
 	<p class="open-sans-regular text-center text-lg text-[#918f8a]">
 		Willst du wirklich <span class="open-sans-bold text-xl text-black">
 			{name}
 		</span>
-		 löschen?
+		löschen?
 	</p>
 </Modal>

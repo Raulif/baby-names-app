@@ -54,6 +54,7 @@
 			label="Neuer Name"
 			onChange={onSelect}
 			id="new-name-tab"
+			testId="new-name-tab-label"
 			currentValue={tabSelected}
 			selectInitial={true}
 		/>
@@ -62,6 +63,7 @@
 			label="Sortieren"
 			onChange={onSelect}
 			id="sort-tab"
+			testId="sort-tab-label"
 			currentValue={tabSelected}
 		/>
 
@@ -69,6 +71,7 @@
 			label="Filtern"
 			onChange={onSelect}
 			id="filter-tab"
+			testId="filter-tab-label"
 			currentValue={tabSelected}
 		/>
 		<div

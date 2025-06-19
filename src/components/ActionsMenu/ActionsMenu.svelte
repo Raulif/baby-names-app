@@ -8,6 +8,7 @@
 		deleteName: (e: MouseEvent) => void;
 		vetoFromUser: boolean;
 		deletable: boolean;
+		name: string;
 	};
 	const {
 		removeVeto,
@@ -15,7 +16,8 @@
 		deleteName,
 		open,
 		vetoFromUser,
-		deletable
+		deletable,
+		name
 	}: Props = $props();
 </script>
 
@@ -31,6 +33,7 @@
 			</button>
 		{:else}
 			<button
+				data-testid="veto-button-{name}"
 				onclick={vetoName}
 				class="action-button open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm"
 			>
@@ -40,6 +43,7 @@
 		{/if}
 		{#if deletable}
 			<button
+				data-testid="delete-button-{name}"
 				onclick={deleteName}
 				class="action-button-reverse open-sans-regular flex items-center gap-2 rounded-xl px-4 py-1 text-sm"
 			>

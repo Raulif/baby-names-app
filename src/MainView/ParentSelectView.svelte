@@ -22,12 +22,13 @@
 		<label for="parent-select" class="open-sans-bold w-[80vw] text-left">
 			Wähle deine Role aus:
 		</label>
-		<select name="parent" id="parent-select" class="w-full">
+		<select name="parent" id="parent-select" class="w-full" data-testid="parent-select">
 			<option value="">Auswählen</option>
 			<option value="mama">Mama</option>
 			<option value="papa">Papa</option>
 		</select>
 		<input
+		data-testid="parent-select-submit"
 			type="submit"
 			title="save"
 			class="rounded-sm bg-[blueviolet] py-2 text-white"

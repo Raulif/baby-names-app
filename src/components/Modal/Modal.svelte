@@ -6,8 +6,9 @@
 		showModal: boolean;
 		children: Snippet;
 		onConfirm: (e: MouseEvent) => void;
+		name: string
 	};
-	let { showModal = $bindable(), children, onConfirm }: Props = $props();
+	let {name,  showModal = $bindable(), children, onConfirm }: Props = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
 
 	$effect(() => {
@@ -21,6 +22,7 @@
 	onclick={(e) => {
 		if (e.target === dialog) dialog.close();
 	}}
+	data-testId="delete-dialog-{name}"
 >
 	<div class="flex flex-col gap-5">
 		<div>

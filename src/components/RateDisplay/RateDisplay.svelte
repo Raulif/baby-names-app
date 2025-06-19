@@ -20,7 +20,7 @@
 <div class="flex items-center gap-1">
 	{#if vetos.length}
 		<span
-			data-testid={`veto-indicator-${name}`}
+			data-testid="veto-indicator-{name}"
 			class="veto-indicator open-sans-regular text-md text-[#918f8a]"
 		>
 			Veto
@@ -30,7 +30,7 @@
 			{#if !rate.length}
 				{null}
 			{:else}
-				<span data-testid={`rating-display-${name}`}>{average}</span>
+				<span data-testid="rating-display-{name}">{average}</span>
 				% Zust.
 			{/if}
 		</span>
