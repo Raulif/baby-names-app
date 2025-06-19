@@ -1,7 +1,7 @@
 name: E2E Tests
 
-env:
-    CONVEX_URL: https://youthful-dotterel-923.convex.cloud
+# env:
+#     PUBLIC_CONVEX_URL: https://youthful-dotterel-923.convex.cloud
 
 on:
   push:
