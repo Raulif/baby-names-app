@@ -1,5 +1,4 @@
 <script lang="ts">
-	import clsx from 'clsx';
 	import Foldable from '../Foldable/Foldable.svelte';
 	type Props = {
 		open: boolean | null;
