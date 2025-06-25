@@ -8,5 +8,15 @@ const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self
 sw.addEventListener('activate', (e) => {
 	console.log('Service worker activated', e);
 	const ev = e;
-	// You can now use event.waitUntil(...)
+});
+
+self.addEventListener('push', (event) => {
+	const data = event.data.json();
+	const options = {
+		body: data.body
+		// icon: 'images/notification-icon.png',
+		// badge: 'images/notification-badge.png'
+	};
+
+	event.waitUntil(self.registration.showNotification(data.title || 'Push notification', options));
 });

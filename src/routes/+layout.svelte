@@ -4,8 +4,8 @@
 	import { PUBLIC_CONVEX_URL } from '$env/static/public';
 	import { setupConvex } from 'convex-svelte';
 	import { browser } from '$app/environment';
-	import { requestNotificationPermission } from '../lib/notification-permission';
-	import {registerServiceWorker} from '$lib/register-service-worker'
+	import { checkNotificationPermission } from '$lib/push-notifications';
+	import { registerServiceWorker } from '$lib/register-service-worker';
 
 	import { parentState } from '../lib/parentState.svelte';
 
@@ -18,8 +18,8 @@
 			parentState.parent = storedParent;
 		}
 		parentState.checked = true;
-		requestNotificationPermission()
-		registerServiceWorker()
+		// registerServiceWorker()
+		// checkNotificationPermission();
 	}
 </script>
 

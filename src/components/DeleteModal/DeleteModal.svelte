@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import ActionButton from './ActionButton.svelte';
-
+	import ModalButton from '../ModalButton/ModalButton.svelte';
 	type Props = {
 		showModal: boolean;
 		children: Snippet;
@@ -29,23 +28,23 @@
 			{@render children()}
 		</div>
 		<div class="flex justify-center gap-3">
-			<ActionButton
+			<ModalButton
 				testId={`cancel-delete-button-${name}`}
 				classes=" border-[#918f8a] bg-white text-[#918f8a]"
 				onclick={() => dialog?.close()}
 			>
 				<i class="fa fa-xmark"></i>
 				<span>Nein</span>
-			</ActionButton>
+			</ModalButton>
 
-			<ActionButton
+			<ModalButton
 				testId={`confirm-delete-button-${name}`}
 				classes="border-[#d68c8a] bg-[#d68c8a] text-white"
 				onclick={onConfirm}
 			>
 				<i class="fa fa-trash-can"></i>
 				<span>Ja</span>
-			</ActionButton>
+			</ModalButton>
 		</div>
 	</div>
 </dialog>

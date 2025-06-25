@@ -5,7 +5,7 @@
 	import { parentState } from '../../lib/parentState.svelte';
 	import RateDisplay from '../RateDisplay/RateDisplay.svelte';
 	import ActionsMenu from '../ActionsMenu/ActionsMenu.svelte';
-	import Modal from '../Modal/Modal.svelte';
+	import Modal from '../DeleteModal/DeleteModal.svelte';
 
 	type Props = {
 		themeClass: string;

@@ -6,7 +6,7 @@
 		onclick: (e: MouseEvent) => void;
 		classes: string;
 		children: Snippet;
-		testId: string;
+		testId?: string;
 	};
 
 	const { children, onclick, classes, testId }: Props = $props();

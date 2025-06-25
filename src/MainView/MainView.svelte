@@ -15,6 +15,8 @@
 		Parent
 	} from '../types/types';
 	import { parentState } from '$lib/parentState.svelte';
+	import PermissionModal from '../components/PermissionModal/PermissionModal.svelte';
+	import { permissionState } from '$lib/permissionState.svelte';
 
 	const query = useQuery(api.names.get, {});
 	let selectedIndex: number | null = $state(null);
@@ -72,6 +74,13 @@
 			filteringState.checked = true;
 		}
 	});
+	let showModal = $state(false);
+
+	$effect(() => {
+		if (permissionState.checked && permissionState.permission === 'default') {
+			showModal = true;
+		}
+	});
 </script>
 
 <NamesList
@@ -89,3 +98,4 @@
 	{onFilterClear}
 	{onSortingClear}
 />
+<PermissionModal bind:showModal />
