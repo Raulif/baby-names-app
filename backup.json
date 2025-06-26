@@ -1,0 +1,398 @@
+[
+  {
+    "gender": "f",
+    "name": "Amrei",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 100 },
+      { "parent": "mama", "rate": 90 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Elise",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 80 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "m",
+    "name": "Levi",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 50 }
+    ],
+    "veto": [{ "parent": "papa", "veto": false }]
+  },
+  {
+    "gender": "f",
+    "name": "Paulina",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 0 },
+      { "parent": "mama", "rate": 100 }
+    ],
+    "veto": [{ "parent": "papa", "veto": true }]
+  },
+  {
+    "gender": "m",
+    "name": "Samuel",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 60 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Veronika",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 100 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": [
+      { "parent": "mama", "veto": true },
+      { "parent": "papa", "veto": false }
+    ]
+  },
+  {
+    "gender": "f",
+    "name": "Noemi",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 60 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Alma",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 50 }
+    ],
+    "veto": [{ "parent": "mama", "veto": false }]
+  },
+  {
+    "gender": "f",
+    "name": "Clara",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 50 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Leyre",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 100 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": [{ "parent": "mama", "veto": true }]
+  },
+  {
+    "gender": "f",
+    "name": "Lucia",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 70 },
+      { "parent": "papa", "rate": 60 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Sophia",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 90 },
+      { "parent": "mama", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "m",
+    "name": "Jakob",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 100 },
+      { "parent": "mama", "rate": 100 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Olivia",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 80 },
+      { "parent": "papa", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Lexie",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 80 },
+      { "parent": "papa", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Ella",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 40 },
+      { "parent": "papa", "rate": 90 }
+    ],
+    "veto": [{ "parent": "papa", "veto": false }]
+  },
+  {
+    "gender": "m",
+    "name": "Ari",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 70 },
+      { "parent": "papa", "rate": 0 }
+    ],
+    "veto": [{ "parent": "papa", "veto": true }]
+  },
+  {
+    "gender": "f",
+    "name": "Ruby",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 80 },
+      { "parent": "papa", "rate": 0 }
+    ],
+    "veto": [{ "parent": "papa", "veto": true }]
+  },
+  {
+    "gender": "f",
+    "name": "Lea",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 50 },
+      { "parent": "papa", "rate": 90 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Maja",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Amalia",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 90 },
+      { "parent": "papa", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Naira",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 30 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Aitana",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 30 },
+      { "parent": "mama", "rate": 20 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Lara",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 60 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Laia",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Elsa",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Irati",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 70 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Selma",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 40 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Elma",
+    "parent": "papa",
+    "rate": [
+      { "parent": "mama", "rate": 60 },
+      { "parent": "papa", "rate": 80 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Coral",
+    "parent": "papa",
+    "rate": [
+      { "parent": "mama", "rate": 0 },
+      { "parent": "papa", "rate": 70 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Paola",
+    "parent": "papa",
+    "rate": [
+      { "parent": "mama", "rate": 20 },
+      { "parent": "papa", "rate": 40 }
+    ],
+    "veto": [
+      { "parent": "mama", "veto": false },
+      { "parent": "papa", "veto": false }
+    ]
+  },
+  {
+    "gender": "m",
+    "name": "Adam",
+    "parent": "mama",
+    "rate": [
+      { "parent": "papa", "rate": 30 },
+      { "parent": "mama", "rate": 50 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "m",
+    "name": "Gabriel",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Violet",
+    "parent": "papa",
+    "rate": [
+      { "parent": "mama", "rate": 0 },
+      { "parent": "papa", "rate": 80 }
+    ],
+    "veto": [{ "parent": "papa", "veto": false }]
+  },
+  {
+    "gender": "f",
+    "name": "Gia",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 30 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "m",
+    "name": "Kane",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 90 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": [{ "parent": "papa", "veto": false }]
+  },
+  {
+    "gender": "f",
+    "name": "Sana",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 0 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "f",
+    "name": "Johanna",
+    "parent": "mama",
+    "rate": [
+      { "parent": "mama", "rate": 70 },
+      { "parent": "papa", "rate": 60 }
+    ],
+    "veto": []
+  },
+  {
+    "gender": "m",
+    "name": "Phil",
+    "parent": "papa",
+    "rate": [
+      { "parent": "papa", "rate": 80 },
+      { "parent": "mama", "rate": 10 }
+    ],
+    "veto": []
+  }
+]
