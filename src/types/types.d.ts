@@ -20,3 +20,11 @@ export type FilterUser = Parent | string;
 export type FilterGender = string;
 export type FilterRating = string;
 export type ClassNumber = 1 | 2 | 3 | 4 | 0;
+
+export type NotificationEvent = 'new' | 'veto' | 'rate' | 'delete' | 'unveto';
+export type NotificationRequestData = {
+	name: string;
+	user: string;
+	eventType: NotificationEvent;
+	rate?: string;
+};

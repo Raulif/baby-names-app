@@ -18,8 +18,8 @@
 			parentState.parent = storedParent;
 		}
 		parentState.checked = true;
-		// registerServiceWorker()
-		// checkNotificationPermission();
+		registerServiceWorker()
+		checkNotificationPermission();
 	}
 </script>
 

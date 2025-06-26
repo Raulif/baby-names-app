@@ -7,6 +7,13 @@ import { api } from '../convex/_generated/api';
 import { PUBLIC_CONVEX_URL } from '$env/static/public';
 
 import { namesStore } from '../store/namesStore';
+import {
+	sendDeleteNotification,
+	sendNewNameNotification,
+	sendRateNotification,
+	sendUnvetoNotification,
+	sendVetoNotification
+} from '$lib/push-notifications';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
@@ -22,29 +29,31 @@ export const actions = {
 	add: async (event: RequestEvent) => {
 		const params = event.url.searchParams;
 		const data = await event.request.formData();
-		const name = data.get('name');
-		const gender = data.get('gender');
+		const name = data.get('name') as string;
+		const gender = data.get('gender') as Gender;
+		const parent = params.get('parent') as Parent;
 		const { _id, names } = namesStore.getState();
 		const exists = names.find((n) => n.name === name);
 
 		if (!name || !gender || exists) return false;
 
 		const newNameEntry = {
-			name: data.get('name') as string,
-			parent: params.get('parent') as Parent,
+			name,
+			parent: parent as Parent,
 			rate: [],
-			gender: data.get('gender') as Gender,
+			gender,
 			veto: []
 		};
 
 		await updateNamesInDB(_id, [...(names || []), newNameEntry]);
+		await sendNewNameNotification(name, parent);
 		return true;
 	},
 	rate: async ({ request }: RequestEvent) => {
 		const data = await request.formData();
-		const name = data.get('name');
-		const parent = data.get('parent');
-		const rate = data.get('rate');
+		const name = data.get('name') as string;
+		const parent = data.get('parent') as Parent;
+		const rate = data.get('rate') as string;
 		const { _id, names } = namesStore.getState();
 
 		const nameIndex = names.findIndex((n) => n.name === name);
@@ -62,15 +71,16 @@ export const actions = {
 		}
 
 		await updateNamesInDB(_id, names);
+		await sendRateNotification(name, parent, rate);
 		return true;
 	},
 	delete: async ({ request }: RequestEvent) => {
-		const { name } = await request.json();
+		const { name, parent } = await request.json();
 		const { _id, names } = namesStore.getState();
 		const filtered = names.filter((n) => n.name !== name);
 
 		await updateNamesInDB(_id, filtered);
-
+		await sendDeleteNotification(name, parent);
 		return true;
 	},
 	veto: async (event: RequestEvent) => {
@@ -90,6 +100,11 @@ export const actions = {
 			}
 		}
 		await updateNamesInDB(_id, names);
+		if (veto.veto) {
+			await sendVetoNotification(name, veto.parent);
+		} else {
+			await sendUnvetoNotification(name, veto.parent);
+		}
 		return true;
 	}
 	// updateAll: async () => {

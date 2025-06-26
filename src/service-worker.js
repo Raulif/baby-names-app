@@ -7,16 +7,14 @@ const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self
 
 sw.addEventListener('activate', (e) => {
 	console.log('Service worker activated', e);
-	const ev = e;
 });
 
 self.addEventListener('push', (event) => {
-	const data = event.data.json();
+	const message = event.data.text();
 	const options = {
-		body: data.body
-		// icon: 'images/notification-icon.png',
-		// badge: 'images/notification-badge.png'
+		body: message,
+		icon: '/icon.png',
+		badge: '/icon.png'
 	};
-
-	event.waitUntil(self.registration.showNotification(data.title || 'Push notification', options));
+	event.waitUntil(self.registration.showNotification('Baby Names App', options));
 });

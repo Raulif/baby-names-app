@@ -59,7 +59,7 @@
 
 		await fetch('?/delete', {
 			method: 'POST',
-			body: JSON.stringify({ name })
+			body: JSON.stringify({ name, parent: parentState.parent })
 		});
 		selectedIndex = null;
 	};
@@ -102,6 +102,7 @@
 			}
 		}
 	};
+
 	const onKeyDown = (e: KeyboardEvent) => {
 		if (e.key === 'Enter' || e.key === 'Space') {
 			if (selectedIndex === index) {

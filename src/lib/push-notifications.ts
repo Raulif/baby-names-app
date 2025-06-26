@@ -1,4 +1,5 @@
 import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
+import type { NotificationRequestData } from '../types/types';
 import { parentState } from './parentState.svelte';
 import { permissionState } from './permissionState.svelte';
 
@@ -68,3 +69,36 @@ export const requestNotificationPermission = async () => {
 		permissionState.permission = permission;
 	}
 };
+
+const sendNotification = async (data: NotificationRequestData) => {
+	const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/send-notification`, {
+		method: 'POST',
+		body: JSON.stringify(data)
+	});
+	const responseJson = await response.json();
+	return responseJson;
+};
+
+export const sendNewNameNotification = async (name: string, parent: string) =>
+	await sendNotification({
+		name,
+		user: parent,
+		eventType: 'new'
+	});
+
+export const sendRateNotification = async (name: string, parent: string, rate: string) =>
+	await sendNotification({
+		name,
+		user: parent,
+		eventType: 'rate',
+		rate
+	});
+
+export const sendDeleteNotification = async (name: string, parent: string) =>
+	await sendNotification({ name, user: parent, eventType: 'delete' });
+
+export const sendVetoNotification = async (name: string, parent: string) =>
+	await sendNotification({ name, user: parent, eventType: 'veto' });
+
+export const sendUnvetoNotification = async (name: string, parent: string) =>
+	await sendNotification({ name, user: parent, eventType: 'unveto' });
