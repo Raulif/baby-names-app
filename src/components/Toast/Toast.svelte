@@ -13,18 +13,19 @@
 			case 'veto':
 				return 'Veto angelegt';
 			case 'rate':
-				return 'Veto zurückgezogen';
+				return 'Name bewertet';
 			case 'delete':
 				return 'Name gelöscht';
 			case 'unveto':
-				return 'Name bewertet';
+				return 'Veto zurückgezogen';
+
 			default:
 				return '';
 		}
 	});
 </script>
 
-<article role="alert" >
+<article role="alert">
 	<div class="flex">
 		<img src="/icon.png" alt="baby icon" />
 		<div class="text ml-2 flex flex-col">
