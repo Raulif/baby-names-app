@@ -23,7 +23,6 @@ const fetchPublicVapidKey = async () => {
 };
 
 const storeSubscriptionInDB = async (subscription: PushSubscription) => {
-	console.log(subscription);
 	const subscriptionResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/new-subscription`, {
 		method: 'POST',
 		body: JSON.stringify({ subscription, user: parentState.parent })
@@ -36,7 +35,7 @@ const initializePush = async () => {
 		const registration = await navigator.serviceWorker.ready;
 		const existingSubscription = await registration.pushManager.getSubscription();
 		if (existingSubscription) {
-			return existingSubscription;
+			await storeSubscriptionInDB(existingSubscription);
 		} else {
 			const publicVapidKey = await fetchPublicVapidKey();
 
@@ -115,10 +114,9 @@ export const sendUnvetoNotification = async (name: string, parent: string) =>
 
 export const handleNotificationUpdates = (parent: string) => {
 	const client = new ConvexClient(PUBLIC_CONVEX_URL);
-	console.log('IN HANDLE NOTIFICATION UPDATES');
 	client.onUpdate(api.notifications.get, {}, (notifications) => {
 		console.log('ON NOTIFICATIONS UPDATE CALLBACK');
-		console.log({ notifications });
+		console.log({ notifications, parent });
 		onNotificationUpdates(parent, notifications);
 	});
 };

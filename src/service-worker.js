@@ -6,7 +6,7 @@
 const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
 
 sw.addEventListener('activate', (e) => {
-	console.log('Service worker activated', e);
+	console.log('[SERVICE WORKER] ACTIVATED: ', e)
 });
 
 self.addEventListener('push', (event) => {
@@ -16,5 +16,7 @@ self.addEventListener('push', (event) => {
 		icon: '/icon.png',
 		badge: '/icon.png'
 	};
+	console.log('[SERVICE WORKER] MESSAGE IN PUSH EVENT')
+	console.log({message})
 	event.waitUntil(self.registration.showNotification('Baby Names App', options));
 });
