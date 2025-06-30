@@ -2,12 +2,12 @@
 	import { parentState } from '$lib/parentState.svelte';
 	import ParentSelectView from '../views/ParentSelectView.svelte';
 	import MainView from '../views/MainView.svelte';
+	import ToastManager from '../components/ToastManager/ToastManager.svelte';
 
 	const onParentChange = (chosenParent: string) => {
 		parentState.parent = chosenParent;
 		localStorage.setItem('parent', chosenParent);
 	};
-
 </script>
 
 <svelte:head>
@@ -19,5 +19,6 @@
 {:else if !parentState.parent}
 	<ParentSelectView onChange={onParentChange} />
 {:else}
+	<ToastManager />
 	<MainView />
 {/if}

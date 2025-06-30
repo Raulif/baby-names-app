@@ -39,5 +39,9 @@ export type EventNotification = {
 	text: string;
 	consumptions: Array<EventNotificationConsumption>;
 	_id: Id<'notifications'>;
-		eventType: EventNotificationEventType;
+	eventType: EventNotificationEventType;
 };
+
+export type Toast = {
+	timeout: number;
+} & EventNotification;

@@ -6,6 +6,7 @@ import type { EventNotificationRequestData, EventNotification } from '../types/t
 import { parentState } from './parentState.svelte';
 import { permissionState } from './permissionState.svelte';
 import { updateNotificationConsumption } from '../db/notifications';
+import { addToast } from '../store/toastStore';
 
 function urlBase64ToUint8Array(base64String: string) {
 	const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -115,19 +116,8 @@ export const sendUnvetoNotification = async (name: string, parent: string) =>
 export const handleNotificationUpdates = (parent: string) => {
 	const client = new ConvexClient(PUBLIC_CONVEX_URL);
 	client.onUpdate(api.notifications.get, {}, (notifications) => {
-		console.log('ON NOTIFICATIONS UPDATE CALLBACK');
-		console.log({ notifications, parent });
 		onNotificationUpdates(parent, notifications);
 	});
-};
-
-const showInAppNotification = (notification: EventNotification) => {
-	const options = {
-		body: notification.text,
-		icon: '/icon.png',
-		badge: '/icon.png'
-	};
-	new Notification(notification.issuer, options);
 };
 
 const onNotificationUpdates = async (parent: string, notifications: Array<EventNotification>) => {
@@ -136,7 +126,7 @@ const onNotificationUpdates = async (parent: string, notifications: Array<EventN
 		const consumption = lastNotification.consumptions.find((c) => c.user === parent);
 
 		if (!consumption || !consumption.consumed) {
-			showInAppNotification(lastNotification);
+			addToast(lastNotification)
 			await updateNotificationConsumption(lastNotification, parent);
 		}
 	}
