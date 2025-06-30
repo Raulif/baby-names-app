@@ -21,10 +21,23 @@ export type FilterGender = string;
 export type FilterRating = string;
 export type ClassNumber = 1 | 2 | 3 | 4 | 0;
 
-export type NotificationEvent = 'new' | 'veto' | 'rate' | 'delete' | 'unveto';
-export type NotificationRequestData = {
+export type EventNotificationEventType = 'new' | 'veto' | 'rate' | 'delete' | 'unveto';
+export type EventNotificationRequestData = {
 	name: string;
 	user: string;
-	eventType: NotificationEvent;
+	eventType: EventNotificationEventType;
 	rate?: string;
+};
+
+export type EventNotificationConsumption = {
+	consumed: boolean;
+	user: string;
+};
+
+export type EventNotification = {
+	issuer: string;
+	text: string;
+	consumptions: Array<EventNotificationConsumption>;
+	_id: Id<'notifications'>;
+		eventType: EventNotificationEventType;
 };

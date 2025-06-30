@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { requestNotificationPermission } from '$lib/push-notifications';
+	import { requestNotificationPermission } from '$lib/notifications';
 	import ModalButton from '../ModalButton/ModalButton.svelte';
 
 	type Props = {

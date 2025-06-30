@@ -17,8 +17,9 @@
 	import { parentState } from '$lib/parentState.svelte';
 	import PermissionModal from '../components/PermissionModal/PermissionModal.svelte';
 	import { permissionState } from '$lib/permissionState.svelte';
+	import { handleNotificationUpdates } from '$lib/notifications';
 
-	const query = useQuery(api.names.get, {});
+	const namesQuery = useQuery(api.names.get, {});
 	let selectedIndex: number | null = $state(null);
 
 	const onSortingChange = (value: string) => {
@@ -51,9 +52,9 @@
 	};
 
 	const namesList = $derived.by(() => {
-		if (!query.data?.names?.length) return [];
+		if (!namesQuery.data?.names?.length) return [];
 		const filtered = filterNames(
-			query.data.names,
+			namesQuery.data.names,
 			filteringState.value,
 			parentState.parent as Parent
 		);
@@ -79,6 +80,11 @@
 	$effect(() => {
 		if (permissionState.checked && permissionState.permission === 'default') {
 			showModal = true;
+		} else if (
+			permissionState.checked &&
+			permissionState.permission === 'granted'
+		) {
+			handleNotificationUpdates(parentState.parent);
 		}
 	});
 </script>
@@ -86,8 +92,8 @@
 <NamesList
 	bind:selectedIndex
 	names={namesList}
-	loading={query.isLoading}
-	error={query.error}
+	loading={namesQuery.isLoading}
+	error={namesQuery.error}
 />
 
 <Tabs

@@ -4,7 +4,7 @@
 	import { PUBLIC_CONVEX_URL } from '$env/static/public';
 	import { setupConvex } from 'convex-svelte';
 	import { browser } from '$app/environment';
-	import { checkNotificationPermission } from '$lib/push-notifications';
+	import { checkNotificationPermission } from '$lib/notifications';
 	import { registerServiceWorker } from '$lib/register-service-worker';
 
 	import { parentState } from '../lib/parentState.svelte';

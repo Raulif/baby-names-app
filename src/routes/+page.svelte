@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { parentState } from '$lib/parentState.svelte';
-	import ParentSelectView from '../MainView/ParentSelectView.svelte';
-	import ListView from '../MainView/MainView.svelte';
+	import ParentSelectView from '../views/ParentSelectView.svelte';
+	import MainView from '../views/MainView.svelte';
 
 	const onParentChange = (chosenParent: string) => {
 		parentState.parent = chosenParent;
@@ -19,5 +19,5 @@
 {:else if !parentState.parent}
 	<ParentSelectView onChange={onParentChange} />
 {:else}
-	<ListView />
+	<MainView />
 {/if}

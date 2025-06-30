@@ -1,7 +1,11 @@
-import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
-import type { NotificationRequestData } from '../types/types';
+import { ConvexClient } from 'convex/browser';
+
+import { api } from '../convex/_generated/api';
+import { PUBLIC_NOTIFICATION_SERVER_URL, PUBLIC_CONVEX_URL } from '$env/static/public';
+import type { EventNotificationRequestData, EventNotification } from '../types/types';
 import { parentState } from './parentState.svelte';
 import { permissionState } from './permissionState.svelte';
+import { updateNotificationConsumption } from '../db/notifications';
 
 function urlBase64ToUint8Array(base64String: string) {
 	const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -19,6 +23,7 @@ const fetchPublicVapidKey = async () => {
 };
 
 const storeSubscriptionInDB = async (subscription: PushSubscription) => {
+	console.log(subscription);
 	const subscriptionResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/new-subscription`, {
 		method: 'POST',
 		body: JSON.stringify({ subscription, user: parentState.parent })
@@ -70,13 +75,18 @@ export const requestNotificationPermission = async () => {
 	}
 };
 
-const sendNotification = async (data: NotificationRequestData) => {
-	const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/send-notification`, {
-		method: 'POST',
-		body: JSON.stringify(data)
-	});
-	const responseJson = await response.json();
-	return responseJson;
+const sendNotification = async (data: EventNotificationRequestData) => {
+	try {
+		const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/send-notification`, {
+			method: 'POST',
+			body: JSON.stringify(data)
+		});
+		const responseJson = await response.json();
+		return responseJson;
+	} catch (e) {
+		console.error('error while sending notification');
+		console.error(e);
+	}
 };
 
 export const sendNewNameNotification = async (name: string, parent: string) =>
@@ -102,3 +112,34 @@ export const sendVetoNotification = async (name: string, parent: string) =>
 
 export const sendUnvetoNotification = async (name: string, parent: string) =>
 	await sendNotification({ name, user: parent, eventType: 'unveto' });
+
+export const handleNotificationUpdates = (parent: string) => {
+	const client = new ConvexClient(PUBLIC_CONVEX_URL);
+	console.log('IN HANDLE NOTIFICATION UPDATES');
+	client.onUpdate(api.notifications.get, {}, (notifications) => {
+		console.log('ON NOTIFICATIONS UPDATE CALLBACK');
+		console.log({ notifications });
+		onNotificationUpdates(parent, notifications);
+	});
+};
+
+const showInAppNotification = (notification: EventNotification) => {
+	const options = {
+		body: notification.text,
+		icon: '/icon.png',
+		badge: '/icon.png'
+	};
+	new Notification(notification.issuer, options);
+};
+
+const onNotificationUpdates = async (parent: string, notifications: Array<EventNotification>) => {
+	if (notifications.length) {
+		const lastNotification = notifications[notifications.length - 1];
+		const consumption = lastNotification.consumptions.find((c) => c.user === parent);
+
+		if (!consumption || !consumption.consumed) {
+			showInAppNotification(lastNotification);
+			await updateNotificationConsumption(lastNotification, parent);
+		}
+	}
+};

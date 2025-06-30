@@ -13,16 +13,16 @@ import {
 	sendRateNotification,
 	sendUnvetoNotification,
 	sendVetoNotification
-} from '$lib/push-notifications';
+} from '$lib/notifications';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
-	const client = new ConvexHttpClient(PUBLIC_CONVEX_URL!);
-	const response = await client.query(api.names.get, {});
+	const httpClient = new ConvexHttpClient(PUBLIC_CONVEX_URL!);
 
-	if (!response.names?.length) return;
-	namesStore.getState().setNames(response.names);
-	namesStore.getState().set_Id(response._id);
+	const namesResponse = await httpClient.query(api.names.get, {});
+	if (!namesResponse.names?.length) return;
+	namesStore.getState().setNames(namesResponse.names);
+	namesStore.getState().set_Id(namesResponse._id);
 }
 
 export const actions = {
@@ -32,7 +32,9 @@ export const actions = {
 		const name = data.get('name') as string;
 		const gender = data.get('gender') as Gender;
 		const parent = params.get('parent') as Parent;
+
 		const { _id, names } = namesStore.getState();
+
 		const exists = names.find((n) => n.name === name);
 
 		if (!name || !gender || exists) return false;
