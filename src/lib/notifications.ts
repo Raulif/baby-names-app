@@ -122,22 +122,3 @@ export const addNotificationListener = async () => {
 		addToast(notification);
 	});
 };
-
-export const updateNotificationConsumption = async (
-	notification: EventNotification,
-	parent: string
-) => {
-	try {
-		const response = await fetch(
-			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notification._id}&user=${parent}`,
-			{
-				method: 'PATCH'
-			}
-		);
-		const responseJson = await response.json();
-		return responseJson;
-	} catch (e) {
-		console.error('Error while updating notification');
-		console.error(e);
-	}
-};

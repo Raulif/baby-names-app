@@ -6,10 +6,26 @@ import { updateNotificationConsumption } from '$lib/notifications';
 
 async function getClients() {
 	return await clients.matchAll({
-      type: 'window',
-      includeUncontrolled: true
-    });
+		type: 'window',
+		includeUncontrolled: true
+	});
 }
+
+export const updateNotificationConsumption = async (notification, parent) => {
+	try {
+		const response = await fetch(
+			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notification._id}&user=${parent}`,
+			{
+				method: 'PATCH'
+			}
+		);
+		const responseJson = await response.json();
+		return responseJson;
+	} catch (e) {
+		console.error('Error while updating notification');
+		console.error(e);
+	}
+};
 
 async function isClientFocused() {
 	const clients = await getClients();
@@ -29,8 +45,8 @@ self.addEventListener('push', async (event) => {
 		if (await isClientFocused()) {
 			// Send message to focused window
 			await getClients().forEach((client) => {
-				client.postMessage(data)
-			})
+				client.postMessage(data);
+			});
 		} else {
 			const options = {
 				body: data.notification.text,
