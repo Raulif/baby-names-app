@@ -31,11 +31,12 @@ const initializePush = async () => {
 	try {
 		const registration = await navigator.serviceWorker.ready;
 		const existingSubscription = await registration.pushManager.getSubscription();
+		console.log({existingSubscription})
 		if (existingSubscription) {
 			await storeSubscriptionInDB(existingSubscription);
 		} else {
 			const publicVapidKey = await fetchPublicVapidKey();
-
+			console.log({publicVapidKey})
 			const newSubscription = await registration.pushManager.subscribe({
 				userVisibleOnly: true,
 				applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
