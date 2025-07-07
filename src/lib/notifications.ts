@@ -12,7 +12,9 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 const fetchPublicVapidKey = async () => {
-	const vapidResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/public-vapid-key`);
+	const vapidResponse = await fetch(
+		`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/public-vapid-key`
+	);
 	const responseJson = await vapidResponse.json();
 	if (responseJson.publicVapidKey) {
 		return responseJson.publicVapidKey;
@@ -31,12 +33,12 @@ const initializePush = async () => {
 	try {
 		const registration = await navigator.serviceWorker.ready;
 		const existingSubscription = await registration.pushManager.getSubscription();
-		console.log({existingSubscription})
+		console.log({ existingSubscription });
 		if (existingSubscription) {
 			await storeSubscriptionInDB(existingSubscription);
 		} else {
 			const publicVapidKey = await fetchPublicVapidKey();
-			console.log({publicVapidKey})
+			console.log({ publicVapidKey });
 			const newSubscription = await registration.pushManager.subscribe({
 				userVisibleOnly: true,
 				applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
@@ -49,8 +51,10 @@ const initializePush = async () => {
 };
 
 export const checkNotificationPermission = async () => {
+	console.log('Check notification permission');
 	if ('Notification' in window && navigator.serviceWorker) {
 		const permission = await window.Notification.permission;
+		console.log({ permission });
 		if (permission === 'granted') {
 			initializePush();
 		}
@@ -62,9 +66,10 @@ export const checkNotificationPermission = async () => {
 };
 
 export const requestNotificationPermission = async () => {
+	console.log('Request notification permission');
 	if ('Notification' in window && navigator.serviceWorker) {
 		const permission = await window.Notification.requestPermission();
-
+		console.log({ permission });
 		if (permission === 'granted') {
 			initializePush();
 		}
