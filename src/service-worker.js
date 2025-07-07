@@ -2,7 +2,6 @@
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
-import { updateNotificationConsumption } from '$lib/notifications';
 
 async function getClients() {
 	return await clients.matchAll({
@@ -11,7 +10,7 @@ async function getClients() {
 	});
 }
 
-export const updateNotificationConsumption = async (notification, parent) => {
+const updateNotificationConsumption = async (notification, parent) => {
 	try {
 		const response = await fetch(
 			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notification._id}&user=${parent}`,
