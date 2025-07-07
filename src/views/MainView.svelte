@@ -17,7 +17,6 @@
 	import { parentState } from '$lib/parentState.svelte';
 	import PermissionModal from '../components/PermissionModal/PermissionModal.svelte';
 	import { permissionState } from '$lib/permissionState.svelte';
-	import { handleNotificationUpdates } from '$lib/notifications';
 
 	const namesQuery = useQuery(api.names.get, {});
 	let selectedIndex: number | null = $state(null);
@@ -80,11 +79,6 @@
 	$effect(() => {
 		if (permissionState.checked && permissionState.permission === 'default') {
 			showModal = true;
-		} else if (
-			permissionState.checked &&
-			permissionState.permission === 'granted'
-		) {
-			handleNotificationUpdates(parentState.parent);
 		}
 	});
 </script>

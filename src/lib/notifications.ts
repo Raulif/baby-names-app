@@ -1,11 +1,7 @@
-import { ConvexClient } from 'convex/browser';
-
-import { api } from '../convex/_generated/api';
-import { PUBLIC_NOTIFICATION_SERVER_URL, PUBLIC_CONVEX_URL } from '$env/static/public';
+import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
 import type { EventNotificationRequestData, EventNotification } from '../types/types';
 import { parentState } from './parentState.svelte';
 import { permissionState } from './permissionState.svelte';
-import { updateNotificationConsumption } from '../db/notifications';
 import { addToast } from '../store/toastStore';
 
 function urlBase64ToUint8Array(base64String: string) {
@@ -24,7 +20,7 @@ const fetchPublicVapidKey = async () => {
 };
 
 const storeSubscriptionInDB = async (subscription: PushSubscription) => {
-	const subscriptionResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/new-subscription`, {
+	const subscriptionResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/subscription`, {
 		method: 'POST',
 		body: JSON.stringify({ subscription, user: parentState.parent })
 	});
@@ -77,7 +73,7 @@ export const requestNotificationPermission = async () => {
 
 const sendNotification = async (data: EventNotificationRequestData) => {
 	try {
-		const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/send-notification`, {
+		const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/notification`, {
 			method: 'POST',
 			body: JSON.stringify(data)
 		});
@@ -113,21 +109,29 @@ export const sendVetoNotification = async (name: string, parent: string) =>
 export const sendUnvetoNotification = async (name: string, parent: string) =>
 	await sendNotification({ name, user: parent, eventType: 'unveto' });
 
-export const handleNotificationUpdates = (parent: string) => {
-	const client = new ConvexClient(PUBLIC_CONVEX_URL);
-	client.onUpdate(api.notifications.get, {}, (notifications) => {
-		onNotificationUpdates(parent, notifications);
+export const addNotificationListener = async () => {
+	navigator.serviceWorker.addEventListener('message', (event) => {
+		const notification: EventNotification = event.data.notification;
+		console.log({ notification });
+		addToast(notification);
 	});
 };
 
-const onNotificationUpdates = async (parent: string, notifications: Array<EventNotification>) => {
-	if (notifications.length) {
-		const lastNotification = notifications[notifications.length - 1];
-		const consumption = lastNotification.consumptions.find((c) => c.user === parent);
-
-		if (!consumption || !consumption.consumed) {
-			addToast(lastNotification)
-			await updateNotificationConsumption(lastNotification, parent);
-		}
+export const updateNotificationConsumption = async (
+	notification: EventNotification,
+	parent: string
+) => {
+	try {
+		const response = await fetch(
+			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notification._id}&user=${parent}`,
+			{
+				method: 'PATCH'
+			}
+		);
+		const responseJson = await response.json();
+		return responseJson;
+	} catch (e) {
+		console.error('Error while updating notification');
+		console.error(e);
 	}
 };
