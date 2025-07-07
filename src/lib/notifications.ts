@@ -12,7 +12,7 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 const fetchPublicVapidKey = async () => {
-	const vapidResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/public-vapid-key`);
+	const vapidResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/public-vapid-key`);
 	const responseJson = await vapidResponse.json();
 	if (responseJson.publicVapidKey) {
 		return responseJson.publicVapidKey;
