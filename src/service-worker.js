@@ -13,13 +13,10 @@ async function getClients() {
 
 const updateNotificationConsumption = async (notificationId, user) => {
 	try {
-		const response = await fetch(
-			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/update`,
-			{
-				method: 'POST',
-				body: JSON.stringify({id: notificationId, user})
-			}
-		);
+		const response = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/update`, {
+			method: 'POST',
+			body: JSON.stringify({ id: notificationId, user })
+		});
 		const responseJson = await response.json();
 		return responseJson;
 	} catch (e) {
@@ -45,8 +42,9 @@ self.addEventListener('push', async (event) => {
 	console.log({ focused: await isClientFocused() });
 	if (await isClientFocused()) {
 		// Send message to focused window
-		await getClients().forEach((client) => {
-			console.log({client, data})
+		const clients = await getClients()
+		clients.forEach((client) => {
+			console.log({ client, data });
 			client.postMessage(data);
 		});
 	} else {
