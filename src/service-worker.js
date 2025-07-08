@@ -10,10 +10,10 @@ async function getClients() {
 	});
 }
 
-const updateNotificationConsumption = async (notification, parent) => {
+const updateNotificationConsumption = async (notificationId, parent) => {
 	try {
 		const response = await fetch(
-			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notification._id}&user=${parent}`,
+			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notificationId}&user=${parent}`,
 			{
 				method: 'PATCH'
 			}
@@ -28,6 +28,7 @@ const updateNotificationConsumption = async (notification, parent) => {
 
 async function isClientFocused() {
 	const clients = await getClients();
+	console.log({clients})
 	const clientIsFocused = clients.reduce((focused, client) => focused || client.focused, false);
 	return clientIsFocused;
 }
@@ -57,7 +58,7 @@ self.addEventListener('push', async (event) => {
 			self.registration.showNotification('Baby Names App', options);
 		}
 		const parent = data.notification.issuer === 'mama' ? 'papa' : 'mama';
-		await updateNotificationConsumption(data.notification, parent);
+		await updateNotificationConsumption(data.notification._id, parent);
 	};
 	event.waitUntil(eventCallback);
 });
