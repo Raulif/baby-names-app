@@ -14,7 +14,7 @@ async function getClients() {
 const updateNotificationConsumption = async (notificationId, user) => {
 	try {
 		const response = await fetch(
-			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification`,
+			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification/update`,
 			{
 				method: 'POST',
 				body: JSON.stringify({id: notificationId, user})
