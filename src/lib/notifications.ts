@@ -111,6 +111,7 @@ export const sendUnvetoNotification = async (name: string, parent: string) =>
 
 export const addNotificationListener = async () => {
 	navigator.serviceWorker.addEventListener('message', (event) => {
+		console.log({messageEvent: event})
 		const notification: EventNotification = event.data.notification;
 		console.log({ notification });
 		addToast(notification);
