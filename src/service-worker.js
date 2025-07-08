@@ -11,12 +11,13 @@ async function getClients() {
 	});
 }
 
-const updateNotificationConsumption = async (notificationId, parent) => {
+const updateNotificationConsumption = async (notificationId, user) => {
 	try {
 		const response = await fetch(
-			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification?id=${notificationId}&user=${parent}`,
+			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification`,
 			{
-				method: 'PATCH'
+				method: 'PATCH',
+				body: JSON.stringify({id: notificationId, user})
 			}
 		);
 		const responseJson = await response.json();
