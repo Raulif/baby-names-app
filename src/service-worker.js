@@ -16,7 +16,7 @@ const updateNotificationConsumption = async (notificationId, user) => {
 		const response = await fetch(
 			`${PUBLIC_NOTIFICATION_SERVER_URL}/notification`,
 			{
-				method: 'PATCH',
+				method: 'PUT',
 				body: JSON.stringify({id: notificationId, user})
 			}
 		);
