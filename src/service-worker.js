@@ -2,6 +2,7 @@
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
+import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
 
 async function getClients() {
 	return await clients.matchAll({
