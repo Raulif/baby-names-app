@@ -40,11 +40,10 @@ sw.addEventListener('activate', (e) => {
 self.addEventListener('push', async (event) => {
 	const data = JSON.parse(event.data.text());
 	const isFocused = await isClientFocused();
-	if (!isFocused) {
+	if (isFocused) {
 		// Send message to focused window
 		const clients = await getClients();
 		clients.forEach((client) => {
-			console.log({ client, data });
 			client.postMessage(data);
 		});
 	} else {
@@ -53,7 +52,7 @@ self.addEventListener('push', async (event) => {
 			icon: '/icon.png',
 			badge: '/icon.png'
 		};
-		// Push notification
+		// Send push notification to inactive app
 		self.registration.showNotification('Baby Names App', options);
 	}
 	const parent = data.notification.issuer === 'mama' ? 'papa' : 'mama';
