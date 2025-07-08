@@ -37,7 +37,7 @@ export const actions = {
 
 		const exists = names.find((n) => n.name === name);
 
-		if (!name || !gender || exists) return false;
+		if (!name || !gender || exists || !_id) return false;
 
 		const newNameEntry = {
 			name,

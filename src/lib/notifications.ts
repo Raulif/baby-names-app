@@ -33,12 +33,10 @@ const initializePush = async () => {
 	try {
 		const registration = await navigator.serviceWorker.ready;
 		const existingSubscription = await registration.pushManager.getSubscription();
-		console.log({ existingSubscription });
 		if (existingSubscription) {
 			await storeSubscriptionInDB(existingSubscription);
 		} else {
 			const publicVapidKey = await fetchPublicVapidKey();
-			console.log({ publicVapidKey });
 			const newSubscription = await registration.pushManager.subscribe({
 				userVisibleOnly: true,
 				applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
@@ -51,10 +49,8 @@ const initializePush = async () => {
 };
 
 export const checkNotificationPermission = async () => {
-	console.log('Check notification permission');
 	if ('Notification' in window && navigator.serviceWorker) {
 		const permission = await window.Notification.permission;
-		console.log({ permission });
 		if (permission === 'granted') {
 			initializePush();
 		}
@@ -66,10 +62,8 @@ export const checkNotificationPermission = async () => {
 };
 
 export const requestNotificationPermission = async () => {
-	console.log('Request notification permission');
 	if ('Notification' in window && navigator.serviceWorker) {
 		const permission = await window.Notification.requestPermission();
-		console.log({ permission });
 		if (permission === 'granted') {
 			initializePush();
 		}

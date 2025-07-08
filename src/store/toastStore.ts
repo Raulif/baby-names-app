@@ -4,7 +4,8 @@ import type { Toast } from '../types/types';
 export const toasts = writable<Toast[]>([]);
 
 export const addToast = (toast: Partial<Toast>) => {
-  const newToast = { timeout: 3000, ...toast } as Toast
+  console.log({toast})
+  const newToast = { timeout: 10000, ...toast } as Toast
   // Push the toast to the top of the list of toasts
   toasts.update((all) => [newToast, ...all]);
   // If toast hast timeout, dismiss it after "timeout" amount of time.
