@@ -83,7 +83,7 @@ self.addEventListener('notificationclick', (e) => {
 		} else {
 			clients.openWindow(new URL(self.location.origin).href);
 		}
-		return notification.close();
+		return e.notification.close();
 	}
 	e.waitUntil(onClick());
 });
