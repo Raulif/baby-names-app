@@ -39,10 +39,10 @@ sw.addEventListener('activate', (e) => {
 
 self.addEventListener('push', async (event) => {
 	const data = JSON.parse(event.data.text());
-	console.log({ focused: await isClientFocused() });
-	if (await isClientFocused()) {
+	const isFocused = await isClientFocused();
+	if (!isFocused) {
 		// Send message to focused window
-		const clients = await getClients()
+		const clients = await getClients();
 		clients.forEach((client) => {
 			console.log({ client, data });
 			client.postMessage(data);
