@@ -30,7 +30,6 @@ const updateNotificationConsumption = async (notificationId, user) => {
 
 async function isClientFocused() {
 	const clients = await getClients();
-	console.log({ clients });
 	const clientIsFocused = clients.reduce((focused, client) => focused || client.focused, false);
 	return clientIsFocused;
 }
@@ -47,6 +46,7 @@ self.addEventListener('push', async (event) => {
 	if (await isClientFocused()) {
 		// Send message to focused window
 		await getClients().forEach((client) => {
+			console.log({client, data})
 			client.postMessage(data);
 		});
 	} else {
