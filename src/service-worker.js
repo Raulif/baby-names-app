@@ -28,7 +28,7 @@ const updateNotificationConsumption = async (notificationId, parent) => {
 
 async function isClientFocused() {
 	const clients = await getClients();
-	console.log({clients})
+	console.log({ clients });
 	const clientIsFocused = clients.reduce((focused, client) => focused || client.focused, false);
 	return clientIsFocused;
 }
@@ -40,25 +40,22 @@ sw.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('push', async (event) => {
-	const eventCallback = async () => {
-		const data = JSON.parse(event.data.text());
-		console.log({focused: await isClientFocused()})
-		if (await isClientFocused()) {
-			// Send message to focused window
-			await getClients().forEach((client) => {
-				client.postMessage(data);
-			});
-		} else {
-			const options = {
-				body: data.notification.text,
-				icon: '/icon.png',
-				badge: '/icon.png'
-			};
-			// Push notification
-			self.registration.showNotification('Baby Names App', options);
-		}
-		const parent = data.notification.issuer === 'mama' ? 'papa' : 'mama';
-		await updateNotificationConsumption(data.notification._id, parent);
-	};
-	event.waitUntil(eventCallback);
+	const data = JSON.parse(event.data.text());
+	console.log({ focused: await isClientFocused() });
+	if (await isClientFocused()) {
+		// Send message to focused window
+		await getClients().forEach((client) => {
+			client.postMessage(data);
+		});
+	} else {
+		const options = {
+			body: data.notification.text,
+			icon: '/icon.png',
+			badge: '/icon.png'
+		};
+		// Push notification
+		self.registration.showNotification('Baby Names App', options);
+	}
+	const parent = data.notification.issuer === 'mama' ? 'papa' : 'mama';
+	await updateNotificationConsumption(data.notification._id, parent);
 });
