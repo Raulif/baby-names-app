@@ -1,5 +1,6 @@
 <script lang="ts">
 	import clsx from 'clsx';
+	import type { MouseEventHandler } from 'svelte/elements';
 
 	type Props = {
 		selectInitial?: boolean;
@@ -20,6 +21,14 @@
 			}
 		}
 	});
+
+	const onClick = (event: MouseEvent & { currentTarget: EventTarget & HTMLInputElement; }) => {
+		if (currentValue === id) {
+			const input = event.currentTarget
+			onChange(input)
+		}
+		return
+	}
 </script>
 
 <label
@@ -36,6 +45,7 @@
 		name="tabs"
 		{id}
 		onchange={(e) => onChange(e.target as HTMLInputElement)}
+		onclick={onClick}
 		class="visually-hidden"
 		checked={selected}
 	/>

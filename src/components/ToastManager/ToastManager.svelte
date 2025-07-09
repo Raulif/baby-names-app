@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-  	import { flip } from 'svelte/animate';
+	import { fly, fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	import Toast from '../Toast/Toast.svelte';
 
@@ -10,11 +10,7 @@
 {#if $toasts}
 	<ul class="toast-manager">
 		{#each $toasts as toast (toast._id)}
-			<li
-				animate:flip={{ duration: 250 }}
-				in:fly={{ y: -200 }}
-				out:fly={{ y: -200 }}
-			>
+			<li in:fade={{ duration: 150 }} out:fly={{ y: -10 }}>
 				<Toast {...toast} onDismiss={() => dismissToast(toast._id)} />
 			</li>
 		{/each}
@@ -24,7 +20,8 @@
 <style>
 	ul.toast-manager {
 		position: fixed;
-		top: 0rem;
+		bottom: 3rem;
+		padding: 0 0.75rem;
 		left: 0;
 		right: 0;
 		width: 100%;

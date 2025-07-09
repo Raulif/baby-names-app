@@ -34,6 +34,7 @@
 	let panelOpen = $state(true);
 
 	let tabSelected = $state('new-name-tab');
+	
 	const onSelect = (input: HTMLInputElement) => {
 		tabSelected = input.id;
 		const label = input.parentElement;

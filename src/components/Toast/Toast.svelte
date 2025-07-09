@@ -28,7 +28,7 @@
 <article role="alert">
 	<div class="flex">
 		<img src="/icon.png" alt="baby icon" />
-		<div class="text ml-2 flex flex-col">
+		<div class="text-sm ml-2 flex flex-col">
 			<span class="open-sans-bold">
 				{title}
 			</span>
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<button class="toast-close ml-1 text-xl" onclick={onDismiss}>
+	<button class="toast-close text-lg " onclick={onDismiss}>
 		<i class="fa fa-xmark"></i>
 		<span class="visually-hidden">Schliessen</span>
 	</button>
@@ -44,23 +44,27 @@
 
 <style lang="postcss">
 	article {
-		padding: 1.5rem 0.75rem;
+		padding: 0.75rem 0.75rem 0.75rem 0.5rem;
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
-		margin: 0 auto 0.5rem auto;
+		margin: 0 auto 0.2rem 0;
 		width: 100%;
 		color: black;
+		color:white;
 		background-color: #e6eef0;
+		background-color: rgba(0,0,0,0.85);
+		/* background-color: #a0b4bc; */
 		box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.3);
+		border-radius: 4px;
 	}
 
 	img {
-		height: 3rem;
+		height: 2.5rem;
 	}
 
 	button {
-		color: black;
+		color: white;
 		background: transparent;
 		border: 0 none;
 		padding: 0;
