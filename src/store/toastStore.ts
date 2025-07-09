@@ -6,7 +6,7 @@ export const toasts = writable<Toast[]>([]);
 
 export const addToast = (toast: Partial<Toast>) => {
 	const themeClass = getThemeClass((new Date().getTime() % 5) as ClassNumber);
-	const newToast = { timeout: 500000, themeClass, ...toast } as Toast;
+	const newToast = { timeout: 5000, themeClass, ...toast } as Toast;
 	// Push the toast to the top of the list of toasts
 	toasts.update((all) => [newToast, ...all]);
 	// If toast hast timeout, dismiss it after "timeout" amount of time.
