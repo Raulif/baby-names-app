@@ -13,7 +13,7 @@
 	};
 </script>
 
-<section class="flex flex-col items-center justify-center gap-4">
+<section class="flex h-[100dvh] flex-col items-center justify-center gap-4">
 	<form
 		method="POST"
 		onsubmit={onSubmit}
@@ -40,10 +40,3 @@
 		/>
 	</form>
 </section>
-
-<style>
-	section {
-		height: 100dvh;
-		height: 100vh;
-	}
-</style>

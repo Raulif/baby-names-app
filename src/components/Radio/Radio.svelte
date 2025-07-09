@@ -16,7 +16,7 @@
 	class={clsx(
 		'open-sans-regular relative flex flex-[1] items-center gap-2 ',
 		checked && 'open-sans-bold text-black',
-		!checked && 'text-[#918f8a]'
+		!checked && 'text-[#6d6d6d]'
 	)}
 >
 	<input
@@ -28,11 +28,11 @@
 		{checked}
 	/>
 	<div
-		class="flex h-5 w-5 items-center justify-center rounded-full border-1 border-[#b5c8ae]"
+		class="flex h-5 w-5 items-center justify-center rounded-full border-1 border-[#b5b4a2]"
 	>
 		<div
 			class={clsx(
-				'h-4 w-4 scale-0 rounded-full bg-[#b5c8ae] transition-transform',
+				'h-4 w-4 scale-0 rounded-full bg-[#b5b4a2] transition-transform',
 				checked && 'scale-100'
 			)}
 		></div>

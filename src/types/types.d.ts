@@ -44,4 +44,5 @@ export type EventNotification = {
 
 export type Toast = {
 	timeout: number;
+	themeClass: string;
 } & EventNotification;
