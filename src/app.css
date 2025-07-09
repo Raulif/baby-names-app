@@ -295,3 +295,29 @@ body {
 		box-shadow: 0px 4px 10px rgba(222, 158, 159, 0.5);
 	}
 }
+
+.theme-veto {
+	.listitem {
+		background-color: #f0f0f0;
+
+		.veto-icon,
+		.veto-label {
+			color: #464646;
+		}
+
+		.action-button,
+		.action-button-reverse {
+			background-color: #c0c0c0;
+			color: black;
+		}
+
+		.action-button-reverse {
+			background-color: #464646;
+			color: white;
+		}
+	}
+
+	.listitem.item-open {
+		box-shadow: 0px 4px 10px rgba(114, 114, 114, 0.5);
+	}
+}

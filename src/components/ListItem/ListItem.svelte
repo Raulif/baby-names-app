@@ -130,8 +130,8 @@
 	class={clsx(
 		'listitem-wrapper',
 		deleting && 'opacity-50',
-		themeClass,
-		vetos.length && 'vetoed'
+		// themeClass,
+		vetos.length ? 'theme-veto' : themeClass
 	)}
 	onclick={onWrapperClick}
 	onkeydown={onKeyDown}
@@ -140,56 +140,70 @@
 	<div
 		class={clsx(
 			'listitem flex w-full flex-col gap-2 rounded-2xl px-5 pt-4 pb-2 ',
-			open && 'item-open'
+			open && 'item-open',
+			vetos?.length && 'vetoed-item'
 		)}
 	>
 		<div class="flex items-center justify-between">
-			<div class="flex items-center gap-2">
+			<div class="name flex items-center gap-2">
 				<span class="open-sans-bold flex items-center text-xl">{name}</span>
 			</div>
-			<div
-				class="gender-bg flex h-8 w-8 items-center justify-center rounded-full"
-			>
-				{#if gender === 'f'}
-					<i class="fa fa-venus gender-icon text-lg"></i>
-				{:else}
-					<i class="fa fa-mars gender-icon text-lg"></i>
+			<div class="flex gap-1 items-center">
+				{#if vetos?.length}
+					<span
+						class="veto-label open-sans-regular text-lg"
+					>
+						Veto
+					</span>
 				{/if}
+				<div
+					class="gender-bg flex h-8 w-8 items-center justify-center rounded-full"
+				>
+					{#if vetos.length}
+						<i class="fa fa-ban veto-icon text-lg"></i>
+					{:else if gender === 'f'}
+						<i class="fa fa-venus gender-icon text-lg"></i>
+					{:else}
+						<i class="fa fa-mars gender-icon text-lg"></i>
+					{/if}
+				</div>
 			</div>
 		</div>
 
-		<div class="flex min-h-[28px] items-center">
-			<form
-				method="POST"
-				class="flex-[2]"
-				id={`rate-form-${name.toLowerCase()}`}
-			>
-				<RateInput
-					value={userRate}
-					debug={name === 'name A'}
-					{name}
-					bind:rateChanged
-				/>
-			</form>
-			<div class="flex flex-[1] justify-end">
-				{#if loading}
-					<div class="flex h-6 min-w-6 items-center justify-center">
-						<i class="fa fa-spinner text-md animate-spin"></i>
-					</div>
-				{:else if rateChanged}
-					<button
-						class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
-						form={`rate-form-${name.toLowerCase()}`}
-						onclick={onRateSubmit}
-						data-testid="submit-rating-{name}"
-					>
-						Speichern
-					</button>
-				{:else}
-					<RateDisplay {rate} veto={vetos} {name} />
-				{/if}
+		{#if !vetos.length}
+			<div class="flex min-h-[28px] items-center">
+				<form
+					method="POST"
+					class="flex-[2]"
+					id={`rate-form-${name.toLowerCase()}`}
+				>
+					<RateInput
+						value={userRate}
+						debug={name === 'name A'}
+						{name}
+						bind:rateChanged
+					/>
+				</form>
+				<div class="flex flex-[1] justify-end">
+					{#if loading}
+						<div class="flex h-6 min-w-6 items-center justify-center">
+							<i class="fa fa-spinner text-md animate-spin"></i>
+						</div>
+					{:else if rateChanged}
+						<button
+							class="action-button open-sans-regular rounded-xl px-2 py-1 text-sm text-[#918f8a]"
+							form={`rate-form-${name.toLowerCase()}`}
+							onclick={onRateSubmit}
+							data-testid="submit-rating-{name}"
+						>
+							Speichern
+						</button>
+					{:else}
+						<RateDisplay {rate} {name} />
+					{/if}
+				</div>
 			</div>
-		</div>
+		{/if}
 		<ActionsMenu
 			{vetoFromUser}
 			{vetoName}
