@@ -2,6 +2,7 @@ name: E2E Tests
 
 env:
   PUBLIC_CONVEX_URL: https://proficient-gecko-159.convex.cloud
+  PUBLIC_NOTIFICATION_SERVER_URL: https://notifications-server.raulif.deno.net
 
 on:
   push:
