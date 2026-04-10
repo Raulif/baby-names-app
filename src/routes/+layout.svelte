@@ -7,18 +7,22 @@
 	import { checkNotificationPermission } from '$lib/notifications';
 	import { registerServiceWorker } from '$lib/register-service-worker';
 
-	import { parentState } from '../lib/parentState.svelte';
+	import { userState } from '../lib/userState.svelte';
+	import { persistNamesToIndexedDB } from '$lib/idb-names';
 
 	const { children } = $props();
 	setupConvex(PUBLIC_CONVEX_URL);
 
 	if (browser) {
-		const storedParent = localStorage.getItem('parent');
-		if (storedParent) {
-			parentState.parent = storedParent;
+		const storedUserName = localStorage.getItem('userName');
+		const storedPartnerName = localStorage.getItem('partnerName');
+		if (storedUserName) userState.userName = storedUserName;
+		if (storedPartnerName) userState.partnerName = storedPartnerName;
+		if (storedUserName && storedPartnerName) {
+			persistNamesToIndexedDB(storedUserName, storedPartnerName);
 		}
-		parentState.checked = true;
-		registerServiceWorker()
+		userState.checked = true;
+		registerServiceWorker();
 		checkNotificationPermission();
 	}
 </script>

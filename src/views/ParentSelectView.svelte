@@ -1,15 +1,21 @@
 <script lang="ts">
 	type Props = {
-		onChange: (chosenParent: string) => void;
+		onChange: (myName: string, partnerName: string) => void;
 	};
 	const { onChange }: Props = $props();
+
+	let myName = $state('');
+	let partnerName = $state('');
+	let error = $state('');
+
 	const onSubmit = (e: SubmitEvent) => {
 		e.preventDefault();
-		const form = e.target as HTMLFormElement;
-		const parent = (form.elements.namedItem('parent') as HTMLSelectElement)
-			?.value;
-		if (!parent) return;
-		onChange(parent);
+		if (!myName.trim() || !partnerName.trim()) return;
+		if (myName.trim() === partnerName.trim()) {
+			error = 'Die Namen dürfen nicht gleich sein.';
+			return;
+		}
+		onChange(myName.trim(), partnerName.trim());
 	};
 </script>
 
@@ -19,19 +25,36 @@
 		onsubmit={onSubmit}
 		class="flex w-full max-w-[80vw] flex-col gap-4"
 	>
-		<label for="parent-select" class="open-sans-bold w-full text-left">
-			Wähle deine Role aus:
+		<label for="my-name" class="open-sans-bold w-full text-left">
+			Dein Name:
 		</label>
-		<select
-			name="parent"
-			id="parent-select"
-			class="open-sans-bold w-full"
-			data-testid="parent-select"
-		>
-			<option value="">Auswählen</option>
-			<option value="mama">Mama</option>
-			<option value="papa">Papa</option>
-		</select>
+		<input
+			id="my-name"
+			type="text"
+			bind:value={myName}
+			placeholder="Dein Name"
+			required
+			class="open-sans-regular w-full rounded-md border-1 border-[#b5b4a2] px-3 py-2 text-lg"
+			data-testid="my-name-input"
+		/>
+
+		<label for="partner-name" class="open-sans-bold w-full text-left">
+			Name deiner Partners:
+		</label>
+		<input
+			id="partner-name"
+			type="text"
+			bind:value={partnerName}
+			placeholder="Name deiner Partners"
+			required
+			class="open-sans-regular w-full rounded-md border-1 border-[#b5b4a2] px-3 py-2 text-lg"
+			data-testid="partner-name-input"
+		/>
+
+		{#if error}
+			<p class="open-sans-regular text-sm text-red-500">{error}</p>
+		{/if}
+
 		<input
 			data-testid="parent-select-submit"
 			type="submit"

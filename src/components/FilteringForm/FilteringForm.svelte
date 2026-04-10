@@ -1,20 +1,19 @@
 <script lang="ts">
 	import type {
 		FilterCategory,
-		Parent,
 		FilterStateValue
 	} from '../../types/types';
-	import { parentState } from '$lib/parentState.svelte';
+	import { userState } from '$lib/userState.svelte';
 	import FilterRow from './FilterRow.svelte';
 
 	type Props = {
-		onChange: (value: Parent | string, category: FilterCategory) => void;
+		onChange: (value: string, category: FilterCategory) => void;
 		selectedFilters: FilterStateValue;
 		onClear: (category: FilterCategory) => void;
 	};
 
 	const { onChange, selectedFilters, onClear }: Props = $props();
-	const otherParent = $derived(parentState.parent === 'mama' ? 'papa' : 'mama');
+	const otherParent = $derived(userState.partnerName);
 </script>
 
 <section class="relative h-full">
@@ -26,7 +25,7 @@
 			title="Nach Nutzer"
 			category="filterUser"
 			valueLabels={[
-				{ value: parentState.parent, label: 'Meine' },
+				{ value: userState.userName, label: 'Meine' },
 				{ value: otherParent, label: 'Andere' }
 			]}
 		/>

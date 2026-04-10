@@ -1,12 +1,10 @@
 <script lang="ts">
 	import clsx from 'clsx';
-	import type { Parent } from '../../types/types';
-
 	type Props = {
 		name: string;
 		onChange: (value: string) => void;
 		label: string;
-		value: string | Parent | boolean;
+		value: string | boolean;
 		checked: boolean;
 	};
 	const { label, name, value, onChange, checked }: Props = $props();

@@ -1,6 +1,6 @@
 /** @satisfies {import('./$types').Actions} */
 import type { RequestEvent } from '@sveltejs/kit';
-import type { Gender, Parent } from '../types/types';
+import type { Gender } from '../types/types';
 import { updateNamesInDB } from '../db/names';
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '../convex/_generated/api';
@@ -31,7 +31,7 @@ export const actions = {
 		const data = await event.request.formData();
 		const name = data.get('name') as string;
 		const gender = data.get('gender') as Gender;
-		const parent = params.get('parent') as Parent;
+		const parent = params.get('parent') as string;
 
 		const { _id, names } = namesStore.getState();
 
@@ -41,7 +41,7 @@ export const actions = {
 
 		const newNameEntry = {
 			name,
-			parent: parent as Parent,
+			parent,
 			rate: [],
 			gender,
 			veto: []
@@ -54,7 +54,7 @@ export const actions = {
 	rate: async ({ request }: RequestEvent) => {
 		const data = await request.formData();
 		const name = data.get('name') as string;
-		const parent = data.get('parent') as Parent;
+		const parent = data.get('parent') as string;
 		const rate = data.get('rate') as string;
 		const { _id, names } = namesStore.getState();
 
@@ -65,7 +65,7 @@ export const actions = {
 		const rateIndex = names[nameIndex]?.rate.findIndex((r) => r.parent === parent);
 		if (rateIndex === -1) {
 			names[nameIndex].rate.push({
-				parent: parent as unknown as Parent,
+				parent,
 				rate: parseInt(rate as unknown as string)
 			});
 		} else {

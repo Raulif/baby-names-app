@@ -2,7 +2,7 @@
 	import clsx from 'clsx';
 	import { enhance } from '$app/forms';
 	import GenderRadio from './GenderRadio.svelte';
-	import { parentState } from '../../lib/parentState.svelte';
+	import { userState } from '../../lib/userState.svelte';
 
 	let isFocused = $state(false);
 
@@ -18,7 +18,7 @@
 	<form
 		class="flex flex-col gap-5"
 		method="POST"
-		action={`?/add&parent=${parentState.parent}`}
+		action={`?/add&parent=${userState.userName}`}
 		use:enhance
 	>
 		<div

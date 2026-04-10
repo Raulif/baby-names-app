@@ -1,6 +1,6 @@
 import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
 import type { EventNotificationRequestData, EventNotification } from '../types/types';
-import { parentState } from './parentState.svelte';
+import { userState } from './userState.svelte';
 import { permissionState } from './permissionState.svelte';
 import { addToast } from '../store/toastStore';
 
@@ -24,7 +24,7 @@ const fetchPublicVapidKey = async () => {
 const storeSubscriptionInDB = async (subscription: PushSubscription) => {
 	const subscriptionResponse = await fetch(`${PUBLIC_NOTIFICATION_SERVER_URL}/subscription`, {
 		method: 'POST',
-		body: JSON.stringify({ subscription, user: parentState.parent })
+		body: JSON.stringify({ subscription, user: userState.userName })
 	});
 	const subscriptionJson = await subscriptionResponse.json();
 };

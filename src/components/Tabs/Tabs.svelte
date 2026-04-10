@@ -8,7 +8,6 @@
 	import Foldable from '../Foldable/Foldable.svelte';
 	import type {
 		FilterCategory,
-		Parent,
 		FilterStateValue
 	} from '../../types/types';
 
@@ -16,7 +15,7 @@
 		onSortingChange: (value: string) => void;
 		selectedSorting?: string;
 		selectedFilters: FilterStateValue;
-		onFilterChange: (value: Parent | string, category: FilterCategory) => void;
+		onFilterChange: (value: string, category: FilterCategory) => void;
 		onFilterClear: (category: FilterCategory) => void;
 		onSortingClear: () => void;
 	};

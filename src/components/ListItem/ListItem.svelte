@@ -2,7 +2,7 @@
 	import clsx from 'clsx';
 	import type { Name } from '../../types/types';
 	import RateInput from '../RateInput/RateInput.svelte';
-	import { parentState } from '../../lib/parentState.svelte';
+	import { userState } from '../../lib/userState.svelte';
 	import RateDisplay from '../RateDisplay/RateDisplay.svelte';
 	import ActionsMenu from '../ActionsMenu/ActionsMenu.svelte';
 	import Modal from '../DeleteModal/DeleteModal.svelte';
@@ -39,7 +39,7 @@
 		const form = button.form as HTMLFormElement;
 		const formData = new FormData(form);
 
-		formData.append('parent', parentState.parent);
+		formData.append('parent', userState.userName);
 		formData.append('name', name);
 		await fetch('?/rate', {
 			method: 'POST',
@@ -59,7 +59,7 @@
 
 		await fetch('?/delete', {
 			method: 'POST',
-			body: JSON.stringify({ name, parent: parentState.parent })
+			body: JSON.stringify({ name, parent: userState.userName })
 		});
 		selectedIndex = null;
 	};
@@ -72,7 +72,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				name,
-				veto: { parent: parentState.parent, veto: true }
+				veto: { parent: userState.userName, veto: true }
 			})
 		});
 		loading = false;
@@ -86,7 +86,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				name,
-				veto: { parent: parentState.parent, veto: false }
+				veto: { parent: userState.userName, veto: false }
 			})
 		});
 		loading = false;
@@ -114,13 +114,13 @@
 	};
 
 	const userRate = $derived(
-		rate.find((r) => !!parentState.checked && r.parent === parentState.parent)
+		rate.find((r) => !!userState.checked && r.parent === userState.userName)
 			?.rate
 	);
 
 	const vetos = $derived(veto?.filter((v) => v.veto));
 	const vetoFromUser = $derived(
-		vetos?.some((v) => v.parent === parentState.parent && !!v.veto)
+		vetos?.some((v) => v.parent === userState.userName && !!v.veto)
 	);
 </script>
 
@@ -210,7 +210,7 @@
 			deleteName={onRequestDelete}
 			{open}
 			{removeVeto}
-			deletable={parent === parentState.parent}
+			deletable={parent === userState.userName}
 			{name}
 		/>
 	</div>

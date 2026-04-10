@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { parentState } from '$lib/parentState.svelte';
+	import { userState } from '$lib/userState.svelte';
+	import { persistNamesToIndexedDB } from '$lib/idb-names';
 	import ParentSelectView from '../views/ParentSelectView.svelte';
 	import MainView from '../views/MainView.svelte';
 	import ToastManager from '../components/ToastManager/ToastManager.svelte';
 
-	const onParentChange = (chosenParent: string) => {
-		parentState.parent = chosenParent;
-		localStorage.setItem('parent', chosenParent);
+	const onSetup = (myName: string, partnerName: string) => {
+		userState.userName = myName;
+		userState.partnerName = partnerName;
+		localStorage.setItem('userName', myName);
+		localStorage.setItem('partnerName', partnerName);
+		persistNamesToIndexedDB(myName, partnerName);
 	};
 </script>
 
@@ -14,10 +18,10 @@
 	<title>Familia Baby Names</title>
 	<meta name="description" content="Familia Baby Names" />
 </svelte:head>
-{#if !parentState.checked}
+{#if !userState.checked}
 	Loading User...
-{:else if !parentState.parent}
-	<ParentSelectView onChange={onParentChange} />
+{:else if !userState.userName || !userState.partnerName}
+	<ParentSelectView onChange={onSetup} />
 {:else}
 	<ToastManager />
 	<MainView />

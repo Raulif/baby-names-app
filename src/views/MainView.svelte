@@ -11,10 +11,9 @@
 		FilterCategory,
 		FilterGender,
 		FilterRating,
-		FilterUser,
-		Parent
+		FilterUser
 	} from '../types/types';
-	import { parentState } from '$lib/parentState.svelte';
+	import { userState } from '$lib/userState.svelte';
 	import PermissionModal from '../components/PermissionModal/PermissionModal.svelte';
 	import { permissionState } from '$lib/permissionState.svelte';
 
@@ -55,7 +54,7 @@
 		const filtered = filterNames(
 			namesQuery.data.names,
 			filteringState.value,
-			parentState.parent as Parent
+			userState.userName
 		);
 		const sorted = sortNames(filtered, sortingState.value);
 		return sorted;

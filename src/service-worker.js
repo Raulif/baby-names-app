@@ -3,6 +3,7 @@
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 import { PUBLIC_NOTIFICATION_SERVER_URL } from '$env/static/public';
+import { getMyNameFromIndexedDB } from '$lib/idb-names';
 
 async function getClients() {
 	return await clients.matchAll({
@@ -69,8 +70,10 @@ self.addEventListener('push', (event) => {
 			// Send push notification to inactive app
 			self.registration.showNotification('Baby Names App', options);
 		}
-		const parent = data.notification.issuer === 'mama' ? 'papa' : 'mama';
-		await updateNotificationConsumption(data.notification._id, parent);
+		const myName = await getMyNameFromIndexedDB();
+		if (myName) {
+			await updateNotificationConsumption(data.notification._id, myName);
+		}
 	}
 	event.waitUntil(onPush());
 });

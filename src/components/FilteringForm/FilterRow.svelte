@@ -1,14 +1,13 @@
 <script lang="ts">
 	import type {
 		FilterStateValue,
-		Parent,
 		FilterCategory
 	} from '../../types/types';
 	import Radio from '../Radio/Radio.svelte';
 	import ClearButton from '../ClearButton/ClearButton.svelte';
 
 	type Props = {
-		onChange: (value: Parent | string, category: FilterCategory) => void;
+		onChange: (value: string, category: FilterCategory) => void;
 		valueLabels: Array<{ value: string; label: string }>;
 		selectedFilters: FilterStateValue;
 		title: string;

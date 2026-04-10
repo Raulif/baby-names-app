@@ -1,4 +1,4 @@
-import type { FilterStateValue, Parent } from '../types/types';
+import type { FilterStateValue } from '../types/types';
 
 type FilteringState = {
 	value: FilterStateValue;
